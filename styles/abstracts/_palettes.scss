@@ -1,0 +1,17 @@
+$palette: (
+  bg_: (
+    header_: #990007,
+  ),
+);
+
+@function color($key, $tone: 'base') {
+  @if map-has-key($palette, $key) {
+    @if map-has-key(map-get($palette, $key), $tone) {
+      @return map-get(map-get($palette, $key), $tone);
+    } @else {
+      @error 'Oops, `#{$tone}` is not available in `#{map-get($palette, $key)}`';
+    }
+  } @else {
+    @error 'Ouch, `#{$key}` is not available in $palette';
+  }
+}
