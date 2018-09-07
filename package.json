@@ -7,7 +7,7 @@
   "scripts": {
     "build": "webpack --config webpack.production.config.js --progress --profile --colors",
     "serve:build": "npm run build && node server.js",
-    "dev": "webpack-dev-server --progress",
+    "dev": "cross-env MODE='dev' webpack-dev-server --progress",
     "lint": "eslint --ext js --ext jsx src || exit 0",
     "deploy": "gh-pages -d build"
   },
@@ -19,13 +19,16 @@
   "homepage": "https://topus009.github.io/megafon",
   "dependencies": {
     "babel-polyfill": "6.26.0",
+    "history": "^4.7.2",
     "lodash": "^4.17.10",
     "mobx": "^5.1.0",
     "mobx-react": "^5.2.6",
+    "mobx-react-router": "^4.0.4",
     "moment": "^2.22.2",
     "normalize.css": "^8.0.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-router": "^4.3.1",
     "recompose": "^0.30.0"
   },
   "devDependencies": {
@@ -43,6 +46,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-runtime": "^6.26.0",
+    "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
     "eslint": "^5.5.0",
     "eslint-plugin-react": "^7.11.1",

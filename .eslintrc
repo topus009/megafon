@@ -1,7 +1,12 @@
 {
 	"parser": "babel-eslint",
 	"parserOptions": {
-		"ecmaVersion": 8
+		"ecmaVersion": 8,
+		"ecmaFeatures": {
+			"experimentalObjectRestSpread": true,
+			"experimentalDecorators": true
+		},
+		"sourceType": "module"
 	},
 	"env": {
 		"commonjs": true,

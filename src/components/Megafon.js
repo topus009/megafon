@@ -1,10 +1,10 @@
 import React from 'react';
-// import {observer} from 'mobx-react';
+import {observer, inject} from 'mobx-react';
 // import {lifecycle} from 'recompose';
 import _ from 'lodash';
 
-function Megafon({store}) {
-  console.warn({store});
+function Megafon(props) {
+  console.warn({props});
   return (
     <div className='wrapper'/>
   );
@@ -18,4 +18,5 @@ function Megafon({store}) {
 // });
 
 // export default WithPosts(observer(Megafon));
-export default Megafon;
+export default
+  inject('routing')(observer(Megafon));
