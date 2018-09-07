@@ -36,16 +36,21 @@ module.exports = {
   },
   devServer: {
     contentBase: "./public",
-    // do not print bundle build stats
-    noInfo: true,
-    // enable HMR
     hot: true,
     // embed the webpack-dev-server runtime into the bundle
     inline: true,
     // serve index.html in place of 404 responses to allow HTML5 history
     historyApiFallback: true,
     port: PORT,
-    host: HOST
+    host: HOST,
+    stats: {
+      colors: true,
+      modules: false,
+      version: false,
+      hash: false,
+      excludeAssets: /fonts/,
+      children: false,
+    },
   },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),

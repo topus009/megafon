@@ -4,6 +4,7 @@ import React from 'react';
 import _ from 'lodash';
 
 function Megafon({store}) {
+  console.warn({store});
   return (
     <div className='wrapper'/>
   );

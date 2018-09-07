@@ -7,7 +7,7 @@
   "scripts": {
     "build": "webpack --config webpack.production.config.js --progress --profile --colors",
     "serve:build": "npm run build && node server.js",
-    "dev": "webpack-dev-server --progress --profile --colors",
+    "dev": "webpack-dev-server --progress",
     "lint": "eslint --ext js --ext jsx src || exit 0",
     "deploy": "gh-pages -d build"
   },
