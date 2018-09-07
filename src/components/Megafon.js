@@ -1,6 +1,6 @@
 import React from 'react';
-import {observer} from 'mobx-react';
-import {lifecycle} from 'recompose';
+// import {observer} from 'mobx-react';
+// import {lifecycle} from 'recompose';
 import _ from 'lodash';
 
 function Megafon({store}) {
@@ -9,11 +9,12 @@ function Megafon({store}) {
   );
 }
 
-const WithPosts = lifecycle({
-  componentDidMount() {
-    const {preloadData} = this.props.store;
-      preloadData();
-    }
-});
+// const WithPosts = lifecycle({
+//   componentDidMount() {
+//     const {preloadData} = this.props.store;
+//       preloadData();
+//     }
+// });
 
-export default WithPosts(observer(Megafon));
+// export default WithPosts(observer(Megafon));
+export default Megafon;

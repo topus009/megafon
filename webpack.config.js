@@ -2,12 +2,12 @@
 const webpack = require('webpack');
 const path = require('path');
 const loadersConf = require('./webpack.loaders');
+const config = require('./config.local');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const HOST = process.env.HOST || "127.0.0.1";
-const PORT = process.env.PORT || "8888";
-
+const HOST = process.env.HOST || config.host;
+const PORT = process.env.PORT || config.port;
 
 module.exports = {
   entry: [
