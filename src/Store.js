@@ -5,41 +5,39 @@ import {localStorageName} from '../config.local';
 class Store {
   @observable users = {};
   @computed getUniqUserId = () => {
-    const usersLength = _.size(this.users);
-    if(usersLength) {
-      return 'id_' + (usersLength + 1);
-    } return 'id_' + 0;
+      const usersLength = _.size(this.users);
+      if(usersLength) {
+          return 'id_' + (usersLength + 1);
+      } return 'id_' + 0;
   }
-  @computed getUser = (id) => {
-    return this.users.id;
-  }
+  @computed getUser = id => this.users[id]
   prepareUserData = (isNew, user, id) => {
-    if(isNew) {
-      const newId = this.getUniqUserId();
-      this.saveToLS(user, newId);
-    } else {
-      this.saveToLS(user, id);
-    }
+      if(isNew) {
+          const newId = this.getUniqUserId();
+          this.saveToLS(user, newId);
+      } else {
+          this.saveToLS(user, id);
+      }
   }
   @action saveUserToLS = (user, id) => {
-    const data = {
-      ...this.users,
-      [id]: user
-    };
-    localStorage.setItem(localStorageName, JSON.stringify(data));
-    this.users = data;
+      const data = {
+          ...this.users,
+          [id]: user
+      };
+      localStorage.setItem(localStorageName, JSON.stringify(data));
+      this.users = data;
   }
 
   @action getUsersFromLS = () => {
-    const users = localStorage.getItem(localStorageName);
-    if(users !== null) {
-      this.users = JSON.parse(users);
-    }
+      const users = localStorage.getItem(localStorageName);
+      if(users !== null) {
+          this.users = JSON.parse(users);
+      }
   }
-  @action deleteUser = (id) => {
-    const data = _.omit(this.users, id);
-    localStorage.setItem(localStorageName, JSON.stringify(data))
-    this.users = data;
+  @action deleteUser = id => {
+      const data = _.omit(this.users, id);
+      localStorage.setItem(localStorageName, JSON.stringify(data));
+      this.users = data;
   }
 }
 

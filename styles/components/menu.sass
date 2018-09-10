@@ -1,0 +1,68 @@
+.menu
+    display: table
+    background-color: color(bg,menu)
+    position: relative
+    +wh(100vw,60px)
+    @media screen and (min-width: 720px) and (max-width: #{1366 - 1}px)
+        +wh(100vw,60px)
+    @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+        +wh(100vw,80px)
+    @media screen and (min-width: 1920px)
+        +wh(100vw,100px)
+    .logo
+        font-family: 'PFDinDP-Reg'
+        color: white
+        display: table-cell
+        vertical-align: middle
+        text-align: center
+        font-size: 2rem
+        @media screen and (min-width: 720px) and (max-width: #{1366 - 1}px)
+            font-size: 2.5rem
+        @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+            font-size: 3rem
+        @media screen and (min-width: 1920px)
+            font-size: 3.5rem
+    .buttons
+        display: inline-table
+        vertical-align: middle
+        position: absolute
+        top: 0
+        right: 10px
+        +wh(75px,100%)
+        @media screen and (min-width: 720px) and (max-width: #{1366 - 1}px)
+            right: 34px
+            +wh(89px,100%)
+        @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+            right: 50px
+            +wh(130px,100%)
+        @media screen and (min-width: 1920px)
+            right: 70px
+            +wh(175px,100%)
+        a
+            display: table-cell
+            vertical-align: middle
+            +wh(35px,35px)
+            @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+                +wh(50px,50px)
+            @media screen and (min-width: 1920px)
+                +wh(70px,70px)
+            .book
+                +nav_button('book','book_hover')
+                +nav_button_sizes(35px,35px)
+                @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+                    +nav_button_sizes(50px,50px)
+                @media screen and (min-width: 1920px)
+                    +nav_button_sizes(70px,70px)
+            .adduser
+                +nav_button('contact','contact_hover')
+                +nav_button_sizes(35px,35px)
+                margin-left: 7px
+                @media screen and (min-width: 720px) and (max-width: #{1366 - 1}px)
+                    margin-left: 14px
+                @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+                    +nav_button_sizes(50px,50px)
+                    margin-left: 14px
+                @media screen and (min-width: 1920px)
+                    +nav_button_sizes(70px,70px)
+                    margin-left: 24px
+
