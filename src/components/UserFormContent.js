@@ -45,11 +45,12 @@ class UserFormContent extends Component {
             }
         };
     }
-    componentDidUpdate(prevState) {
+    componentDidUpdate(prevProps, prevState) {
         const prevUser = prevState.user;
         const {user} = this.state;
-        const {saveUserToStore} = this.state;
-        if(_.isEqual(prevUser, user)) {
+        const {saveUserToStore} = this.props;
+        if(!_.isEqual(prevUser, user)) {
+            console.warn({user});
             saveUserToStore(user);
         }
     }
