@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from '../common/Form';
-import UserFormConent from './UserFormConent';
+import UserFormContent from './UserFormContent';
 
 const UserInfo = () =>
     <Form
@@ -10,7 +10,7 @@ const UserInfo = () =>
     >
         <div className='content'>
             <div>UserInfo</div>
-            <UserFormConent isEditable={false}/>
+            <UserFormContent isEditable={false}/>
         </div>
     </Form>;
 

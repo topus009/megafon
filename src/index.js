@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
-import AppRouter from './routes';
+import Megafon from './containers/Megafon';
 
 // let DevTools = '';
 // if(process.env.MODE === 'dev') {
@@ -10,7 +10,7 @@ import AppRouter from './routes';
 
 ReactDOM.render(
     <AppContainer>
-        <AppRouter/>
+        <Megafon/>
     </AppContainer>,
     document.getElementById('root')
 );

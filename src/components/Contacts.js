@@ -9,7 +9,7 @@ const Contacts = () =>
         title='Контакты'
     >
         <div className='content'>
-            <div style={{width: '100%', height: '1000px'}}>Contacts</div>
+            <div>Contacts</div>
         </div>
     </Form>;
 

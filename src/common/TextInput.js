@@ -10,39 +10,42 @@ class TextInput extends Component {
     }
 
     componentWillUpdate(nextProps, nextState) {
-        this.props.setError(nextState.isError);
+        const {needValidate, setError} = this.props;
+        if(needValidate) {
+            setError(nextState.isError);
+        }
     }
 
-    renderValidateIcon() {
+    renderValidateIcon = () => {
         const {value} = this.props;
-        const {isError} = this.props;
-        if(value.length & !isError) return '&#10003;';
-        if(isError) return '&#10006;';
+        const {isError} = this.state;
+        if(value.length && !isError) return '&#x2713;';
+        if(isError) return '&#x2716;';
         return null;
     }
-    handleChange(e) {
+    handleChange = e => {
         const {value} = e.target;
         const {onChange, needValidate} = this.props;
         onChange(value);
         if(needValidate) this.validateInput(value);
     }
-    validateInput(value) {
+    validateInput = value => {
         const {checkError} = this.props;
 
         if(checkError(value)) {
             this.setState({isError: true});
         } else this.setState({isError: false});
     }
-    handleFocus() {
+    handleFocus = () => {
         this.setState({isFocused: true});
     }
-    handleBlur() {
+    handleBlur = () => {
         this.setState({isFocused: false});
     }
 
     render() {
-        const {label, value} = this.props;
-        const {isFocused, isError} = this.props;
+        const {label, value, placeholder} = this.props;
+        const {isFocused, isError} = this.state;
         return (
             <div className='text_input'>
                 <div className={'label ' + isFocused ? ' focused' : ''}>{label}</div>
@@ -54,6 +57,7 @@ class TextInput extends Component {
                             (isFocused ? 'focused ' : '') +
                             (isError ? 'error ' : '')
                         }
+                        placeholder={placeholder || ''}
                         value={value}
                         onChange={this.handleChange}
                         onFocus={this.handleFocus}

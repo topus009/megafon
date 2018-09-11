@@ -1,6 +1,7 @@
 import React from 'react';
+import {inject, observer} from 'mobx-react';
 import Form from '../common/Form';
-import UserFormConent from './UserFormConent';
+import UserFormContent from './UserFormContent';
 
 const UserAddForm = () =>
     <Form
@@ -11,8 +12,10 @@ const UserAddForm = () =>
     >
         <div className='content'>
             <div>UserAddForm</div>
-            <UserFormConent isEditable={true}/>
+            <UserFormContent
+                isEditable={true}
+            />
         </div>
     </Form>;
 
-export default UserAddForm;
+export default inject('store')(observer(UserAddForm));

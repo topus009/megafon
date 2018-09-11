@@ -3,20 +3,20 @@ import {observable, action, computed} from 'mobx';
 import {localStorageName} from '../config.local';
 
 class Store {
-  @observable users = {};
-  @computed getUniqUserId = () => {
+  @observable users = {}
+  @computed get getUniqUserId() {
       const usersLength = _.size(this.users);
       if(usersLength) {
           return 'id_' + (usersLength + 1);
       } return 'id_' + 0;
   }
-  @computed getUser = id => this.users[id]
+  getUser = id => this.users[id]
   prepareUserData = (isNew, user, id) => {
       if(isNew) {
           const newId = this.getUniqUserId();
-          this.saveToLS(user, newId);
+          this.saveUserToLS(user, newId);
       } else {
-          this.saveToLS(user, id);
+          this.saveUserToLS(user, id);
       }
   }
   @action saveUserToLS = (user, id) => {

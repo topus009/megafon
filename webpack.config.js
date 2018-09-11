@@ -2,6 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const loadersConf = require('./webpack.loaders');
 const config = require('./config.local');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -61,6 +62,7 @@ module.exports = {
             filename: 'style.css',
             allChunks: true
         }),
+        new FaviconsWebpackPlugin('./src/images/favicon.png'),
         new HtmlWebpackPlugin({
             template: './src/template.html',
             files: {
