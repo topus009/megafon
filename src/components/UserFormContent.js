@@ -45,6 +45,14 @@ class UserFormContent extends Component {
             }
         };
     }
+    componentDidUpdate(prevState) {
+        const prevUser = prevState.user;
+        const {user} = this.state;
+        const {saveUserToStore} = this.state;
+        if(_.isEqual(prevUser, user)) {
+            saveUserToStore(user);
+        }
+    }
     onChange(key, value) {
         this.setState(({user}) => ({
             user: {
