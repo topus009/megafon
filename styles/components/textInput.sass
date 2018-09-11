@@ -1,0 +1,14 @@
+.text_input
+    .input_block
+        .validate_icon
+            position: relative
+            &.good
+                &:after
+                    +validate_mark
+                    content: '\2713'
+                    color: green
+            &.bad
+                &:after
+                    +validate_mark
+                    content: '\2717'
+                    color: red

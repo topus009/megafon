@@ -19,9 +19,9 @@ class TextInput extends Component {
     renderValidateIcon = () => {
         const {value} = this.props;
         const {isError} = this.state;
-        if(value.length && !isError) return '&#x2713;';
-        if(isError) return '&#x2716;';
-        return null;
+        if(value.length && !isError) return 'good';
+        if(isError) return 'bad';
+        return '';
     }
     handleChange = e => {
         const {value} = e.target;
@@ -49,7 +49,7 @@ class TextInput extends Component {
         return (
             <div className='text_input'>
                 <div className={'label ' + isFocused ? ' focused' : ''}>{label}</div>
-                <div className='input'>
+                <div className='input_block'>
                     <input
                         type='text'
                         className={
@@ -63,9 +63,7 @@ class TextInput extends Component {
                         onFocus={this.handleFocus}
                         onBlur={this.handleBlur}
                     />
-                    <span className='validate_icon'>
-                        {this.renderValidateIcon()}
-                    </span>
+                    <span className={'validate_icon ' + this.renderValidateIcon()}/>
                 </div>
             </div>
 
