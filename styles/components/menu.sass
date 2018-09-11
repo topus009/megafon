@@ -2,13 +2,12 @@
     display: table
     background-color: color(bg,menu)
     position: relative
-    +wh(100vw,60px)
-    @media screen and (min-width: 720px) and (max-width: #{1366 - 1}px)
-        +wh(100vw,60px)
+    @media screen and (max-width: #{1366 - 1}px)
+        +wh(100%,60px)
     @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
-        +wh(100vw,80px)
+        +wh(100%,80px)
     @media screen and (min-width: 1920px)
-        +wh(100vw,100px)
+        +wh(100%,100px)
     .logo
         font-family: 'PFDinDP-Reg'
         color: white

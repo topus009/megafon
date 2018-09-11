@@ -1,0 +1,122 @@
+.form
+    background-color: color(bg, form)
+    width: calc(100% - 20px)
+    height: calc(100vh - 90px)
+    margin: 10px auto
+    padding-bottom: 10px
+    @media screen and (min-width: 720px) and (max-width: #{1920 - 1}px)
+        width: calc(100% - 40px)
+        margin: 20px auto
+        padding-bottom: 20px
+    @media screen and (min-width: 720px) and (max-width: #{1366 - 1}px)
+        height: calc(100vh - 120px)
+    @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+        height: calc(100vh - 140px)
+    @media screen and (min-width: 1920px)
+        width: calc(100% - 80px)
+        height: calc(100vh - 220px)
+        margin: 40px auto
+        padding-bottom: 40px
+    .title
+        background-color: #00be73
+        color: white
+        font-family: 'PFDinDP-Reg'
+        position: relative
+        height: 50px
+        padding-left: 20px
+        font-size: 1.3rem
+        line-height: 50px
+        @media screen and (min-width: 720px)
+            padding-left: 0
+            text-align: center
+        @media screen and (min-width: 720px) and (max-width: #{1366 - 1}px)
+            font-size: 1.5rem
+        @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+            height: 60px
+            font-size: 1.8rem
+            line-height: 60px
+        @media screen and (min-width: 1920px)
+            height: 60px
+            font-size: 1.8rem
+            line-height: 60px
+        @media screen and (min-width: 1920px)
+            height: 80px
+            font-size: 2rem
+            line-height: 80px
+        .close
+            position: absolute
+            text-align: center
+            border: 2px solid white
+            border-radius: 50%
+            padding: 4px
+            top: 10px
+            right: 10px
+            width: 20px
+            height: 20px
+            @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+                width: 30px
+                height: 30px
+            @media screen and (min-width: 1920px)
+                width: 40px
+                height: 40px
+                top: 15px
+                right: 15px
+            &:hover
+                border-color: color(bg, btn_form_header_hover)
+            &:hover .button_content
+                color: color(bg, btn_form_header_hover)
+            .button_content
+                font-family: 'Times New Roman'
+                font-size: 1.1rem
+                line-height: 1.15
+                @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+                    font-size: 1.4rem
+                    line-height: 1.4
+                @media screen and (min-width: 1920px)
+                    font-size: 1.8rem
+                    line-height: 1.5
+    .content
+        overflow-y: auto
+        background-color: white
+        padding: 10px
+        margin: 10px
+        height: calc(100% - 140px)
+        @media screen and (min-width: 720px) and (max-width: #{1920 - 1}px)
+            padding: 20px
+            margin: 20px
+        @media screen and (min-width: 720px) and (max-width: #{1366 - 1}px)
+            height: calc(100% - 180px)
+        @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+            height: calc(100% - 200px)
+        @media screen and (min-width: 1920px)
+            padding: 40px
+            margin: 40px
+            height: calc(100% - 320px)
+    .footer
+        width: 100%
+        .save
+            background-color: color(bg, btn_form_footer)
+            color: white
+            font-family: 'PFDinDP-Reg'
+            text-align: center
+            +wh(70%, 50px)
+            margin: 10px auto
+            line-height: 50px
+            font-size: 1.3rem
+            @media screen and (min-width: 720px)
+                float: right
+            @media screen and (min-width: 720px) and (max-width: #{1366 - 1}px)
+                +wh(40%, 50px)
+                margin: 0 20px
+            @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+                +wh(30%, 60px)
+                line-height: 60px
+                font-size: 1.6rem
+                margin: 0 20px
+            @media screen and (min-width: 1920px)
+                +wh(20%, 80px)
+                line-height: 80px
+                font-size: 1.8rem
+                margin: 0 40px
+            &:hover
+                background-color: color(bg, btn_form_footer_hover)

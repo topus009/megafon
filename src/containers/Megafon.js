@@ -12,7 +12,7 @@ function Megafon(props) {
         <Provider store={Store}>
             <div className='wrapper'>
                 <Menu/>
-                <div>Megafon
+                <div>
                     {props.children}
                 </div>
             </div>
