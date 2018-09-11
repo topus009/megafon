@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from '../common/Form';
+import UserFormConent from './UserFormConent';
 
 const UserAddForm = () =>
     <Form
@@ -9,7 +10,8 @@ const UserAddForm = () =>
         title='Новый пользователь'
     >
         <div className='content'>
-            <div style={{width: '100%', height: '1000px'}}>UserAddForm</div>
+            <div>UserAddForm</div>
+            <UserFormConent isEditable={true}/>
         </div>
     </Form>;
 

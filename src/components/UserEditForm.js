@@ -1,14 +1,16 @@
 import React from 'react';
 import Form from '../common/Form';
+import UserFormConent from './UserFormConent';
 
 const UserEditForm = () =>
     <Form
         onClose={() => false}
-        isEditable={false}
+        isEditable={true}
         title='Иван Петрович'
     >
         <div className='content'>
-            <div style={{width: '100%', height: '1000px'}}>UserEditForm</div>
+            <div>UserEditForm</div>
+            <UserFormConent isEditable={true}/>
         </div>
     </Form>;
 
