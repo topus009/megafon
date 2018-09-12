@@ -7,10 +7,10 @@ import Home from './components/Home';
 const Routes = () =>
     <div>
         <Route exact path='/' component={Home}/>
-        <Route path='/contacts' component={Contacts}/>
-        <Route path='/user/:userId' component={UserForm}/>
-        <Route path='/user/:userId/edit' component={UserForm}/>
-        <Route path='/adduser' component={UserForm}/>
+        <Route exact path='/contacts' component={Contacts}/>
+        <Route exact path='/user/:userId' component={UserForm}/>
+        <Route exact path='/user/:userId/edit' component={UserForm}/>
+        <Route exact path='/adduser' component={UserForm}/>
     </div>
 ;
 

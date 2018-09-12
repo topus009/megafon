@@ -10,8 +10,12 @@ const UserListItem = ({user, id}) =>
             </div>
         </NavLink>
         <div className='user_control_buttons'>
-            <span>X1   </span>
-            <span>X2</span>
+            <span>
+                <NavLink to={`/user/${id}/edit`}>
+                    <div>Edit</div>
+                </NavLink>
+            </span>
+            <span>Delete</span>
         </div>
     </div>;
 
