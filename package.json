@@ -9,7 +9,7 @@
     "serve:build": "npm run build && node server.js",
     "dev": "cross-env MODE='dev' webpack-dev-server --progress",
     "lint": "eslint --ext js --ext jsx src || exit 0",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d public"
   },
   "repository": {
     "type": "git",
