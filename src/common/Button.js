@@ -25,7 +25,7 @@ const Button = ({
     return (
         <div
             className={'button ' + classNames + disableClass}
-            onClick={onClick}
+            onClick={() => disabled ? false : onClick()}
         >
             {content}
         </div>
