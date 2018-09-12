@@ -19,7 +19,11 @@ class UserForm extends Component {
     }
     handleClose() {
         const {history} = this.props;
-        history.push('/contacts');
+        history.push({
+            pathname: '/contacts',
+            query: {},
+            state: null
+        });
     }
     isEditable() {
         return this.isNew() || this.isEdit();
@@ -40,12 +44,12 @@ class UserForm extends Component {
         return false;
     }
     render() {
-        const {store: {saveUser, saveUserToStore}} = this.props;
+        const {store: {saveUser, saveUserToStore}, match: {params}} = this.props;
         return (
             <Form
                 onClose={() => this.handleClose()}
                 onSave={() => {
-                    saveUser(this.isNew());
+                    saveUser(this.isNew(), params.userId);
                     this.handleClose();
                 }}
                 isEditable={this.isEditable()}

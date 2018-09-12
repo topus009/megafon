@@ -15,7 +15,8 @@ class Store {
     getUniqUserId = () => {
         const usersLength = _.size(this.users);
         if(usersLength) {
-            return 'id_' + (usersLength + 1);
+            const keys = _.map(_.keys(this.users), key => +key.replace('id_', ''));
+            return 'id_' + (_.maxBy(keys, key => +key) + 1);
         } return 'id_' + 0;
     }
     getUser = id => this.users[id]

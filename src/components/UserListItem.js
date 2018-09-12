@@ -27,4 +27,3 @@ const UserListItem = ({user, id, deleteUser, history}) =>
     </div>;
 
 export default UserListItem;
-
