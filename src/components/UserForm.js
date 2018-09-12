@@ -3,7 +3,7 @@ import {inject, observer} from 'mobx-react';
 import Form from '../common/Form';
 import UserFormContent from './UserFormContent';
 
-const UserAddForm = ({store: {saveUser, saveUserToStore}}) =>
+const UserForm = ({store: {saveUser, saveUserToStore}}) =>
     <Form
         onClose={() => false}
         onSave={() => saveUser(true)}
@@ -19,5 +19,5 @@ const UserAddForm = ({store: {saveUser, saveUserToStore}}) =>
         </div>
     </Form>;
 
-export default inject('store')(observer(UserAddForm));
+export default inject('store')(observer(UserForm));
 

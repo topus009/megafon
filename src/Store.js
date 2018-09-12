@@ -5,9 +5,8 @@ import {localStorageName} from '../config.local';
 class Store {
     @observable users = {}
     @observable user = {}
-    @observable loading = false
+    @observable loading = true
     @action getUsers = async() => {
-        this.loading = true;
         await this.getUsersFromLS();
         runInAction(() => {
             this.loading = false;
