@@ -56,7 +56,6 @@ class UserForm extends Component {
                 title={this.renderFormTitle()}
             >
                 <div className='content'>
-                    <div>UserAddForm</div>
                     <UserFormContent
                         isEditable={this.isEditable()}
                         userData={this.getUserData()}

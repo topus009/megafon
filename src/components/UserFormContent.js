@@ -72,7 +72,6 @@ class UserFormContent extends Component {
         const {user} = this.state;
         return (
             <div className='user_form'>
-                <div>UserFormContent</div>
                 {
                     isEditable ?
                         _.map(user, (item, key) => {
