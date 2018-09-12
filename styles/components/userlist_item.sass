@@ -6,6 +6,8 @@
         display: inline-block
         text-decoration: none
         color: black
+        @media screen and (max-width: #{720 - 1}px)
+            width: 80%
         &:hover
             background-color: #d1d2d4
         .userlist_item
@@ -25,3 +27,6 @@
             &.edit
                 margin-right: 20px
                 margin-left: 50px
+                @media screen and (max-width: #{720 - 1}px)
+                    margin-right: 5px
+                    margin-left: 5px
