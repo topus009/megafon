@@ -45,6 +45,12 @@ class UserFormContent extends Component {
             }
         };
     }
+    componentDidMount() {
+        const {userData} = this.props;
+        if(userData) {
+            this.setState({user: userData});
+        }
+    }
     componentDidUpdate(prevProps, prevState) {
         const prevUser = prevState.user;
         const {user} = this.state;

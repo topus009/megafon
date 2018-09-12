@@ -9,28 +9,46 @@ class UserForm extends Component {
         this.state = {};
     }
     renderFormTitle = () => {
-        const {match: {path}} = this.props;
-        if(path === '/adduser') {
+        if(this.isNew()) {
             return 'Новый пользователь';
         }
-        if(path.search('edit') >= 0) {
+        if(this.isEdit()) {
             return 'Редактирование пользователя';
         }
         return 'Профиль пользователя';
+    }
+    isEditable() {
+        return this.isNew() || this.isEdit();
+    }
+    isNew() {
+        const {match: {path}} = this.props;
+        return path === '/adduser';
+    }
+    isEdit() {
+        const {match: {path}} = this.props;
+        return path.search('edit') >= 0;
+    }
+    getUserData() {
+        const {store: {getUser}, match: {params}} = this.props;
+        if(params.userId) {
+            return getUser(params.userId);
+        }
+        return false;
     }
     render() {
         const {store: {saveUser, saveUserToStore}} = this.props;
         return (
             <Form
                 onClose={() => false}
-                onSave={() => saveUser(true)}
-                isEditable={true}
+                onSave={() => saveUser(this.isNew())}
+                isEditable={this.isEditable()}
                 title={this.renderFormTitle()}
             >
                 <div className='content'>
                     <div>UserAddForm</div>
                     <UserFormContent
-                        isEditable={true}
+                        isEditable={this.isEditable()}
+                        userData={this.getUserData()}
                         saveUserToStore={saveUserToStore}
                     />
                 </div>
