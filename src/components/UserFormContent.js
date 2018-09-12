@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import _ from 'lodash';
 import TextInput from '../common/TextInput';
+import InfoField from '../common/InfoField';
 import {hasOnlyDigits, yearIsLessThanCurrent, isNotEmpty} from '../helpers';
 
 const contentProps = {
@@ -107,27 +108,32 @@ class UserFormContent extends Component {
                         _.map(user, (item, key) => {
                             if(contentProps[key]) {
                                 return (
-                                    <TextInput
-                                        key={key}
-                                        value={item}
+                                    <InfoField
                                         label={contentProps[key].label}
-                                        placeholder={contentProps[key].placeholder}
-                                        onChange={value => this.onChange(key, value)}
-                                        setError={value => this.setError(key, value)}
-                                        checkError={contentProps[key].invalid}
-                                        needValidate={contentProps[key].needValidate}
-                                        required={contentProps[key].required}
-                                    />
+                                        key={key}
+                                        hideWrapper
+                                    >
+                                        <TextInput
+                                            value={item}
+                                            placeholder={contentProps[key].placeholder}
+                                            onChange={value => this.onChange(key, value)}
+                                            setError={value => this.setError(key, value)}
+                                            checkError={contentProps[key].invalid}
+                                            needValidate={contentProps[key].needValidate}
+                                            required={contentProps[key].required}
+                                        />
+                                    </InfoField>
                                 );
                             }
                         }) :
                         _.map(user, (item, key) => {
-                            if(contentProps[key]) {
+                            if(contentProps[key] && item.length) {
                                 return (
-                                    <div key={key}>
-                                        <div>{contentProps[key].label}</div>
-                                        <div>{item}</div>
-                                    </div>
+                                    <InfoField
+                                        key={key}
+                                        label={contentProps[key].label}
+                                        value={item}
+                                    />
                                 );
                             }
                         })
