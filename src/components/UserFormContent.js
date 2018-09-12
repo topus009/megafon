@@ -56,7 +56,6 @@ class UserFormContent extends Component {
         const {user} = this.state;
         const {saveUserToStore} = this.props;
         if(!_.isEqual(prevUser, user)) {
-            console.warn({user});
             saveUserToStore(user);
         }
     }
@@ -69,12 +68,8 @@ class UserFormContent extends Component {
         }));
     }
     render() {
-        const {
-            // user,
-            isEditable
-        } = this.props;
+        const {isEditable} = this.props;
         const {user} = this.state;
-
         return (
             <div className='user_form'>
                 <div>UserFormContent</div>

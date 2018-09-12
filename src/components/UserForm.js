@@ -17,6 +17,10 @@ class UserForm extends Component {
         }
         return 'Профиль пользователя';
     }
+    handleClose() {
+        const {history} = this.props;
+        history.push('/contacts');
+    }
     isEditable() {
         return this.isNew() || this.isEdit();
     }
@@ -39,8 +43,11 @@ class UserForm extends Component {
         const {store: {saveUser, saveUserToStore}} = this.props;
         return (
             <Form
-                onClose={() => false}
-                onSave={() => saveUser(this.isNew())}
+                onClose={() => this.handleClose()}
+                onSave={() => {
+                    saveUser(this.isNew());
+                    this.handleClose();
+                }}
                 isEditable={this.isEditable()}
                 title={this.renderFormTitle()}
             >

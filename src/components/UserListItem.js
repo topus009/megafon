@@ -1,7 +1,8 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import Button from '../common/Button';
 
-const UserListItem = ({user, id}) =>
+const UserListItem = ({user, id, deleteUser, history}) =>
     <div className='userlist_block'>
         <NavLink to={'/user/' + id}>
             <div
@@ -10,12 +11,18 @@ const UserListItem = ({user, id}) =>
             </div>
         </NavLink>
         <div className='user_control_buttons'>
-            <span>
-                <NavLink to={`/user/${id}/edit`}>
-                    <div>Edit</div>
-                </NavLink>
-            </span>
-            <span>Delete</span>
+            <Button
+                fontIcon='&#9998;'
+                title='Редактировать'
+                onClick={() => history.push(`/user/${id}/edit`)}
+                classNames='edit'
+            />
+            <Button
+                fontIcon='&#10006;'
+                title='Удалить'
+                onClick={() => deleteUser(id)}
+                classNames='delete'
+            />
         </div>
     </div>;
 

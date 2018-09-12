@@ -12,17 +12,18 @@ class Contacts extends Component {
     componentDidMount() {
         this.props.store.getUsers();
     }
+    handleClose() {
+        const {history} = this.props;
+        history.push('/home');
+    }
     render() {
-        const {users, loading} = this.props.store;
+        const {users, loading, deleteUser} = this.props.store;
         return (
             <Form
                 onClose={() => false}
-                onSave={() => false}
-                isEditable={true}
                 title='Контакты'
             >
                 <div className='content'>
-                    <div>Contacts</div>
                     {
                         !loading &&
                             _.map(users, (item, key) =>
@@ -30,6 +31,8 @@ class Contacts extends Component {
                                     key={key}
                                     id={key}
                                     user={item}
+                                    deleteUser={deleteUser}
+                                    history={this.props.history}
                                 />
                             )
                     }
