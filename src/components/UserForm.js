@@ -44,7 +44,7 @@ class UserForm extends Component {
         return false;
     }
     render() {
-        const {store: {saveUser, saveUserToStore}, match: {params}} = this.props;
+        const {store: {saveUser, saveUserToStore, errors, setErrors}, match: {params}} = this.props;
         return (
             <Form
                 onClose={() => this.handleClose()}
@@ -54,12 +54,14 @@ class UserForm extends Component {
                 }}
                 isEditable={this.isEditable()}
                 title={this.renderFormTitle()}
+                disabled={errors}
             >
                 <div className='content'>
                     <UserFormContent
                         isEditable={this.isEditable()}
                         userData={this.getUserData()}
                         saveUserToStore={saveUserToStore}
+                        setErrors={setErrors}
                     />
                 </div>
             </Form>

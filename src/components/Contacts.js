@@ -14,7 +14,11 @@ class Contacts extends Component {
     }
     handleClose() {
         const {history} = this.props;
-        history.push('/home');
+        history.push({
+            pathname: '/home',
+            query: {},
+            state: null
+        });
     }
     render() {
         const {users, loading, deleteUser} = this.props.store;

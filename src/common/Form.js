@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button';
 
-const Form = ({children, onClose, onSave, isEditable, title}) =>
+const Form = ({children, onClose, onSave, isEditable, title, disabled}) =>
     <div className='form'>
         <div className='title'>
             {title}
@@ -20,6 +20,7 @@ const Form = ({children, onClose, onSave, isEditable, title}) =>
                     title='Сохранить'
                     onClick={onSave}
                     classNames='save'
+                    disabled={disabled}
                 />
             </div>
         }

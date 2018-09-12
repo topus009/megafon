@@ -1,22 +1,33 @@
 import React, {Component} from 'react';
 import _ from 'lodash';
 import TextInput from '../common/TextInput';
+import {hasOnlyDigits, yearIsLessThanCurrent, isNotEmpty} from '../helpers';
 
 const contentProps = {
     fio: {
-        label: 'ФИО'
+        label: 'ФИО',
+        needValidate: true,
+        required: true,
+        invalid: value => !isNotEmpty(value)
     },
     mainPhone: {
-        label: 'Основной номер'
+        label: 'Основной номер',
+        needValidate: true,
+        invalid: value => !hasOnlyDigits(value)
     },
     workPhone: {
-        label: 'Рабочий номер'
+        label: 'Рабочий номер',
+        needValidate: true,
+        invalid: value => !hasOnlyDigits(value)
     },
     email: {
         label: 'Email'
     },
     dateOfBirth: {
-        label: 'Дата рождения'
+        label: 'Дата рождения',
+        needValidate: true,
+        placeholder: '2000.01.01',
+        invalid: value => !yearIsLessThanCurrent(value)
     },
     address: {
         label: 'Адрес'
@@ -42,6 +53,16 @@ class UserFormContent extends Component {
                 address: '',
                 vk: '',
                 comments: ''
+            },
+            errors: {
+                fio: false,
+                mainPhone: false,
+                workPhone: false,
+                email: false,
+                dateOfBirth: false,
+                address: false,
+                vk: false,
+                comments: false
             }
         };
     }
@@ -53,16 +74,25 @@ class UserFormContent extends Component {
     }
     componentDidUpdate(prevProps, prevState) {
         const prevUser = prevState.user;
-        const {user} = this.state;
-        const {saveUserToStore} = this.props;
+        const {user, errors} = this.state;
+        const {saveUserToStore, setErrors} = this.props;
         if(!_.isEqual(prevUser, user)) {
             saveUserToStore(user);
         }
+        setErrors(errors);
     }
     onChange(key, value) {
         this.setState(({user}) => ({
             user: {
                 ...user,
+                [key]: value
+            }
+        }));
+    }
+    setError(key, value) {
+        this.setState(({errors}) => ({
+            errors: {
+                ...errors,
                 [key]: value
             }
         }));
@@ -83,8 +113,10 @@ class UserFormContent extends Component {
                                         label={contentProps[key].label}
                                         placeholder={contentProps[key].placeholder}
                                         onChange={value => this.onChange(key, value)}
-                                        setError={() => false}
-                                        needValidate={false}
+                                        setError={value => this.setError(key, value)}
+                                        checkError={contentProps[key].invalid}
+                                        needValidate={contentProps[key].needValidate}
+                                        required={contentProps[key].required}
                                     />
                                 );
                             }

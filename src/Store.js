@@ -6,11 +6,15 @@ class Store {
     @observable users = {}
     @observable user = {}
     @observable loading = true
+    @observable errors = false
     @action getUsers = async() => {
         await this.getUsersFromLS();
         runInAction(() => {
             this.loading = false;
         });
+    }
+    @action setErrors = errors => {
+        this.errors = _.find(errors);
     }
     getUniqUserId = () => {
         const usersLength = _.size(this.users);

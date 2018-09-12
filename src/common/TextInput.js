@@ -9,13 +9,13 @@ class TextInput extends Component {
         };
     }
 
-    componentWillUpdate(nextProps, nextState) {
-        const {needValidate, setError} = this.props;
-        if(needValidate) {
-            setError(nextState.isError);
+    componentDidMount() {
+        const {value, required, checkError, setError} = this.props;
+        if(required && checkError(value)) {
+            this.setState({isError: true});
+            setError(true);
         }
     }
-
     renderValidateIcon = () => {
         const {value} = this.props;
         const {isError} = this.state;
@@ -30,11 +30,18 @@ class TextInput extends Component {
         if(needValidate) this.validateInput(value);
     }
     validateInput = value => {
-        const {checkError} = this.props;
-
-        if(checkError(value)) {
-            this.setState({isError: true});
-        } else this.setState({isError: false});
+        const {checkError, required, setError} = this.props;
+        let error = false;
+        if(!value.length) {
+            error = false;
+        } else if(checkError(value)) {
+            error = true;
+        } else error = false;
+        if(checkError(value) && required) {
+            error = true;
+        }
+        this.setState({isError: error});
+        setError(error);
     }
     handleFocus = () => {
         this.setState({isFocused: true});
