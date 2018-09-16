@@ -46,14 +46,14 @@ class UserFormContent extends Component {
         super(props);
         this.state = {
             user: {
-                fio: '',
-                mainPhone: '',
-                workPhone: '',
-                email: '',
-                dateOfBirth: '',
-                address: '',
-                vk: '',
-                comments: ''
+                fio: _.get(this.props, 'userData.fio') || '',
+                mainPhone: _.get(this.props, 'userData.mainPhone') || '',
+                workPhone: _.get(this.props, 'userData.workPhone') || '',
+                email: _.get(this.props, 'userData.email') || '',
+                dateOfBirth: _.get(this.props, 'userData.dateOfBirth') || '',
+                address: _.get(this.props, 'userData.address') || '',
+                vk: _.get(this.props, 'userData.vk') || '',
+                comments: _.get(this.props, 'userData.comments') || ''
             },
             errors: {
                 fio: false,
@@ -66,12 +66,6 @@ class UserFormContent extends Component {
                 comments: false
             }
         };
-    }
-    componentDidMount() {
-        const {userData} = this.props;
-        if(userData) {
-            this.setState({user: userData});
-        }
     }
     componentDidUpdate(prevProps, prevState) {
         const prevUser = prevState.user;
@@ -100,7 +94,7 @@ class UserFormContent extends Component {
     }
     render() {
         const {isEditable} = this.props;
-        const {user} = this.state;
+        const {user, errors} = this.state;
         return (
             <div className='user_form'>
                 {
@@ -118,6 +112,7 @@ class UserFormContent extends Component {
                                             placeholder={contentProps[key].placeholder}
                                             onChange={value => this.onChange(key, value)}
                                             setError={value => this.setError(key, value)}
+                                            hasError={errors[key]}
                                             checkError={contentProps[key].invalid}
                                             needValidate={contentProps[key].needValidate}
                                             required={contentProps[key].required}

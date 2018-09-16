@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
 import _ from 'lodash';
 import Form from '../common/Form';
+import config from '../../config.local';
 import UserListItem from './UserListItem';
 
 class Contacts extends Component {
@@ -15,7 +16,7 @@ class Contacts extends Component {
     handleClose() {
         const {history} = this.props;
         history.push({
-            pathname: '/home',
+            pathname: `${config.basename}/home`,
             query: {},
             state: null
         });

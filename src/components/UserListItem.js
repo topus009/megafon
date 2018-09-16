@@ -1,10 +1,11 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import config from '../../config.local';
 import Button from '../common/Button';
 
 const UserListItem = ({user, id, deleteUser, history}) =>
     <div className='userlist_block'>
-        <NavLink to={'/user/' + id}>
+        <NavLink to={`${config.basename}/user/${id}`}>
             <div
                 className='userlist_item'>
                 {user.fio}
@@ -14,7 +15,7 @@ const UserListItem = ({user, id, deleteUser, history}) =>
             <Button
                 fontIcon='&#9998;'
                 title='Редактировать'
-                onClick={() => history.push(`/user/${id}/edit`)}
+                onClick={() => history.push(`${config.basename}/user/${id}/edit`)}
                 classNames='edit'
             />
             <Button

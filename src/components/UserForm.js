@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
 import Form from '../common/Form';
+import config from '../../config.local';
 import UserFormContent from './UserFormContent';
 
 class UserForm extends Component {
@@ -20,7 +21,7 @@ class UserForm extends Component {
     handleClose() {
         const {history} = this.props;
         history.push({
-            pathname: '/contacts',
+            pathname: `${config.basename}/contacts`,
             query: {},
             state: null
         });
@@ -30,7 +31,7 @@ class UserForm extends Component {
     }
     isNew() {
         const {match: {path}} = this.props;
-        return path === '/adduser';
+        return path.search('adduser') >= 0;
     }
     isEdit() {
         const {match: {path}} = this.props;
