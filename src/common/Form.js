@@ -6,7 +6,7 @@ const Form = ({children, onClose, onSave, isEditable, title, disabled}) =>
         <div className='title'>
             {title}
             <Button
-                fontIcon='&#10006;'
+                fontIcon='&#10005;'
                 title='Закрыть'
                 onClick={onClose}
                 classNames='close'

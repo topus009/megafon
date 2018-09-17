@@ -6,9 +6,11 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const loadersConf = require('./webpack.loaders');
 const config = require('./config.local');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 const HOST = process.env.HOST || config.host;
 const PORT = process.env.PORT || config.port;
+const PROXY = `http://${HOST}:${PORT}`;
 
 module.exports = {
     entry: [
@@ -69,6 +71,13 @@ module.exports = {
                 css: ['style.css'],
                 js: ['bundle.js']
             }
-        })
+        }),
+        new BrowserSyncPlugin(
+            {
+                host: HOST,
+                port: PORT,
+                proxy: PROXY
+            }
+        )
     ]
 };

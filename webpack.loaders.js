@@ -93,7 +93,7 @@ module.exports = [
     // = Fonts =
     // ==========
     {
-        test: /\.(ttf|eot|woff|otf)$/,
+        test: /\.(ttf|eot|woff|woff2|otf)$/,
         exclude: path.resolve(__dirname, 'node_modules'),
         use: [
             {

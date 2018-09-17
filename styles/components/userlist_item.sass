@@ -18,10 +18,16 @@
                 border-color: #5f19aa
     .user_control_buttons
         display: inline-block
+        @media screen and (min-width: 360px) and (min-resolution: 2dppx)
+            vertical-align: middle
         .button
             display: inline-block
             font-size: 20px
             color: #00be73
+            @media screen and (min-width: 360px) and (min-resolution: 2dppx)
+                font-size: 25px
+            @media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx)
+                font-size: 35px
             &:hover
                 color: #5f19aa
             &.edit

@@ -19,7 +19,7 @@ const UserListItem = ({user, id, deleteUser, history}) =>
                 classNames='edit'
             />
             <Button
-                fontIcon='&#10006;'
+                fontIcon='&#10005;'
                 title='Удалить'
                 onClick={() => deleteUser(id)}
                 classNames='delete'
