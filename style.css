@@ -333,7 +333,7 @@ template {
 @font-face {
   font-family: "PFDinDP-Reg";
   font-style: normal;
-  src: url(./fonts/PFDinDisplayPro-Reg.eot) format("eot"), url(./fonts/PFDinDisplayPro-Reg.woff) format("woff"), url(./fonts/PFDinDisplayPro-Reg.ttf) format("truetype"), url(./fonts/PFDinDisplayPro-Reg.otf) format("opentype");
+  src: url(./fonts/PFDinDisplayPro-Reg.eot) format("eot"), url(./fonts/PFDinDisplayPro-Reg.woff) format("woff"), url(./fonts/PFDinDisplayPro-Reg.woff2) format("woff2"), url(./fonts/PFDinDisplayPro-Reg.ttf) format("truetype"), url(./fonts/PFDinDisplayPro-Reg.otf) format("opentype");
 }
 
 body {
@@ -351,10 +351,7 @@ body {
 
 .button.disabled {
   cursor: not-allowed;
-}
-
-.button.disabled > .button_content {
-  background-color: #8A8C8E;
+  background-color: #8A8C8E !important;
 }
 
 .form {
@@ -391,6 +388,18 @@ body {
     height: calc(100vh - 220px);
     margin: 40px auto;
     padding-bottom: 40px;
+  }
+}
+
+@media screen and (min-width: 360px) and (min-resolution: 2dppx) {
+  .form {
+    height: calc(100vh - 146px);
+  }
+}
+
+@media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx) {
+  .form {
+    height: calc(100vh - 90px);
   }
 }
 
@@ -439,6 +448,21 @@ body {
     height: 80px;
     font-size: 2rem;
     line-height: 80px;
+  }
+}
+
+@media screen and (min-width: 360px) and (min-resolution: 2dppx) {
+  .form .title {
+    font-size: 1.5rem;
+    line-height: 50px;
+  }
+}
+
+@media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx) {
+  .form .title {
+    font-size: 1.8rem;
+    line-height: 70px;
+    font-weight: bold;
   }
 }
 
@@ -498,6 +522,21 @@ body {
   }
 }
 
+@media screen and (min-width: 360px) and (min-resolution: 2dppx) {
+  .form .title .close .button_content {
+    font-size: 2rem;
+    line-height: 0.65;
+  }
+}
+
+@media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx) {
+  .form .title .close .button_content {
+    font-size: 2.8rem;
+    line-height: 0.65;
+    font-weight: normal;
+  }
+}
+
 .form .content {
   overflow-y: auto;
   background-color: white;
@@ -533,6 +572,18 @@ body {
   }
 }
 
+@media screen and (min-width: 360px) and (min-resolution: 2dppx) {
+  .form .content {
+    height: calc(100% - 140px);
+  }
+}
+
+@media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx) {
+  .form .content {
+    height: calc(100% - 146px);
+  }
+}
+
 .form .footer {
   width: 100%;
 }
@@ -546,7 +597,8 @@ body {
   height: 50px;
   margin: 10px auto;
   line-height: 50px;
-  font-size: 1.3rem;
+  font-size: 20px;
+  display: table;
 }
 
 @media screen and (min-width: 720px) {
@@ -568,7 +620,7 @@ body {
     width: 30%;
     height: 60px;
     line-height: 60px;
-    font-size: 1.6rem;
+    font-size: 25px;
     margin: 0 20px;
   }
 }
@@ -578,13 +630,27 @@ body {
     width: 20%;
     height: 80px;
     line-height: 80px;
-    font-size: 1.8rem;
+    font-size: 29px;
     margin: 0 40px;
+  }
+}
+
+@media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx) {
+  .form .footer .save {
+    line-height: 80px;
+    font-size: 29px;
+    font-weight: bold;
   }
 }
 
 .form .footer .save:hover {
   background-color: #823cc3;
+}
+
+@media screen and (min-width: 360px) and (min-resolution: 2dppx) {
+  .text_input .input_block .input {
+    max-width: 80%;
+  }
 }
 
 .text_input .input_block .validate_icon {
@@ -606,6 +672,20 @@ body {
   color: green;
 }
 
+@media screen and (min-resolution: 2dppx) {
+  .text_input .input_block .validate_icon.good:after {
+    font-size: 17px;
+    line-height: 30px;
+  }
+}
+
+@media screen and (-webkit-min-resolution: 2dppx) {
+  .text_input .input_block .validate_icon.good:after {
+    font-size: 24px;
+    line-height: 30px;
+  }
+}
+
 .text_input .input_block .validate_icon.bad:after {
   position: absolute;
   right: -35px;
@@ -619,6 +699,20 @@ body {
   line-height: 24px;
   content: '\2717';
   color: red;
+}
+
+@media screen and (min-resolution: 2dppx) {
+  .text_input .input_block .validate_icon.bad:after {
+    font-size: 17px;
+    line-height: 30px;
+  }
+}
+
+@media screen and (-webkit-min-resolution: 2dppx) {
+  .text_input .input_block .validate_icon.bad:after {
+    font-size: 24px;
+    line-height: 30px;
+  }
 }
 
 .userlist_block {
@@ -657,10 +751,28 @@ body {
   display: inline-block;
 }
 
+@media screen and (min-width: 360px) and (min-resolution: 2dppx) {
+  .userlist_block .user_control_buttons {
+    vertical-align: middle;
+  }
+}
+
 .userlist_block .user_control_buttons .button {
   display: inline-block;
   font-size: 20px;
   color: #00be73;
+}
+
+@media screen and (min-width: 360px) and (min-resolution: 2dppx) {
+  .userlist_block .user_control_buttons .button {
+    font-size: 25px;
+  }
+}
+
+@media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx) {
+  .userlist_block .user_control_buttons .button {
+    font-size: 35px;
+  }
 }
 
 .userlist_block .user_control_buttons .button:hover {
@@ -684,6 +796,18 @@ body {
   margin-bottom: 1em;
   padding: 0.5em 1em;
   border: 2px solid #3be03b;
+}
+
+@media screen and (min-width: 360px) and (min-resolution: 2dppx) {
+  .info_field {
+    margin-bottom: 0.1em;
+  }
+}
+
+@media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx) {
+  .info_field {
+    margin-bottom: 1em;
+  }
 }
 
 .info_field .label {
@@ -751,6 +875,19 @@ body {
 @media screen and (min-width: 1920px) {
   .menu .logo {
     font-size: 3.5rem;
+  }
+}
+
+@media screen and (min-width: 360px) and (min-resolution: 2dppx) {
+  .menu .logo {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx) {
+  .menu .logo {
+    font-size: 3.5rem;
+    font-weight: bold;
   }
 }
 
@@ -847,7 +984,7 @@ body {
   background-repeat: no-repeat;
   background-size: 35px;
   height: 35px;
-  margin-left: 7px;
+  margin-left: 5px;
 }
 
 .menu .buttons a .adduser:hover {
