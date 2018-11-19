@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import _ from 'lodash';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import TextInput from '../common/TextInput';
 import InfoField from '../common/InfoField';
 import {hasOnlyDigits, yearIsLessThanCurrent, isNotEmpty} from '../helpers';
+import * as actions from '../actions/AppActions';
 
 const contentProps = {
     fio: {
@@ -45,56 +48,44 @@ class UserFormContent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {
-                fio: _.get(this.props, 'userData.fio') || '',
-                mainPhone: _.get(this.props, 'userData.mainPhone') || '',
-                workPhone: _.get(this.props, 'userData.workPhone') || '',
-                email: _.get(this.props, 'userData.email') || '',
-                dateOfBirth: _.get(this.props, 'userData.dateOfBirth') || '',
-                address: _.get(this.props, 'userData.address') || '',
-                vk: _.get(this.props, 'userData.vk') || '',
-                comments: _.get(this.props, 'userData.comments') || ''
-            },
-            errors: {
-                fio: false,
-                mainPhone: false,
-                workPhone: false,
-                email: false,
-                dateOfBirth: false,
-                address: false,
-                vk: false,
-                comments: false
-            }
+            canShow: false
         };
     }
-    componentDidUpdate(prevProps, prevState) {
-        const prevUser = prevState.user;
-        const {user, errors} = this.state;
-        const {saveUserToStore, setErrors} = this.props;
-        if(!_.isEqual(prevUser, user)) {
-            saveUserToStore(user);
+    // componentWillReceiveProps(prevProps) {
+    //     const prevUser = prevProps.store.user;
+    //     const currentUser = this.props.store.user;
+    //     if(!_.isEqual(prevUser, currentUser)) {
+    //         this.setState({canShow: true});
+    //     }
+    // }
+    // componentDidUpdate(prevProps, prevState) {
+    // const prevUser = prevState.user;
+    //     const {user, errors} = this.state;
+    //     const {saveUserToStore, setErrors} = this.props;
+    //     if(!_.isEqual(prevUser, user)) {
+    //         saveUserToStore(user);
+    //     }
+    //     setErrors(errors);
+    // }
+    componentDidMount() {
+        const {actions: setErrors, store: {fieldErrors}, saveUserData, isNew} = this.props;
+        if(!isNew) {
+            saveUserData();
         }
-        setErrors(errors);
-    }
-    onChange(key, value) {
-        this.setState(({user}) => ({
-            user: {
-                ...user,
-                [key]: value
-            }
-        }));
-    }
-    setError(key, value) {
-        this.setState(({errors}) => ({
-            errors: {
-                ...errors,
-                [key]: value
-            }
-        }));
+        // setErrors(fieldErrors);
     }
     render() {
-        const {isEditable} = this.props;
-        const {user, errors} = this.state;
+        const {
+            isEditable,
+            store: {
+                user,
+                fieldErrors
+            },
+            actions: {
+                editUser,
+                setError
+            }
+        } = this.props;
         return (
             <div className='user_form'>
                 {
@@ -110,9 +101,9 @@ class UserFormContent extends Component {
                                         <TextInput
                                             value={item}
                                             placeholder={contentProps[key].placeholder}
-                                            onChange={value => this.onChange(key, value)}
-                                            setError={value => this.setError(key, value)}
-                                            hasError={errors[key]}
+                                            onChange={value => editUser({key, value})}
+                                            setError={value => setError({key, value})}
+                                            hasError={fieldErrors[key]}
                                             checkError={contentProps[key].invalid}
                                             needValidate={contentProps[key].needValidate}
                                             required={contentProps[key].required}
@@ -138,4 +129,14 @@ class UserFormContent extends Component {
     }
 }
 
-export default UserFormContent;
+function mapStateToProps({app}) {
+    return {store: app};
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(actions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserFormContent);

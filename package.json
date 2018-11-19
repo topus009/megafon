@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "private": false,
   "description": "megafon test",
-  "main": "''",
   "scripts": {
     "build": "webpack --config webpack.production.config.js --progress --profile --colors",
-    "serve:build": "npm run build && node server.js",
+    "serve": "node server.js",
     "dev": "cross-env MODE='dev' webpack-dev-server --progress",
     "lint": "eslint --ext js --ext jsx src || exit 0",
     "deploy": "gh-pages -d public"
@@ -18,18 +17,21 @@
   "author": "Sergey Topolov",
   "homepage": "https://topus009.github.io/megafon",
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-polyfill": "6.26.0",
+    "body-parser": "^1.18.3",
     "history": "^4.7.2",
     "lodash": "^4.17.10",
-    "mobx": "^5.1.0",
-    "mobx-react": "^5.2.6",
     "moment": "^2.22.2",
     "normalize.css": "^8.0.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-redux": "^5.1.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "recompose": "^0.30.0"
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "autoprefixer": "^9.1.5",

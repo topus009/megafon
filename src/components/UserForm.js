@@ -1,13 +1,18 @@
+import _ from 'lodash';
 import React, {Component} from 'react';
-import {inject, observer} from 'mobx-react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import Form from '../common/Form';
 import config from '../../config.local';
+import * as actions from '../actions/AppActions';
 import UserFormContent from './UserFormContent';
 
 class UserForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
+    componentDidMount() {
+        if(this.isNew()) {
+            const {actions: {clearFields}} = this.props;
+            clearFields();
+        }
     }
     renderFormTitle = () => {
         if(this.isNew()) {
@@ -18,7 +23,7 @@ class UserForm extends Component {
         }
         return 'Профиль пользователя';
     }
-    handleClose() {
+    handleClose = () => {
         const {history} = this.props;
         history.push({
             pathname: `${config.basename}/contacts`,
@@ -26,31 +31,36 @@ class UserForm extends Component {
             state: null
         });
     }
-    isEditable() {
-        return this.isNew() || this.isEdit();
-    }
-    isNew() {
+    isEditable = () => this.isNew() || this.isEdit()
+    isNew = () => {
         const {match: {path}} = this.props;
         return path.search('adduser') >= 0;
     }
-    isEdit() {
+    isEdit = () => {
         const {match: {path}} = this.props;
         return path.search('edit') >= 0;
     }
-    getUserData() {
-        const {store: {getUser}, match: {params}} = this.props;
-        if(params.userId) {
-            return getUser(params.userId);
-        }
-        return false;
+    saveUserData = () => {
+        const {store: {users}, match: {params}, actions} = this.props;
+        const user = _.find(users, {_id: _.get(params, 'userId')});
+        actions.saveUserToStore(user);
+        // return user;
     }
     render() {
-        const {store: {saveUser, saveUserToStore, errors, setErrors}, match: {params}} = this.props;
+        const {
+            store: {
+                errors,
+                user
+            },
+            actions: {
+                saveUser
+            }
+        } = this.props;
         return (
             <Form
-                onClose={() => this.handleClose()}
+                onClose={this.handleClose}
                 onSave={() => {
-                    saveUser(this.isNew(), params.userId);
+                    saveUser(user);
                     this.handleClose();
                 }}
                 isEditable={this.isEditable()}
@@ -60,9 +70,8 @@ class UserForm extends Component {
                 <div className='content'>
                     <UserFormContent
                         isEditable={this.isEditable()}
-                        userData={this.getUserData()}
-                        saveUserToStore={saveUserToStore}
-                        setErrors={setErrors}
+                        saveUserData={this.saveUserData}
+                        isNew={this.isNew()}
                     />
                 </div>
             </Form>
@@ -70,4 +79,14 @@ class UserForm extends Component {
     }
 }
 
-export default inject('store')(observer(UserForm));
+function mapStateToProps({app}) {
+    return {store: app};
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(actions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserForm);

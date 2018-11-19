@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
-import {inject, observer} from 'mobx-react';
 import _ from 'lodash';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import Form from '../common/Form';
 import config from '../../config.local';
+import * as actions from '../actions/AppActions';
 import UserListItem from './UserListItem';
 
 class Contacts extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
     componentDidMount() {
-        this.props.store.getUsers();
+        const {actions: {getUsers}} = this.props;
+        getUsers();
     }
     handleClose() {
         const {history} = this.props;
@@ -22,7 +21,15 @@ class Contacts extends Component {
         });
     }
     render() {
-        const {users, loading, deleteUser} = this.props.store;
+        const {
+            store: {
+                users,
+                loading
+            },
+            actions: {
+                deleteUser
+            }
+        } = this.props;
         return (
             <Form
                 onClose={() => false}
@@ -34,7 +41,6 @@ class Contacts extends Component {
                             _.map(users, (item, key) =>
                                 <UserListItem
                                     key={key}
-                                    id={key}
                                     user={item}
                                     deleteUser={deleteUser}
                                     history={this.props.history}
@@ -47,4 +53,14 @@ class Contacts extends Component {
     }
 }
 
-export default inject('store')(observer(Contacts));
+function mapStateToProps({app}) {
+    return {store: app};
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(actions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Contacts);
