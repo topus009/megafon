@@ -9,5 +9,5 @@
 ### Лайф версия доступна по [ссылке](https://topus009.github.io/megafon/)
 
 ***
-![testovoe](preview.png)
+![testovoe](https://topus009.github.io/ets/megafon.png)
 ***
