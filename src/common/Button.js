@@ -18,7 +18,7 @@ const Button = ({
         content =
             <img
                 className='button_content'
-                src={'../images/' + icon}
+                src={'../assets/images/' + icon}
                 alt={title}
             />;
     }
@@ -33,4 +33,3 @@ const Button = ({
 };
 
 export default Button;
-

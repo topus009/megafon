@@ -10,10 +10,11 @@
   "env": {
     "test": {
       "plugins": [
+        "react-hot-loader/babel",
         "transform-runtime",
         "transform-decorators-legacy",
         "transform-class-properties",
-        "babel-plugin-webpack-alias"
+        "transform-regenerator"
       ]
     }
   }

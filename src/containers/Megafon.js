@@ -5,7 +5,7 @@ import AppRouter from '../routes';
 import Menu from '../components/Menu';
 import configureStore from '../store';
 
-import '../../styles/base/_main.sass';
+import '../styles/base/_main.sass';
 
 const Store = configureStore();
 
