@@ -1,12 +1,41 @@
+
 $palette: (
   bg: (
     menu: #00be73,
     form_header: #00be73,
     form: #d1d2d4,
-    btn_form_header_hover: #5f19aa,
-    btn_form_footer: #5f19aa,
-    btn_form_footer_hover: #823cc3,
+    app: #939597,
+    form_title: #00be73,
+    content: white,
   ),
+  main: (
+    green: #00be73,
+  ),
+  validate_icon: (
+    good: green,
+    bad: red,
+  ),
+  text: (
+    menu: white,
+    info_field_label: #939597,
+    form_title: white,
+  ),
+  border: (
+    userlist_item: #00be73,
+    userlist_item_hover: #5f19aa,
+    info_field: #3be03b,
+  ),
+  button: (
+    user_control_color: #00be73,
+    user_control_color_hover: #00be73,
+    form_footer_disabled: #8A8C8E,
+    close_border: white,
+    close_hover_color: #5f19aa,
+    close_hover_border: #5f19aa,
+    form_footer: #5f19aa,
+    form_footer_hover: #823cc3,
+    form_footer_color: white,
+  )
 );
 
 @function color($key, $tone: 'base') {

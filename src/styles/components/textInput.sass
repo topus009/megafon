@@ -9,9 +9,9 @@
                 &:after
                     +validate_mark
                     content: '\2713'
-                    color: green
+                    color: color(validate_icon, good)
             &.bad
                 &:after
                     +validate_mark
                     content: '\2717'
-                    color: red
+                    color: color(validate_icon, bad)

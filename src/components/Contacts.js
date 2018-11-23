@@ -15,7 +15,7 @@ class Contacts extends Component {
     handleClose() {
         const {history} = this.props;
         history.push({
-            pathname: `${config.basename}/home`,
+            pathname: `${config.basename}/`,
             query: {},
             state: null
         });
@@ -32,7 +32,7 @@ class Contacts extends Component {
         } = this.props;
         return (
             <Form
-                onClose={() => false}
+                onClose={() => this.handleClose()}
                 title='Контакты'
             >
                 <div className='content'>

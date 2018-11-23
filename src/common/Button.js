@@ -1,8 +1,14 @@
 import React from 'react';
 
-const Button = ({
-    icon, fontIcon, title, onClick, classNames, disabled
-}) => {
+const Button = props => {
+    const {
+        icon,
+        fontIcon,
+        title,
+        onClick,
+        classNames,
+        disabled
+    } = props;
     let content = <div className='button_content'>{title}</div>;
     const disableClass = disabled ? ' disabled' : '';
     if(fontIcon) {

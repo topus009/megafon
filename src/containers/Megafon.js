@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import AppRouter from '../routes';
@@ -13,10 +13,10 @@ function Megafon() {
     return (
         <Provider store={Store}>
             <BrowserRouter>
-                <div className='wrapper'>
+                <Fragment>
                     <Menu/>
                     <AppRouter/>
-                </div>
+                </Fragment>
             </BrowserRouter>
         </Provider>
     );

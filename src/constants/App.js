@@ -1,9 +1,8 @@
 export const GETUSERS = 'GETUSERS';
 export const DELETEUSER = 'DELETEUSER';
 export const PENDING = 'PENDING';
-export const SETERRORS = 'SETERRORS';
 export const SAVEUSERTOSTORE = 'SAVEUSERTOSTORE';
-export const UPDATEUSERS = 'UPDATEUSERS';
+export const SAVEUSER = 'SAVEUSER';
 export const EDITUSER = 'EDITUSER';
 export const SETERROR = 'SETERROR';
 export const CLEARFIELDS = 'CLEARFIELDS';

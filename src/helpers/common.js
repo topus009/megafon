@@ -6,10 +6,10 @@ const yearIsLessThanCurrent = str => {
     return date <= currentDate && str.length === 10;
 };
 
-const isNotEmpty = str => str.trim().length > 0;
+const isEmpty = str => str.trim().length === 0;
 
 export {
     hasOnlyDigits,
     yearIsLessThanCurrent,
-    isNotEmpty
+    isEmpty
 };

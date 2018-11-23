@@ -4,34 +4,24 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import TextInput from '../common/TextInput';
 import InfoField from '../common/InfoField';
-import {hasOnlyDigits, yearIsLessThanCurrent, isNotEmpty} from '../helpers';
 import * as actions from '../actions/AppActions';
 
 const contentProps = {
     fio: {
-        label: 'ФИО',
-        needValidate: true,
-        required: true,
-        invalid: value => !isNotEmpty(value)
+        label: 'ФИО'
     },
     mainPhone: {
-        label: 'Основной номер',
-        needValidate: true,
-        invalid: value => !hasOnlyDigits(value)
+        label: 'Основной номер'
     },
     workPhone: {
-        label: 'Рабочий номер',
-        needValidate: true,
-        invalid: value => !hasOnlyDigits(value)
+        label: 'Рабочий номер'
     },
     email: {
         label: 'Email'
     },
     dateOfBirth: {
         label: 'Дата рождения',
-        needValidate: true,
-        placeholder: '2000.01.01',
-        invalid: value => !yearIsLessThanCurrent(value)
+        placeholder: '2000.01.01'
     },
     address: {
         label: 'Адрес'
@@ -51,28 +41,13 @@ class UserFormContent extends Component {
             canShow: false
         };
     }
-    // componentWillReceiveProps(prevProps) {
-    //     const prevUser = prevProps.store.user;
-    //     const currentUser = this.props.store.user;
-    //     if(!_.isEqual(prevUser, currentUser)) {
-    //         this.setState({canShow: true});
-    //     }
-    // }
-    // componentDidUpdate(prevProps, prevState) {
-    // const prevUser = prevState.user;
-    //     const {user, errors} = this.state;
-    //     const {saveUserToStore, setErrors} = this.props;
-    //     if(!_.isEqual(prevUser, user)) {
-    //         saveUserToStore(user);
-    //     }
-    //     setErrors(errors);
-    // }
     componentDidMount() {
-        const {actions: setErrors, store: {fieldErrors}, saveUserData, isNew} = this.props;
+        const {actions: {clearFields}, saveUserToStore, isNew} = this.props;
         if(!isNew) {
-            saveUserData();
+            saveUserToStore();
+        } else {
+            clearFields();
         }
-        // setErrors(fieldErrors);
     }
     render() {
         const {
@@ -82,8 +57,7 @@ class UserFormContent extends Component {
                 fieldErrors
             },
             actions: {
-                editUser,
-                setError
+                editUser
             }
         } = this.props;
         return (
@@ -99,14 +73,11 @@ class UserFormContent extends Component {
                                         hideWrapper
                                     >
                                         <TextInput
+                                            fieldName={key}
                                             value={item}
                                             placeholder={contentProps[key].placeholder}
                                             onChange={value => editUser({key, value})}
-                                            setError={value => setError({key, value})}
                                             hasError={fieldErrors[key]}
-                                            checkError={contentProps[key].invalid}
-                                            needValidate={contentProps[key].needValidate}
-                                            required={contentProps[key].required}
                                         />
                                     </InfoField>
                                 );

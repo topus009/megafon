@@ -1,56 +1,49 @@
 import _ from 'lodash';
 import axios from 'axios';
-import config from '../../config.local';
+import {dbPrefix} from '../../config.local';
+import {
+    requiredFields,
+    isError
+} from '../helpers/userErrorValidation';
 
 import {
     GETUSERS,
     DELETEUSER,
     PENDING,
-    SETERRORS,
     SAVEUSERTOSTORE,
-    UPDATEUSERS,
+    SAVEUSER,
     EDITUSER,
     SETERROR,
     CLEARFIELDS
 } from '../constants/App';
 
-const {dbPrefix} = config;
-
-export function getUsers() {
+function getUsers() {
     return dispatch => {
         dispatch({type: PENDING});
-        axios.get(dbPrefix + '/contacts').then(data => {
-            if(data.status === 200) {
+        axios.get(dbPrefix + '/contacts').then(users => {
+            if(users.status === 200) {
                 dispatch({
                     type: GETUSERS,
-                    payload: data.data
+                    payload: users.data
                 });
             }
         }).catch(err => console.warn({err}));
     };
 }
-export function deleteUser(id) {
+function deleteUser(id) {
     return dispatch => {
         dispatch({type: PENDING});
-        axios.delete(dbPrefix + `/contacts/${id}`).then(data => {
-            if(data.status === 200) {
+        axios.delete(dbPrefix + `/contacts/${id}`).then(users => {
+            if(users.status === 200) {
                 dispatch({
                     type: DELETEUSER,
-                    payload: data.data
+                    payload: users.data
                 });
             }
         }).catch(err => console.log(err));
     };
 }
-export function setErrors(errors) {
-    return dispatch => {
-        dispatch({
-            type: SETERRORS,
-            payload: errors
-        });
-    };
-}
-export function saveUserToStore(user) {
+function saveUserToStore(user) {
     return dispatch => {
         dispatch({
             type: SAVEUSERTOSTORE,
@@ -58,56 +51,74 @@ export function saveUserToStore(user) {
         });
     };
 }
-export function saveUser(user) {
+function saveUser(user) {
     return dispatch => {
         dispatch({type: PENDING});
         const {_id: id} = user;
         if(id) {
-            console.warn({xxx1: _.omit(user, ['_id', '__v'])});
             axios.put(dbPrefix + `/contacts/${id}`, {
                 body: _.omit(user, ['_id', '__v'])
-            }).then(data => {
-                if(data.status === 200) {
+            }).then(users => {
+                if(users.status === 200) {
                     dispatch({
-                        type: UPDATEUSERS,
-                        payload: data.data
+                        type: SAVEUSER,
+                        payload: users.data
                     });
                 }
             }).catch(err => console.log(err));
         } else {
-            console.warn({xxx2: user});
-
-            axios.post(dbPrefix + '/contacts', {body: user}).then(data => {
-                if(data.status === 200) {
-                    console.warn({data});
-
-                    dispatch({
-                        type: UPDATEUSERS,
-                        payload: data.data
-                    });
-                }
-            }).catch(err => console.log(err));
+            axios.post(dbPrefix + '/contacts', {body: user})
+                .then(users => {
+                    if(users.status === 200) {
+                        dispatch({
+                            type: SAVEUSER,
+                            payload: users.data
+                        });
+                    }
+                }).catch(err => console.log(err));
         }
     };
 }
-export function editUser(data) {
+function editUser(data) {
     return dispatch => {
         dispatch({
             type: EDITUSER,
             payload: data
         });
-    };
-}
-export function setError(data) {
-    return dispatch => {
         dispatch({
             type: SETERROR,
-            payload: data
+            payload: isError(data)
         });
     };
 }
-export function clearFields() {
+function setError(data) {
     return dispatch => {
-        dispatch({type: CLEARFIELDS});
+        dispatch({
+            type: SETERROR,
+            payload: isError(data)
+        });
     };
 }
+function clearFields() {
+    return dispatch => {
+        dispatch({type: CLEARFIELDS});
+        if(requiredFields.length) {
+            _.each(requiredFields, key => {
+                dispatch({
+                    type: SETERROR,
+                    payload: isError({key, value: ''})
+                });
+            });
+        }
+    };
+}
+
+export {
+    getUsers,
+    deleteUser,
+    saveUserToStore,
+    saveUser,
+    editUser,
+    clearFields,
+    setError
+};

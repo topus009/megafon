@@ -5,12 +5,15 @@ const Form = ({children, onClose, onSave, isEditable, title, disabled}) =>
     <div className='form'>
         <div className='title'>
             {title}
-            <Button
-                fontIcon='&#10005;'
-                title='Закрыть'
-                onClick={onClose}
-                classNames='close'
-            />
+            {
+                onClose &&
+                    <Button
+                        fontIcon='&#10005;'
+                        title='Закрыть'
+                        onClick={onClose}
+                        classNames='close'
+                    />
+            }
         </div>
         {children}
         {

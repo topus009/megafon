@@ -9,13 +9,13 @@
         @media screen and (max-width: #{720 - 1}px)
             width: 80%
         &:hover
-            background-color: #d1d2d4
+            background-color: color(bg,form)
         .userlist_item
-            border: 2px solid #3be03b
+            border: 2px solid color(border,userlist_item)
             padding: 0.5em 1em
             font-family: 'PFDinDP-Reg'
             &:hover
-                border-color: #5f19aa
+                border-color: color(border,userlist_item_hover)
     .user_control_buttons
         display: inline-block
         @media screen and (min-width: 360px) and (min-resolution: 2dppx)
@@ -23,13 +23,13 @@
         .button
             display: inline-block
             font-size: 20px
-            color: #00be73
+            color:  color(button,user_control_color)
             @media screen and (min-width: 360px) and (min-resolution: 2dppx)
                 font-size: 25px
             @media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx)
                 font-size: 35px
             &:hover
-                color: #5f19aa
+                color: color(button,user_control_color_hover)
             &.edit
                 margin-right: 20px
                 margin-left: 50px

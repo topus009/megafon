@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Form from '../common/Form';
@@ -7,13 +7,7 @@ import config from '../../config.local';
 import * as actions from '../actions/AppActions';
 import UserFormContent from './UserFormContent';
 
-class UserForm extends Component {
-    componentDidMount() {
-        if(this.isNew()) {
-            const {actions: {clearFields}} = this.props;
-            clearFields();
-        }
-    }
+class UserForm extends PureComponent {
     renderFormTitle = () => {
         if(this.isNew()) {
             return 'Новый пользователь';
@@ -40,11 +34,10 @@ class UserForm extends Component {
         const {match: {path}} = this.props;
         return path.search('edit') >= 0;
     }
-    saveUserData = () => {
+    saveUserToStore = () => {
         const {store: {users}, match: {params}, actions} = this.props;
         const user = _.find(users, {_id: _.get(params, 'userId')});
         actions.saveUserToStore(user);
-        // return user;
     }
     render() {
         const {
@@ -53,14 +46,19 @@ class UserForm extends Component {
                 user
             },
             actions: {
-                saveUser
+                saveUser,
+                clearFields
             }
         } = this.props;
         return (
             <Form
-                onClose={this.handleClose}
+                onClose={() => {
+                    clearFields();
+                    this.handleClose();
+                }}
                 onSave={() => {
                     saveUser(user);
+                    clearFields();
                     this.handleClose();
                 }}
                 isEditable={this.isEditable()}
@@ -70,7 +68,7 @@ class UserForm extends Component {
                 <div className='content'>
                     <UserFormContent
                         isEditable={this.isEditable()}
-                        saveUserData={this.saveUserData}
+                        saveUserToStore={this.saveUserToStore}
                         isNew={this.isNew()}
                     />
                 </div>

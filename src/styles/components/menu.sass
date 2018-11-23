@@ -1,3 +1,5 @@
+$images_path: '../../assets/images/';
+
 .menu
     display: table
     background-color: color(bg,menu)
@@ -10,7 +12,7 @@
         +wh(100%,100px)
     .logo
         font-family: 'PFDinDP-Reg'
-        color: white
+        color: color(text, menu)
         display: table-cell
         vertical-align: middle
         text-align: center
@@ -51,9 +53,9 @@
             @media screen and (min-width: 1920px)
                 +wh(70px,70px)
             &.selected .book
-                background-image: url('../../assets/images/book_hover.svg')
+                background-image: url('#{$images_path}book_hover.svg')
             &.selected .adduser
-                background-image: url('../../assets/images/contact_hover.svg')
+                background-image: url('#{$images_path}contact_hover.svg')
             .book
                 +nav_button('book','book_hover')
                 +nav_button_sizes(35px,35px)

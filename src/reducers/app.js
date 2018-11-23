@@ -3,9 +3,8 @@ import {
     GETUSERS,
     DELETEUSER,
     PENDING,
-    SETERRORS,
     SAVEUSERTOSTORE,
-    UPDATEUSERS,
+    SAVEUSER,
     EDITUSER,
     SETERROR,
     CLEARFIELDS
@@ -60,23 +59,30 @@ export default function app(state = initialState, action) {
                 users: payload,
                 loading: false
             };
-        case SETERRORS:
-            return {
-                ...state,
-                errors: _.find(payload)
-            };
-        case SAVEUSERTOSTORE:
-            return {
-                ...state,
-                user: payload
-            };
-        case UPDATEUSERS:
+        case SAVEUSER:
             return {
                 ...state,
                 users: payload,
                 user: defaultUser,
-                fieldErrors: defaultFieldErrors,
                 loading: false
+            };
+        case SETERROR:
+            const newFieldErrors = {
+                ...state.fieldErrors,
+                [payload.key]: payload.error
+            };
+            const hasErrors = _.some(_.values(newFieldErrors));
+            return {
+                ...state,
+                fieldErrors: newFieldErrors,
+                errors: hasErrors
+            };
+        case SAVEUSERTOSTORE:
+            return {
+                ...state,
+                user: payload,
+                fieldErrors: defaultFieldErrors,
+                errors: false
             };
         case EDITUSER:
             return {
@@ -86,19 +92,10 @@ export default function app(state = initialState, action) {
                     [payload.key]: payload.value
                 }
             };
-        case SETERROR:
-            return {
-                ...state,
-                fieldErrors: {
-                    ...state.fieldErrors,
-                    [payload.key]: payload.value
-                }
-            };
         case CLEARFIELDS:
             return {
                 ...state,
-                user: defaultUser,
-                fieldErrors: defaultFieldErrors
+                user: defaultUser
             };
         default:
             return {...state};

@@ -22,8 +22,8 @@
     @media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx)
         height: calc(100vh - 90px)
     .title
-        background-color: #00be73
-        color: white
+        background-color: color(bg, form_title)
+        color: color(text, form_title)
         font-family: 'PFDinDP-Reg'
         position: relative
         height: 50px
@@ -57,7 +57,7 @@
         .close
             position: absolute
             text-align: center
-            border: 2px solid white
+            border: 2px solid color(button, close_border)
             border-radius: 50%
             padding: 4px
             top: 10px
@@ -73,9 +73,9 @@
                 top: 15px
                 right: 15px
             &:hover
-                border-color: color(bg, btn_form_header_hover)
+                border-color: color(button, close_hover_border)
             &:hover .button_content
-                color: color(bg, btn_form_header_hover)
+                color: color(button, close_hover_color)
             .button_content
                 font-family: 'Times New Roman'
                 font-size: 1.1rem
@@ -95,10 +95,11 @@
                     font-weight: normal
     .content
         overflow-y: auto
-        background-color: white
+        background-color: color(bg, content)
         padding: 10px
         margin: 10px
         height: calc(100% - 140px)
+        font-family: 'PFDinDP-Reg'
         @media screen and (min-width: 720px) and (max-width: #{1920 - 1}px)
             padding: 20px
             margin: 20px
@@ -117,8 +118,8 @@
     .footer
         width: 100%
         .save
-            background-color: color(bg, btn_form_footer)
-            color: white
+            background-color: color(button, form_footer)
+            color: color(button, form_footer_color)
             font-family: 'PFDinDP-Reg'
             text-align: center
             +wh(70%, 50px)
@@ -146,4 +147,4 @@
                 font-size: 29px
                 font-weight: bold
             &:hover
-                background-color: color(bg, btn_form_footer_hover)
+                background-color: color(button, form_footer_hover)

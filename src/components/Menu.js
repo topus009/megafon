@@ -9,11 +9,15 @@ const Menu = () =>
             <NavLink
                 to={`${config.basename}/contacts`}
                 activeClassName='selected'
-            ><div className='book' title='Контакты'/></NavLink>
+            >
+                <div className='book' title='Контакты'/>
+            </NavLink>
             <NavLink
                 to={`${config.basename}/adduser`}
                 activeClassName='selected'
-            ><div className='adduser' title='Добавить в контакты'/></NavLink>
+            >
+                <div className='adduser' title='Добавить в контакты'/>
+            </NavLink>
         </div>
     </div>;
 

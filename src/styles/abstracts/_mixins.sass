@@ -1,12 +1,14 @@
+$nav_button_icon_path: '../../assets/images/';
+
 =wh($w,$h)
     width: $w
     height: $h
 
 =nav_button($url,$url_hover)
-    background-image: url('../../assets/images/#{$url}.svg')
+    background-image: url('#{$nav_button_icon_path + $url}.svg')
     background-repeat: no-repeat
     &:hover
-        background-image: url('../../assets/images/#{$url_hover}.svg')
+        background-image: url('#{$nav_button_icon_path + $url_hover}.svg')
 
 =nav_button_sizes($bg_size,$height)
     background-size: $bg_size
@@ -15,11 +17,8 @@
 =validate_mark
     position: absolute
     right: -35px
-    width: 22px
-    height: 22px
+    +wh(22px,22px)
     font-size: 17px
-    border: 1px solid black
-    border-radius: 50%
     text-align: center
     font-weight: bold
     line-height: 24px
