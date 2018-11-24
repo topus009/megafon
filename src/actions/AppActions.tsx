@@ -1,10 +1,12 @@
 import _ from 'lodash';
 import axios from 'axios';
+import {Dispatch} from 'redux';
 import {dbPrefix} from '../../config.local';
 import {
     requiredFields,
     isError
 } from '../helpers/userErrorValidation';
+import * as types from '../types';
 
 import {
     GETUSERS,
@@ -18,7 +20,7 @@ import {
 } from '../constants/App';
 
 function getUsers() {
-    return dispatch => {
+    return (dispatch: Dispatch) => {
         dispatch({type: PENDING});
         axios.get(dbPrefix + '/contacts').then(users => {
             if(users.status === 200) {
@@ -30,8 +32,8 @@ function getUsers() {
         }).catch(err => console.warn({err}));
     };
 }
-function deleteUser(id) {
-    return dispatch => {
+function deleteUser(id: string) {
+    return (dispatch: Dispatch) => {
         dispatch({type: PENDING});
         axios.delete(dbPrefix + `/contacts/${id}`).then(users => {
             if(users.status === 200) {
@@ -43,16 +45,16 @@ function deleteUser(id) {
         }).catch(err => console.log(err));
     };
 }
-function saveUserToStore(user) {
-    return dispatch => {
+function saveUserToStore(user: types.User) {
+    return (dispatch: Dispatch) => {
         dispatch({
             type: SAVEUSERTOSTORE,
             payload: user
         });
     };
 }
-function saveUser(user) {
-    return dispatch => {
+function saveUser(user: types.User) {
+    return (dispatch: Dispatch) => {
         dispatch({type: PENDING});
         const {_id: id} = user;
         if(id) {
@@ -79,8 +81,8 @@ function saveUser(user) {
         }
     };
 }
-function editUser(data) {
-    return dispatch => {
+function editUser(data: types.EditUserActionData) {
+    return (dispatch: Dispatch) => {
         dispatch({
             type: EDITUSER,
             payload: data
@@ -91,16 +93,8 @@ function editUser(data) {
         });
     };
 }
-function setError(data) {
-    return dispatch => {
-        dispatch({
-            type: SETERROR,
-            payload: isError(data)
-        });
-    };
-}
 function clearFields() {
-    return dispatch => {
+    return (dispatch: Dispatch) => {
         dispatch({type: CLEARFIELDS});
         if(requiredFields.length) {
             _.each(requiredFields, key => {
@@ -112,6 +106,14 @@ function clearFields() {
         }
     };
 }
+// function setError(data) {
+//     return (dispatch: Dispatch) => {
+//         dispatch({
+//             type: SETERROR,
+//             payload: isError(data)
+//         });
+//     };
+// }
 
 export {
     getUsers,
@@ -120,5 +122,5 @@ export {
     saveUser,
     editUser,
     clearFields,
-    setError
+    // setError
 };

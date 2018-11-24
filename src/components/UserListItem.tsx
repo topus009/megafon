@@ -1,9 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import {NavLink} from 'react-router-dom';
 import config from '../../config.local';
 import Button from '../common/Button';
+import * as types from '../types';
 
-const UserListItem = ({user, deleteUser, history}) =>
+const UserListItem: React.SFC<types.UserListItemProps> = ({user, deleteUser, history}) =>
     <div className='userlist_block'>
         <NavLink to={`${config.basename}/user/${user._id}`}>
             <div

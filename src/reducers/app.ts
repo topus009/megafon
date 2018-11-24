@@ -10,7 +10,10 @@ import {
     CLEARFIELDS
 } from '../constants/App';
 
+import * as types from '../types';
+
 const defaultUser = {
+    _id: '',
     fio: '',
     mainPhone: '',
     workPhone: '',
@@ -31,7 +34,7 @@ const defaultFieldErrors = {
     comments: false
 };
 
-const initialState = {
+const initialState: types.AppState = {
     users: [],
     user: defaultUser,
     loading: false,
@@ -39,7 +42,15 @@ const initialState = {
     fieldErrors: defaultFieldErrors
 };
 
-export default function app(state = initialState, action) {
+export {
+    defaultUser,
+    defaultFieldErrors,
+    initialState
+}
+
+export default function app(
+    state: types.AppState,
+    action: types.Action) {
     const {payload} = action;
     switch(action.type) {
         case GETUSERS:

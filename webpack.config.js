@@ -15,10 +15,10 @@ const PROXY = `http://${HOST}:${PORT}`;
 module.exports = {
     entry: [
     // POLYFILL: Set up an ES6-ish environment
-        'babel-polyfill', // The entire babel-polyfill
-        './src/index.js' // your app's entry point
+        // 'babel-polyfill', // The entire babel-polyfill
+        './src/index.tsx',
     ],
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
     output: {
         publicPath: '/',
         path: path.join(__dirname, 'public'),
@@ -28,7 +28,7 @@ module.exports = {
         rules: loadersConf
     },
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
         modules: [
             path.join(__dirname, 'src'),
             path.join(__dirname, 'node_modules') // the old 'fallback' option (needed for npm link-ed packages)

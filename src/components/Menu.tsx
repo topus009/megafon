@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import {NavLink} from 'react-router-dom';
 import config from '../../config.local';
 
-const Menu = () =>
+const Menu: React.SFC<{}> = () =>
     <div className='menu'>
         <div className='logo'>Мегафон</div>
         <div className='buttons'>

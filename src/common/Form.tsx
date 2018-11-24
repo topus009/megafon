@@ -1,7 +1,8 @@
-import React from 'react';
+import * as React from 'react';
+import * as types from '../types';
 import Button from './Button';
 
-const Form = ({children, onClose, onSave, isEditable, title, disabled}) =>
+const Form: React.SFC<types.FormProps> = ({children, onClose, onSave, isEditable, title, disabled}) =>
     <div className='form'>
         <div className='title'>
             {title}
@@ -17,7 +18,7 @@ const Form = ({children, onClose, onSave, isEditable, title, disabled}) =>
         </div>
         {children}
         {
-            isEditable &&
+            (isEditable && onSave) &&
             <div className='footer'>
                 <Button
                     title='Сохранить'

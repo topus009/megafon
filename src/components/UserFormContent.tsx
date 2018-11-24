@@ -1,46 +1,48 @@
-import React, {Component} from 'react';
+import * as React from 'react';
 import _ from 'lodash';
-import {bindActionCreators} from 'redux';
+import {bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import TextInput from '../common/TextInput';
 import InfoField from '../common/InfoField';
 import * as actions from '../actions/AppActions';
+import * as types from '../types';
 
-const contentProps = {
+const contentProps:types.contentProps = {
     fio: {
-        label: 'ФИО'
+        label: 'ФИО',
+        placeholder: ''
     },
     mainPhone: {
-        label: 'Основной номер'
+        label: 'Основной номер',
+        placeholder: ''
     },
     workPhone: {
-        label: 'Рабочий номер'
+        label: 'Рабочий номер',
+        placeholder: ''
     },
     email: {
-        label: 'Email'
+        label: 'Email',
+        placeholder: ''
     },
     dateOfBirth: {
         label: 'Дата рождения',
         placeholder: '2000.01.01'
     },
     address: {
-        label: 'Адрес'
+        label: 'Адрес',
+        placeholder: ''
     },
     vk: {
-        label: 'Вконтакте'
+        label: 'Вконтакте',
+        placeholder: ''
     },
     comments: {
-        label: 'Комментарии'
+        label: 'Комментарии',
+        placeholder: ''
     }
 };
 
-class UserFormContent extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            canShow: false
-        };
-    }
+class UserFormContent extends React.Component<types.UserFormContent> {
     componentDidMount() {
         const {actions: {clearFields}, saveUserToStore, isNew} = this.props;
         if(!isNew) {
@@ -73,7 +75,6 @@ class UserFormContent extends Component {
                                         hideWrapper
                                     >
                                         <TextInput
-                                            fieldName={key}
                                             value={item}
                                             placeholder={contentProps[key].placeholder}
                                             onChange={value => editUser({key, value})}
@@ -81,7 +82,7 @@ class UserFormContent extends Component {
                                         />
                                     </InfoField>
                                 );
-                            }
+                            } return null;
                         }) :
                         _.map(user, (item, key) => {
                             if(contentProps[key] && item.length) {
@@ -92,7 +93,7 @@ class UserFormContent extends Component {
                                         value={item}
                                     />
                                 );
-                            }
+                            } return null;
                         })
                 }
             </div>
@@ -100,11 +101,11 @@ class UserFormContent extends Component {
     }
 }
 
-function mapStateToProps({app}) {
-    return {store: app};
+function mapStateToProps(store: types.AppState) {
+    return {store};
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch) {
     return {
         actions: bindActionCreators(actions, dispatch)
     };

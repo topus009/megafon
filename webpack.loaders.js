@@ -7,7 +7,6 @@ const sassIncludePaths = [
 
 // These files will be imported in every sass file
 const sassResourcesPaths = [
-    path.resolve(__dirname, 'src/styles/abstracts/_variables.sass'),
     path.resolve(__dirname, 'src/styles/abstracts/_fonts.sass'),
     path.resolve(__dirname, 'src/styles/abstracts/_mixins.sass'),
 ];
@@ -19,19 +18,24 @@ module.exports = [
     // =========
     // Load jsx extensions with babel so we can use
     // 'import' instead of 'require' and es6 syntax
+    // {
+    //     test: /\.jsx?$/,
+    //     include: path.resolve(__dirname, 'src'),
+    //     loader: 'babel-loader?compact=false',
+    //     exclude: /node_modules/,
+    //     options: {
+    //         // This is a feature of `babel-loader` for Webpack (not Babel itself).
+    //         // It enables caching results in ./node_modules/.cache/babel-loader/
+    //         // directory for faster rebuilds.
+    //         cacheDirectory: true,
+    //         plugins: ['react-hot-loader/babel']
+    //     }
+    // },
     {
-        test: /\.jsx?$/,
-        include: path.resolve(__dirname, 'src'),
-        loader: 'babel-loader?compact=false',
-        exclude: /node_modules/,
-        options: {
-            // This is a feature of `babel-loader` for Webpack (not Babel itself).
-            // It enables caching results in ./node_modules/.cache/babel-loader/
-            // directory for faster rebuilds.
-            cacheDirectory: true,
-            plugins: ['react-hot-loader/babel']
-        }
+        test: /\.(ts|tsx)$/,
+        loader: 'ts-loader'
     },
+    { enforce: 'pre', test: /\.js$/, loader: "source-map-loader" },
     // ==========
     // = Images =
     // ==========

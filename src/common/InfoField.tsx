@@ -1,6 +1,7 @@
-import React from 'react';
+import * as React from 'react';
+import * as types from '../types';
 
-const InfoField = ({children, value, label, hideWrapper}) =>
+const InfoField: React.SFC<types.InfoFieldProps> = ({children, value, label, hideWrapper}) =>
     <div className={`info_field ${hideWrapper ? 'hide_wrapper' : ''}`}>
         <div className='label'>{label}</div>
         <div className='value'>{children || value}</div>

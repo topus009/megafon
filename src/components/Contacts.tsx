@@ -1,18 +1,19 @@
-import React, {Component} from 'react';
+import * as React from 'react';
 import _ from 'lodash';
-import {bindActionCreators} from 'redux';
+import {bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import Form from '../common/Form';
 import config from '../../config.local';
 import * as actions from '../actions/AppActions';
+import * as types from '../types';
 import UserListItem from './UserListItem';
 
-class Contacts extends Component {
+class Contacts extends React.Component<types.ContactsProps> {
     componentDidMount() {
         const {actions: {getUsers}} = this.props;
         getUsers();
     }
-    handleClose() {
+    handleClose = () => {
         const {history} = this.props;
         history.push({
             pathname: `${config.basename}/`,
@@ -53,11 +54,11 @@ class Contacts extends Component {
     }
 }
 
-function mapStateToProps({app}) {
-    return {store: app};
+function mapStateToProps(store: types.AppState) {
+    return {store};
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch) {
     return {
         actions: bindActionCreators(actions, dispatch)
     };

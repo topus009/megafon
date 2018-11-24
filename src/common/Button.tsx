@@ -1,6 +1,7 @@
-import React from 'react';
+import * as React from 'react';
+import * as types from '../types';
 
-const Button = props => {
+const Button: React.SFC<types.ButtonProps> = props => {
     const {
         icon,
         fontIcon,

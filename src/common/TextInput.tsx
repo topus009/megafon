@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
+import * as types from '../types';
 
-const TextInput = props => {
+const TextInput: React.SFC<types.TextInputProps> = props => {
     const {
-        label,
         value,
         placeholder,
         hasError,
@@ -10,7 +10,8 @@ const TextInput = props => {
     } = props;
     return (
         <div className='text_input'>
-            <div className='label'>{label}</div>
+            {}
+
             <div className='input_block'>
                 <input
                     type='text'

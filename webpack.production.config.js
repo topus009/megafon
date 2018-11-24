@@ -13,7 +13,7 @@ loaders.push({
 
 module.exports = {
   entry: [
-    './src/index.js'
+    './src/index.tsx'
   ],
   output: {
     publicPath: './',
@@ -21,7 +21,7 @@ module.exports = {
     filename: '[chunkhash].js'
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     alias: {
       "styles": path.resolve(__dirname, 'src/styles/'),
     }

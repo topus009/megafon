@@ -1,14 +1,15 @@
 import _ from 'lodash';
-import React, {PureComponent} from 'react';
-import {bindActionCreators} from 'redux';
+import * as React from 'react';
+import {bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import Form from '../common/Form';
 import config from '../../config.local';
 import * as actions from '../actions/AppActions';
+import * as types from '../types';
 import UserFormContent from './UserFormContent';
 
-class UserForm extends PureComponent {
-    renderFormTitle = () => {
+class UserForm extends React.PureComponent<types.UserForm> {
+    renderFormTitle = ():string => {
         if(this.isNew()) {
             return 'Новый пользователь';
         }
@@ -17,7 +18,7 @@ class UserForm extends PureComponent {
         }
         return 'Профиль пользователя';
     }
-    handleClose = () => {
+    handleClose = ():void => {
         const {history} = this.props;
         history.push({
             pathname: `${config.basename}/contacts`,
@@ -25,16 +26,16 @@ class UserForm extends PureComponent {
             state: null
         });
     }
-    isEditable = () => this.isNew() || this.isEdit()
-    isNew = () => {
+    isEditable = ():boolean => this.isNew() || this.isEdit()
+    isNew = ():boolean => {
         const {match: {path}} = this.props;
         return path.search('adduser') >= 0;
     }
-    isEdit = () => {
+    isEdit = ():boolean => {
         const {match: {path}} = this.props;
         return path.search('edit') >= 0;
     }
-    saveUserToStore = () => {
+    saveUserToStore = ():void => {
         const {store: {users}, match: {params}, actions} = this.props;
         const user = _.find(users, {_id: _.get(params, 'userId')});
         actions.saveUserToStore(user);
@@ -77,11 +78,11 @@ class UserForm extends PureComponent {
     }
 }
 
-function mapStateToProps({app}) {
-    return {store: app};
+function mapStateToProps(store: types.AppState) {
+    return {store};
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch) {
     return {
         actions: bindActionCreators(actions, dispatch)
     };

@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import Form from '../common/Form';
 
-const Home = () =>
+const Home: React.SFC<{}> = () =>
     <Form title='Описание'>
         <div className='content'>
             <div className='description'>
