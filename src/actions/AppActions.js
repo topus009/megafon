@@ -2,11 +2,11 @@ import _ from 'lodash';
 import axios from 'axios';
 import {dbPrefix} from '../../config.local';
 import {
-    requiredFields,
     isError
 } from '../helpers/userErrorValidation';
+import constants from '../constants/App';
 
-import {
+const {
     GETUSERS,
     DELETEUSER,
     PENDING,
@@ -15,12 +15,12 @@ import {
     EDITUSER,
     SETERROR,
     CLEARFIELDS
-} from '../constants/App';
+} = constants;
 
 function getUsers() {
     return dispatch => {
         dispatch({type: PENDING});
-        axios.get(dbPrefix + '/contacts').then(users => {
+        return axios.get(dbPrefix + '/contacts').then(users => {
             if(users.status === 200) {
                 dispatch({
                     type: GETUSERS,
@@ -33,7 +33,7 @@ function getUsers() {
 function deleteUser(id) {
     return dispatch => {
         dispatch({type: PENDING});
-        axios.delete(dbPrefix + `/contacts/${id}`).then(users => {
+        return axios.delete(dbPrefix + `/contacts/${id}`).then(users => {
             if(users.status === 200) {
                 dispatch({
                     type: DELETEUSER,
@@ -44,11 +44,9 @@ function deleteUser(id) {
     };
 }
 function saveUserToStore(user) {
-    return dispatch => {
-        dispatch({
-            type: SAVEUSERTOSTORE,
-            payload: user
-        });
+    return {
+        type: SAVEUSERTOSTORE,
+        payload: user
     };
 }
 function saveUser(user) {
@@ -56,7 +54,7 @@ function saveUser(user) {
         dispatch({type: PENDING});
         const {_id: id} = user;
         if(id) {
-            axios.put(dbPrefix + `/contacts/${id}`, {
+            return axios.put(dbPrefix + `/contacts/${id}`, {
                 body: _.omit(user, ['_id', '__v'])
             }).then(users => {
                 if(users.status === 200) {
@@ -67,7 +65,7 @@ function saveUser(user) {
                 }
             }).catch(err => console.log(err));
         } else {
-            axios.post(dbPrefix + '/contacts', {body: user})
+            return axios.post(dbPrefix + '/contacts', {body: user})
                 .then(users => {
                     if(users.status === 200) {
                         dispatch({
@@ -80,36 +78,23 @@ function saveUser(user) {
     };
 }
 function editUser(data) {
-    return dispatch => {
-        dispatch({
+    return {
             type: EDITUSER,
-            payload: data
-        });
-        dispatch({
-            type: SETERROR,
-            payload: isError(data)
-        });
+            payload: {
+                userData: data,
+                errorData: isError(data)
+        }
     };
 }
 function setError(data) {
-    return dispatch => {
-        dispatch({
-            type: SETERROR,
-            payload: isError(data)
-        });
+    return {
+        type: SETERROR,
+        payload: isError(data)
     };
 }
 function clearFields() {
-    return dispatch => {
-        dispatch({type: CLEARFIELDS});
-        if(requiredFields.length) {
-            _.each(requiredFields, key => {
-                dispatch({
-                    type: SETERROR,
-                    payload: isError({key, value: ''})
-                });
-            });
-        }
+    return {
+        type: CLEARFIELDS
     };
 }
 

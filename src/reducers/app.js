@@ -1,5 +1,11 @@
 import _ from 'lodash';
+import constants from '../constants/App';
 import {
+    newFieldErrors,
+    hasErrors,
+} from '../helpers/reducersHelper';
+
+const {
     GETUSERS,
     DELETEUSER,
     PENDING,
@@ -8,7 +14,7 @@ import {
     EDITUSER,
     SETERROR,
     CLEARFIELDS
-} from '../constants/App';
+} = constants;
 
 const defaultUser = {
     fio: '',
@@ -20,6 +26,11 @@ const defaultUser = {
     vk: '',
     comments: ''
 };
+
+export const requiredFields = [
+    'fio'
+];
+
 const defaultFieldErrors = {
     fio: false,
     mainPhone: false,
@@ -31,7 +42,7 @@ const defaultFieldErrors = {
     comments: false
 };
 
-const initialState = {
+export const initialState = {
     users: [],
     user: defaultUser,
     loading: false,
@@ -67,15 +78,14 @@ export default function app(state = initialState, action) {
                 loading: false
             };
         case SETERROR:
-            const newFieldErrors = {
-                ...state.fieldErrors,
-                [payload.key]: payload.error
-            };
-            const hasErrors = _.some(_.values(newFieldErrors));
+            const setErrorFieldErrors = newFieldErrors(state, payload);
+            const setErrorState = {
+                fieldErrors: editUserFieldErrors,
+                errors: hasErrors(setErrorFieldErrors)
+            }
             return {
                 ...state,
-                fieldErrors: newFieldErrors,
-                errors: hasErrors
+                ...setErrorState
             };
         case SAVEUSERTOSTORE:
             return {
@@ -85,17 +95,36 @@ export default function app(state = initialState, action) {
                 errors: false
             };
         case EDITUSER:
-            return {
-                ...state,
+            const {userData, errorData} = payload;
+            const editUserFieldErrors = newFieldErrors(state, errorData);
+            const editUserState = {
                 user: {
                     ...state.user,
-                    [payload.key]: payload.value
-                }
-            };
-        case CLEARFIELDS:
+                    [userData.key]: userData.value
+                },
+                fieldErrors: editUserFieldErrors,
+                errors: hasErrors(editUserFieldErrors)
+            }
             return {
                 ...state,
-                user: defaultUser
+                ...editUserState
+            };
+        case CLEARFIELDS:
+            let setRequiredFieldsError = _.clone(defaultFieldErrors);
+            _.each(requiredFields, key => {
+                setRequiredFieldsError = _.merge(
+                    setRequiredFieldsError,
+                    newFieldErrors(state, {key, error: true})
+                );
+            });
+            const setClearFieldsState = {
+                user: defaultUser,
+                fieldErrors: setRequiredFieldsError,
+                errors: hasErrors(setRequiredFieldsError)
+            };
+            return {
+                ...state,
+                ...setClearFieldsState
             };
         default:
             return {...state};

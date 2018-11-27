@@ -1,3 +1,4 @@
+import {requiredFields} from '../reducers/app';
 import {
     hasOnlyDigits,
     yearIsLessThanCurrent,
@@ -10,10 +11,6 @@ const userErrorValidators = {
     workPhone: value => !hasOnlyDigits(value),
     dateOfBirth: value => !yearIsLessThanCurrent(value)
 };
-
-const requiredFields = [
-    'fio'
-];
 
 const isError = ({key, value}) => {
     if(!userErrorValidators[key]) {
