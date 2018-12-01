@@ -5,7 +5,7 @@ const fieldWithValues = {
     fio: 'ascascasca',
     mainPhone: 6512333057,
     workPhone: '5165533',
-    dateOfBirth: '2018.12.01'
+    dateOfBirth: '2019.12.03'
 };
 
 const fieldResults = {
