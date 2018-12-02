@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Form from '../common/Form';
@@ -7,7 +7,7 @@ import config from '../../config.local';
 import * as actions from '../actions/AppActions';
 import UserFormContent from './UserFormContent';
 
-class UserForm extends PureComponent {
+class UserForm extends Component {
     renderFormTitle = () => {
         if(this.isNew()) {
             return 'Новый пользователь';
@@ -35,21 +35,20 @@ class UserForm extends PureComponent {
         return path.search('edit') >= 0;
     }
     saveUserToStore = () => {
-        const {store: {users}, match: {params}, actions} = this.props;
+        const {users, match: {params}, actions} = this.props;
         const user = _.find(users, {_id: _.get(params, 'userId')});
         actions.saveUserToStore(user);
     }
     render() {
         const {
-            store: {
-                errors,
-                user
-            },
+            errors,
+            user,
             actions: {
                 saveUser,
                 clearFields
             }
         } = this.props;
+        console.warn('UserForm -> RENDER');
         return (
             <Form
                 onClose={() => {
@@ -78,7 +77,12 @@ class UserForm extends PureComponent {
 }
 
 function mapStateToProps({app}) {
-    return {store: app};
+    const {errors, users, user} = app;
+    return {
+        errors,
+        users,
+        user
+    };
 }
 
 function mapDispatchToProps(dispatch) {
