@@ -67,7 +67,7 @@ export default function app(state = initialState, action) {
         case DELETEUSER:
             return {
                 ...state,
-                users: payload,
+                users: _.reject(state.users, {_id: payload}),
                 loading: false
             };
         case SAVEUSER:

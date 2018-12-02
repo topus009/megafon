@@ -33,11 +33,11 @@ function getUsers() {
 function deleteUser(id) {
     return dispatch => {
         dispatch({type: PENDING});
-        return axios.delete(dbPrefix + `/contacts/${id}`).then(users => {
-            if(users.status === 200) {
+        return axios.delete(dbPrefix + `/contacts/${id}`).then(res => {
+            if(res.status === 200) {
                 dispatch({
                     type: DELETEUSER,
-                    payload: users.data
+                    payload: res.data._id
                 });
             }
         }).catch(err => console.log(err));
