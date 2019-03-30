@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import _ from 'lodash';
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Form from '../common/Form';
 import config from '../../config.local';
-import * as actions from '../actions/AppActions';
+import {getUsers} from '../actions/AppActions';
 import UserListItem from './UserListItem';
 
 class Contacts extends Component {
     componentDidMount() {
-        const {actions: {getUsers}} = this.props;
+        const {getUsers} = this.props;
         getUsers();
     }
     handleClose() {
@@ -22,17 +21,12 @@ class Contacts extends Component {
     }
     render() {
         const {
-            store: {
-                users,
-                loading
-            },
-            actions: {
-                deleteUser
-            }
+            users,
+            loading
         } = this.props;
         return (
             <Form
-                onClose={() => this.handleClose()}
+                onClose={this.handleClose}
                 title='Контакты'
             >
                 <div className='content'>
@@ -41,8 +35,7 @@ class Contacts extends Component {
                             _.map(users, (item, key) =>
                                 <UserListItem
                                     key={key}
-                                    user={item}
-                                    deleteUser={deleteUser}
+                                    userId={item._id}
                                     history={this.props.history}
                                 />
                             )
@@ -54,12 +47,19 @@ class Contacts extends Component {
 }
 
 function mapStateToProps({app}) {
-    return {store: app};
+    const {
+        users,
+        loading
+    } = app;
+    return {
+        users,
+        loading
+    };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(actions, dispatch)
+        getUsers: () => dispatch(getUsers())
     };
 }
 

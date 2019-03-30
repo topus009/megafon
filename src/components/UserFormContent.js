@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import _ from 'lodash';
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import TextInput from '../common/TextInput';
 import InfoField from '../common/InfoField';
-import * as actions from '../actions/AppActions';
+import {
+    editUser,
+    clearFields
+} from '../actions/AppActions';
 
 const contentProps = {
     fio: {
@@ -42,7 +44,7 @@ class UserFormContent extends Component {
         };
     }
     componentDidMount() {
-        const {actions: {clearFields}, saveUserToStore, isNew} = this.props;
+        const {clearFields, saveUserToStore, isNew} = this.props;
         if(!isNew) {
             saveUserToStore();
         } else {
@@ -52,13 +54,9 @@ class UserFormContent extends Component {
     render() {
         const {
             isEditable,
-            store: {
-                user,
-                fieldErrors
-            },
-            actions: {
-                editUser
-            }
+            user,
+            fieldErrors,
+            editUser
         } = this.props;
         return (
             <div className='user_form'>
@@ -68,15 +66,16 @@ class UserFormContent extends Component {
                             if(contentProps[key]) {
                                 return (
                                     <InfoField
+                                        key={`InfoField_${key}`}
                                         label={contentProps[key].label}
-                                        key={key}
                                         hideWrapper
                                     >
                                         <TextInput
+                                            key={`TextInput_${key}`}
                                             fieldName={key}
                                             value={item}
-                                            placeholder={contentProps[key].placeholder}
-                                            onChange={value => editUser({key, value})}
+                                            placeholder={contentProps[key].placeholder || ''}
+                                            onChange={editUser}
                                             hasError={fieldErrors[key]}
                                         />
                                     </InfoField>
@@ -87,7 +86,7 @@ class UserFormContent extends Component {
                             if(contentProps[key] && item.length) {
                                 return (
                                     <InfoField
-                                        key={key}
+                                        key={`InfoField_${key}`}
                                         label={contentProps[key].label}
                                         value={item}
                                     />
@@ -101,12 +100,14 @@ class UserFormContent extends Component {
 }
 
 function mapStateToProps({app}) {
-    return {store: app};
+    const {user, fieldErrors} = app;
+    return {user, fieldErrors};
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(actions, dispatch)
+        editUser: data => dispatch(editUser(data)),
+        clearFields: () => dispatch(clearFields())
     };
 }
 

@@ -1,10 +1,13 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Form from '../common/Form';
 import config from '../../config.local';
-import * as actions from '../actions/AppActions';
+import {
+    saveUser,
+    clearFields,
+    saveUserToStore
+} from '../actions/AppActions';
 import UserFormContent from './UserFormContent';
 
 class UserForm extends Component {
@@ -18,7 +21,8 @@ class UserForm extends Component {
         return 'Профиль пользователя';
     }
     handleClose = () => {
-        const {history} = this.props;
+        const {history, clearFields} = this.props;
+        clearFields();
         history.push({
             pathname: `${config.basename}/contacts`,
             query: {},
@@ -35,31 +39,30 @@ class UserForm extends Component {
         return path.search('edit') >= 0;
     }
     saveUserToStore = () => {
-        const {users, match: {params}, actions} = this.props;
+        const {
+            users,
+            match: {params},
+            saveUserToStore
+        } = this.props;
         const user = _.find(users, {_id: _.get(params, 'userId')});
-        actions.saveUserToStore(user);
+        saveUserToStore(user);
+    }
+    handleSave = () => {
+        const {
+            user,
+            saveUser,
+            clearFields
+        } = this.props;
+        saveUser(user);
+        clearFields();
+        this.handleClose();
     }
     render() {
-        const {
-            errors,
-            user,
-            actions: {
-                saveUser,
-                clearFields
-            }
-        } = this.props;
-        console.warn('UserForm -> RENDER');
+        const {errors} = this.props;
         return (
             <Form
-                onClose={() => {
-                    clearFields();
-                    this.handleClose();
-                }}
-                onSave={() => {
-                    saveUser(user);
-                    clearFields();
-                    this.handleClose();
-                }}
+                onClose={this.handleClose}
+                onSave={this.handleSave}
                 isEditable={this.isEditable()}
                 title={this.renderFormTitle()}
                 disabled={errors}
@@ -87,7 +90,9 @@ function mapStateToProps({app}) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(actions, dispatch)
+        saveUser: user => dispatch(saveUser(user)),
+        clearFields: () => dispatch(clearFields()),
+        saveUserToStore: user => dispatch(saveUserToStore(user))
     };
 }
 
