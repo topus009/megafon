@@ -11,7 +11,7 @@ class Contacts extends Component {
         const {getUsers} = this.props;
         getUsers();
     }
-    handleClose() {
+    handleClose = () => {
         const {history} = this.props;
         history.push({
             pathname: `${config.basename}/`,
