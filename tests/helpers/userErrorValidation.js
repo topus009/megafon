@@ -17,7 +17,7 @@ const fieldResults = {
 
 const unknownFieldsWithValues = {
     x: 'ascascasca',
-    y: 6512333057,
+    y: 6512333057
 };
 
 test('isError', () => {

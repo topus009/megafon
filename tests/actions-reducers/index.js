@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import axios from 'axios';
-import configureMockStore from 'redux-mock-store'
+import configureMockStore from 'redux-mock-store';
 import MockAdapter from 'axios-mock-adapter';
 import constants from '../../src/constants/App';
 import * as actions from '../../src/actions/AppActions';
@@ -8,7 +8,7 @@ import {dbPrefix} from '../../config.local';
 import reducer, {initialState} from '../../src/reducers/app';
 import {
     checkApiRunning,
-    flushAllPromises,
+    flushAllPromises
 } from '../testHelpers';
 
 const {
@@ -17,7 +17,7 @@ const {
     SETERROR,
     // async
     PENDING,
-    DELETEUSER,
+    DELETEUSER
 } = constants;
 
 const {
@@ -25,17 +25,17 @@ const {
     saveUserToStore,
     setError,
     // async
-    deleteUser,
+    deleteUser
 } = actions;
 
-let users, firstUserId, expectedUsers;
+let users; let firstUserId; let expectedUsers;
 
 beforeAll(async done => {
     users = await checkApiRunning();
-    firstUserId = users[0]['_id'];
+    firstUserId = users[0]._id;
     expectedUsers = _.filter(users, user => user._id !== firstUserId);
     done();
-})
+});
 
 test('work fine SAVEUSERTOSTORE', () => {
     const user = {
@@ -46,7 +46,7 @@ test('work fine SAVEUSERTOSTORE', () => {
     };
     const expectedAction = {
         type: SAVEUSERTOSTORE,
-        payload: user,
+        payload: user
     };
     expect(saveUserToStore(user)).toEqual(expectedAction);
 });
@@ -61,7 +61,7 @@ test('work fine SETERROR', () => {
         payload: {
             key: 'fio',
             error: false
-        },
+        }
     };
     expect(setError(data)).toEqual(expectedAction);
 });
@@ -70,7 +70,7 @@ test('work fine PENDING', () => {
     expect(reducer({}, {type: PENDING})).toEqual({loading: true});
 });
 
-test('Api + async action DELETEUSER', async () => {
+test('Api + async action DELETEUSER', async() => {
     const httpMock = new MockAdapter(axios);
     const mockStore = configureMockStore();
     const currentState = {...initialState, users};

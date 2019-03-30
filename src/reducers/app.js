@@ -2,7 +2,7 @@ import _ from 'lodash';
 import constants from '../constants/App';
 import {
     newFieldErrors,
-    hasErrors,
+    hasErrors
 } from '../helpers/reducersHelper';
 
 const {
@@ -82,7 +82,7 @@ export default function app(state = initialState, action) {
             const setErrorState = {
                 fieldErrors: editUserFieldErrors,
                 errors: hasErrors(setErrorFieldErrors)
-            }
+            };
             return {
                 ...state,
                 ...setErrorState
@@ -104,7 +104,7 @@ export default function app(state = initialState, action) {
                 },
                 fieldErrors: editUserFieldErrors,
                 errors: hasErrors(editUserFieldErrors)
-            }
+            };
             return {
                 ...state,
                 ...editUserState

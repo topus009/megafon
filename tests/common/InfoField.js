@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import {mount, render} from 'enzyme'
+import {mount, render} from 'enzyme';
 import InfoField from '../../src/common/InfoField';
 
 const testProps = {
@@ -12,13 +12,13 @@ const testProps = {
 
 test('InfoField render correctly', () => {
     const {child, value, label, hideWrapper} = testProps;
-    _.each([0,1], key => {
+    _.each([0, 1], key => {
         const component = <InfoField
-                            value={value[key]}
-                            label={label[key]}
-                            hideWrapper={hideWrapper[key]}>
-                                {child[key]}
-                            </InfoField>;
+            value={value[key]}
+            label={label[key]}
+            hideWrapper={hideWrapper[key]}>
+            {child[key]}
+        </InfoField>;
         const renderWrapper = render(component);
         const mountWrapper = mount(component);
         const valueText = _.get(renderWrapper.find('.value'), '[0].children.[0].data');

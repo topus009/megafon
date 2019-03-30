@@ -1,15 +1,13 @@
 import axios from 'axios';
-import _ from 'lodash';
 import {dbPrefix} from '../config.local';
 
-export const checkApiRunning = async () => {
-    let res;
+export const checkApiRunning = async() => {
     try {
-        res = await axios.get(dbPrefix + '/contacts');
+        const res = await axios.get(dbPrefix + '/contacts');
         if(res.status === 200) {
             return res.data;
         }
-    } catch (error) {
+    } catch(error) {
         console.log(error);
     }
 };

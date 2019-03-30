@@ -1,9 +1,7 @@
 import _ from 'lodash';
 import axios from 'axios';
 import {dbPrefix} from '../../config.local';
-import {
-    isError
-} from '../helpers/userErrorValidation';
+import {isError} from '../helpers/userErrorValidation';
 import constants from '../constants/App';
 
 const {
@@ -64,25 +62,24 @@ function saveUser(user) {
                     });
                 }
             }).catch(err => console.log(err));
-        } else {
-            return axios.post(dbPrefix + '/contacts', {body: user})
-                .then(users => {
-                    if(users.status === 200) {
-                        dispatch({
-                            type: SAVEUSER,
-                            payload: users.data
-                        });
-                    }
-                }).catch(err => console.log(err));
         }
+        return axios.post(dbPrefix + '/contacts', {body: user})
+            .then(users => {
+                if(users.status === 200) {
+                    dispatch({
+                        type: SAVEUSER,
+                        payload: users.data
+                    });
+                }
+            }).catch(err => console.log(err));
     };
 }
 function editUser(data) {
     return {
-            type: EDITUSER,
-            payload: {
-                userData: data,
-                errorData: isError(data)
+        type: EDITUSER,
+        payload: {
+            userData: data,
+            errorData: isError(data)
         }
     };
 }
