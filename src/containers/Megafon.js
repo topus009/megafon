@@ -1,25 +1,24 @@
-import React, { Fragment } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import React from 'react';
+import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { createBrowserHistory } from 'history';
 import AppRouter from '../routes';
-import Menu from '../components/Menu';
 import configureStore from '../store';
 
 import '../styles/base/_main.sass';
 
+const history = createBrowserHistory();
+
 const Store = configureStore();
 
-function Megafon() {
+const Megafon = () => {
   return (
     <Provider store={Store}>
-      <BrowserRouter>
-        <Fragment>
-          <Menu />
-          <AppRouter />
-        </Fragment>
-      </BrowserRouter>
+      <Router history={history}>
+        <AppRouter />
+      </Router>
     </Provider>
   );
-}
+};
 
 export default Megafon;

@@ -46,7 +46,7 @@ class Contacts extends Component {
     }
 }
 
-function mapStateToProps({app}) {
+const mapStateToProps = ({app}) => {
     const {
         users,
         loading
@@ -57,7 +57,7 @@ function mapStateToProps({app}) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
     return {
         getUsers: () => dispatch(getUsers())
     };

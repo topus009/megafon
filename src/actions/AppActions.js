@@ -4,7 +4,18 @@ import { dbPrefix } from '../../config.local';
 import { isError } from '../helpers/userErrorValidation';
 import constants from '../constants/App';
 
-const { GETUSERS, DELETEUSER, PENDING, SAVEUSERTOSTORE, SAVEUSER, EDITUSER, SETERROR, CLEARFIELDS } = constants;
+const {
+  GETUSERS,
+  GETUSERSERROR,
+  DELETEUSER,
+  DELETEUSERERROR,
+  PENDING,
+  SAVEUSERTOSTORE,
+  SAVEUSER,
+  EDITUSER,
+  SETERROR,
+  CLEARFIELDS,
+} = constants;
 
 function getUsers() {
   return dispatch => {
@@ -12,14 +23,17 @@ function getUsers() {
     return axios
       .get(`${dbPrefix}/contacts`)
       .then(users => {
-        if (users.status === 200) {
-          dispatch({
-            type: GETUSERS,
-            payload: users.data,
-          });
-        }
+        // if (users.status === 200) {
+        dispatch({
+          type: GETUSERS,
+          payload: users.data,
+        });
+        // }
       })
-      .catch(err => console.warn({ err }));
+      .catch(err => {
+        console.error({ err });
+        return dispatch({ type: GETUSERSERROR });
+      });
   };
 }
 function deleteUser(id) {
@@ -28,14 +42,17 @@ function deleteUser(id) {
     return axios
       .delete(`${dbPrefix}/contacts/${id}`)
       .then(res => {
-        if (res.status === 200) {
-          dispatch({
-            type: DELETEUSER,
-            payload: res.data._id,
-          });
-        }
+        // if (res.status === 200) {
+        dispatch({
+          type: DELETEUSER,
+          payload: res.data._id,
+        });
+        // }
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.error({ err });
+        return dispatch({ type: DELETEUSERERROR });
+      });
   };
 }
 function saveUserToStore(user) {
@@ -54,24 +71,24 @@ function saveUser(user) {
           body: _.omit(user, ['_id', '__v']),
         })
         .then(users => {
-          if (users.status === 200) {
-            dispatch({
-              type: SAVEUSER,
-              payload: users.data,
-            });
-          }
+          // if (users.status === 200) {
+          dispatch({
+            type: SAVEUSER,
+            payload: users.data,
+          });
+          // }
         })
         .catch(err => console.log(err));
     }
     return axios
       .post(`${dbPrefix}/contacts`, { body: user })
       .then(users => {
-        if (users.status === 200) {
-          dispatch({
-            type: SAVEUSER,
-            payload: users.data,
-          });
-        }
+        // if (users.status === 200) {
+        dispatch({
+          type: SAVEUSER,
+          payload: users.data,
+        });
+        // }
       })
       .catch(err => console.log(err));
   };
