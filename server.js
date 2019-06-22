@@ -8,9 +8,9 @@ const app = express();
 app.use(express.static(`${__dirname}/public`));
 
 app.get('*', (request, response) => {
-    response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
 app.listen(port);
 
-console.log('server started on port ' + config.port);
+console.log(`server started on port ${config.port}`);
