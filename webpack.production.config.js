@@ -24,10 +24,20 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     alias: {
       "styles": path.resolve(__dirname, 'src/styles/'),
-    }
+    },
+    // symlinks: false,
   },
   module: {
-    loaders
+    loaders,
+  },
+  stats: {
+    colors: true,
+    // modules: false,
+    version: false,
+    hash: false,
+    excludeAssets: [/fonts/, /images/],
+    children: false,
+    assets: false,
   },
   plugins: [
     new WebpackCleanupPlugin(),
@@ -37,6 +47,10 @@ module.exports = {
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
+      parallel: true,
+      output: {
+        comments: false,
+      },
       compress: {
         warnings: false,
         screw_ie8: true,
@@ -56,5 +70,5 @@ module.exports = {
         js: ['bundle.js'],
       }
     })
-  ]
+  ],
 };
