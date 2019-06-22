@@ -5,4 +5,4 @@ export const newFieldErrors = (state, errorData) => ({
   [errorData.key]: errorData.error,
 });
 
-export const hasErrors = newFieldErrors => _.some(_.values(newFieldErrors));
+export const hasErrors = errors => _.some(_.values(errors));

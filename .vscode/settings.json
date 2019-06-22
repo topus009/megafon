@@ -19,7 +19,7 @@
   "editor.rulers": [120],
   "editor.trimAutoWhitespace": false,
 
-  "files.autoSave": "onFocusChange",
+  // "files.autoSave": "onFocusChange",
   "files.insertFinalNewline": false,
   "files.trimFinalNewlines": false,
   "files.trimTrailingWhitespace": false,

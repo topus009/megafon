@@ -34,12 +34,12 @@ const contentProps = {
 };
 
 class UserFormContent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      canShow: false,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     canShow: false,
+  //   };
+  // }
 
   componentDidMount() {
     const { clearFields, saveUserToStore, isNew } = this.props;

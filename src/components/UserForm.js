@@ -1,99 +1,83 @@
 import _ from 'lodash';
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React from 'react';
+import { connect } from 'react-redux';
 import Form from '../common/Form';
 import config from '../../config.local';
-import {
-    saveUser,
-    clearFields,
-    saveUserToStore
-} from '../actions/AppActions';
+import { saveUser, clearFields, saveUserToStore } from '../actions/AppActions';
 import UserFormContent from './UserFormContent';
 
-class UserForm extends Component {
-    renderFormTitle = () => {
-        if(this.isNew()) {
-            return 'Новый пользователь';
-        }
-        if(this.isEdit()) {
-            return 'Редактирование пользователя';
-        }
-        return 'Профиль пользователя';
+const UserForm = ({
+  history,
+  clearFields,
+  match: { path, params },
+  users,
+  saveUserToStore,
+  user,
+  saveUser,
+  errors,
+}) => {
+  const isNew = () => path.search('adduser') >= 0;
+  const isEdit = () => path.search('edit') >= 0;
+  const isEditable = () => isNew() || isEdit();
+  const renderFormTitle = () => {
+    if (isNew()) {
+      return 'Новый пользователь';
     }
-    handleClose = () => {
-        const {history, clearFields} = this.props;
-        clearFields();
-        history.push({
-            pathname: `${config.basename}/contacts`,
-            query: {},
-            state: null
-        });
+    if (isEdit()) {
+      return 'Редактирование пользователя';
     }
-    isEditable = () => this.isNew() || this.isEdit()
-    isNew = () => {
-        const {match: {path}} = this.props;
-        return path.search('adduser') >= 0;
-    }
-    isEdit = () => {
-        const {match: {path}} = this.props;
-        return path.search('edit') >= 0;
-    }
-    saveUserToStore = () => {
-        const {
-            users,
-            match: {params},
-            saveUserToStore
-        } = this.props;
-        const user = _.find(users, {_id: _.get(params, 'userId')});
-        saveUserToStore(user);
-    }
-    handleSave = () => {
-        const {
-            user,
-            saveUser,
-            clearFields
-        } = this.props;
-        saveUser(user);
-        clearFields();
-        this.handleClose();
-    }
-    render() {
-        const {errors} = this.props;
-        return (
-            <Form
-                onClose={this.handleClose}
-                onSave={this.handleSave}
-                isEditable={this.isEditable()}
-                title={this.renderFormTitle()}
-                disabled={errors}
-            >
-                <div className='content'>
-                    <UserFormContent
-                        isEditable={this.isEditable()}
-                        saveUserToStore={this.saveUserToStore}
-                        isNew={this.isNew()}
-                    />
-                </div>
-            </Form>
-        );
-    }
-}
+    return 'Профиль пользователя';
+  };
+  const handleClose = () => {
+    clearFields();
+    history.push({
+      pathname: `${config.basename}/contacts`,
+      query: {},
+      state: null,
+    });
+  };
+  const handleSaveUserToStore = () => {
+    const user = _.find(users, { _id: _.get(params, 'userId') });
+    saveUserToStore(user);
+  };
+  const handleSave = () => {
+    saveUser(user);
+    clearFields();
+    handleClose();
+  };
+  return (
+    <Form
+      onClose={handleClose}
+      onSave={handleSave}
+      isEditable={isEditable()}
+      title={renderFormTitle()}
+      disabled={errors}
+    >
+      <div className="content">
+        <UserFormContent isEditable={isEditable()} saveUserToStore={handleSaveUserToStore} isNew={isNew()} />
+      </div>
+    </Form>
+  );
+};
 
-function mapStateToProps({app}) {
-    const {errors, users, user} = app;
-    return {
-        errors,
-        users,
-        user
-    };
+function mapStateToProps({ app }) {
+  const { errors, users, user } = app;
+  return {
+    errors,
+    users,
+    user,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        saveUser: user => dispatch(saveUser(user)),
-        clearFields: () => dispatch(clearFields()),
-        saveUserToStore: user => dispatch(saveUserToStore(user))
-    };
+  return {
+    saveUser: user => dispatch(saveUser(user)),
+    clearFields: () => dispatch(clearFields()),
+    saveUserToStore: user => dispatch(saveUserToStore(user)),
+  };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserForm);

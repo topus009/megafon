@@ -1,6 +1,6 @@
 const path = require('path');
 const express = require('express');
-const config = require('./src/config.local');
+const config = require('./config.local');
 
 const port = process.env.PORT || config.port;
 const app = express();

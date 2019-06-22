@@ -27,6 +27,10 @@ module.exports = {
         "ignoreTemplateLiterals": true,
         "ignoreRegExpLiterals": true
       }
-    ]
+    ],
+    "import/no-extraneous-dependencies": 0,
+    "no-shadow": 0,
+    "no-underscore-dangle": 0,
+    "no-console": 0,
   }
 }

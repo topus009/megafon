@@ -1,28 +1,20 @@
 module.exports = {
-    'setupTestFrameworkScriptFile': './setupTests.js',
-    bail: true,
-    collectCoverage: true,
-    collectCoverageFrom: [
-        'src/**/*.js'
-    ],
-    coverageThreshold: {
-        global: {
-            branches: 80,
-            functions: 80,
-            lines: 80,
-            statements: -10
-        }
+  setupTestFrameworkScriptFile: './setupTests.js',
+  bail: true,
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.js'],
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: -10,
     },
-    testPathIgnorePatterns: [
-        '/node_modules/',
-        '/public/',
-        '/ets/',
-        '/src/',
-        '/tests/testHelpers.js'
-    ],
-    globals: {
-        dev: true
-    },
-    cacheDirectory: 'tests-cache',
-    testMatch: ['**/tests/**/*.js?(x)',]
+  },
+  testPathIgnorePatterns: ['/node_modules/', '/public/', '/ets/', '/src/', '/tests/testHelpers.js'],
+  globals: {
+    dev: true,
+  },
+  cacheDirectory: 'tests-cache',
+  testMatch: ['**/tests/**/*.js?(x)'],
 };

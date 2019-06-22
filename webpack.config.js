@@ -49,14 +49,24 @@ module.exports = {
     host: HOST,
     stats: {
       colors: true,
-      modules: false,
+      // modules: false,
       version: false,
       hash: false,
-      excludeAssets: [/fonts/, /images/],
-      children: false,
-      assets: false,
+      // excludeAssets: [/fonts/, /images/],
+      // children: false,
+      // assets: false,
       performance: false,
-      // excludeModules: source => source && !source.indexOf('webpack-dev-server/client/index.js') >= 0,
+      excludeModules: source => source && !source.indexOf('webpack-dev-server/client/index.js') >= 0,
+      excludeAssets: source => {
+        const excludedAccets = ['icons-', 'src/assets/fonts/', 'iconstats', 'hot-update'];
+        let exclude = false;
+        excludedAccets.forEach(item => {
+          if (source.includes(item)) {
+            exclude = true;
+          }
+        });
+        return exclude;
+      },
     },
   },
   // optimization: {
