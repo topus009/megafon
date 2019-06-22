@@ -4,6 +4,7 @@ var loaders = require('./webpack.loaders');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 loaders.push({
   test: /\.(sass|scss)$/,
@@ -13,17 +14,22 @@ loaders.push({
 
 module.exports = {
   entry: [
-    './src/index.js'
+    './src/index.js',
   ],
+  // entry: {
+  //   app: './src/index.js',
+  // },
+  // mode: 'development',
   output: {
     publicPath: './',
     path: path.join(__dirname, 'public'),
     filename: '[chunkhash].js'
+    // filename: 'js/[name].[contenthash].js',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      "styles": path.resolve(__dirname, 'src/styles/'),
+      'styles': path.resolve(__dirname, 'src/styles/'),
     },
     // symlinks: false,
   },
@@ -32,13 +38,26 @@ module.exports = {
   },
   stats: {
     colors: true,
-    // modules: false,
+    modules: false,
     version: false,
-    hash: false,
+    // hash: false,
     excludeAssets: [/fonts/, /images/],
     children: false,
     assets: false,
+    performance: false,
+    // excludeModules: source => source && !source.indexOf('webpack-dev-server/client/index.js') >= 0,
   },
+  // optimization: {
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       vendor: {
+  //         test: /[\\/]node_modules[\\/]/,
+  //         name: 'vendors',
+  //         chunks: 'all'
+  //       }
+  //     }
+  //   }
+  // },
   plugins: [
     new WebpackCleanupPlugin(),
     new webpack.DefinePlugin({

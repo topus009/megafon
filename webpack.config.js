@@ -14,15 +14,19 @@ const PROXY = `http://${HOST}:${PORT}`;
 
 module.exports = {
     entry: [
-    // POLYFILL: Set up an ES6-ish environment
-        'babel-polyfill', // The entire babel-polyfill
-        './src/index.js' // your app's entry point
+        // 'babel-polyfill',
+        './src/index.js'
     ],
+    // entry: {
+    //     app: './src/index.js',
+    // },
+    // mode: 'development',
     devtool: 'cheap-module-eval-source-map',
     output: {
         publicPath: '/',
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js'
+            // filename: 'js/[name].[contenthash].js',
     },
     module: {
         rules: loadersConf
@@ -40,9 +44,7 @@ module.exports = {
     devServer: {
         contentBase: './public',
         hot: true,
-        // embed the webpack-dev-server runtime into the bundle
         inline: true,
-        // serve index.html in place of 404 responses to allow HTML5 history
         historyApiFallback: true,
         port: PORT,
         host: HOST,
@@ -51,11 +53,24 @@ module.exports = {
             modules: false,
             version: false,
             hash: false,
-            excludeAssets: [/fonts/],
+            excludeAssets: [/fonts/, /images/],
             children: false,
-            assets: false
+            assets: false,
+            performance: false,
+            // excludeModules: source => source && !source.indexOf('webpack-dev-server/client/index.js') >= 0,
         }
     },
+    // optimization: {
+    //   splitChunks: {
+    //     cacheGroups: {
+    //       vendor: {
+    //         test: /[\\/]node_modules[\\/]/,
+    //         name: 'vendors',
+    //         chunks: 'all'
+    //       }
+    //     }
+    //   }
+    // },
     plugins: [
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.NamedModulesPlugin(),

@@ -1,40 +1,26 @@
 const path = require('path');
 
-// Options passed to node-sass
 const sassIncludePaths = [
     path.resolve(__dirname, 'src/styles')
 ];
 
-// These files will be imported in every sass file
 const sassResourcesPaths = [
     path.resolve(__dirname, 'src/styles/abstracts/_variables.sass'),
     path.resolve(__dirname, 'src/styles/abstracts/_fonts.sass'),
     path.resolve(__dirname, 'src/styles/abstracts/_mixins.sass'),
 ];
 
-// noinspection WebpackConfigHighlighting
 module.exports = [
-    // =========
-    // = Babel =
-    // =========
-    // Load jsx extensions with babel so we can use
-    // 'import' instead of 'require' and es6 syntax
     {
         test: /\.jsx?$/,
         include: path.resolve(__dirname, 'src'),
         loader: 'babel-loader?compact=false',
         exclude: /node_modules/,
         options: {
-            // This is a feature of `babel-loader` for Webpack (not Babel itself).
-            // It enables caching results in ./node_modules/.cache/babel-loader/
-            // directory for faster rebuilds.
             cacheDirectory: true,
             plugins: ['react-hot-loader/babel']
         }
     },
-    // ==========
-    // = Images =
-    // ==========
     {
         test: /\.gif/,
         exclude: path.resolve(__dirname, 'node_modules'),
@@ -89,9 +75,6 @@ module.exports = [
             }
         ]
     },
-    // ==========
-    // = Fonts =
-    // ==========
     {
         test: /\.(ttf|eot|woff|woff2|otf)$/,
         exclude: path.resolve(__dirname, 'node_modules'),
@@ -105,11 +88,6 @@ module.exports = [
             }
         ]
     },
-    // ==========
-    // = Styles =
-    // ==========
-    // Global CSS (from node_modules)
-    // ==============================
     {
         test: /\.css/,
         include: path.resolve(__dirname, 'node_modules'),
@@ -122,10 +100,6 @@ module.exports = [
             }
         ]
     },
-    // Global SASS (from app)
-    // ===============================
-    // Do not modularize these imports
-    // (leave them as global css styles)
     {
         test: /\.(sass|scss)$/,
         include: path.resolve(__dirname, 'src/styles/base'),
@@ -153,7 +127,8 @@ module.exports = [
                     sourceMap: true,
                     outputStyle: 'expanded',
                     indentedSyntax: 'sass',
-                    includePaths: sassIncludePaths
+                    includePaths: sassIncludePaths,
+                    // options: { sourceMap: true, data: '$env: prod;' },
                 }
             },
             {
@@ -164,8 +139,6 @@ module.exports = [
             }
         ]
     },
-    // Local SASS css-modules
-    // ======================
     {
         test: /\.(sass|scss)$/,
         exclude: path.resolve(__dirname, 'src/styles/base'),
