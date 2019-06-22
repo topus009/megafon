@@ -32,5 +32,6 @@ module.exports = {
     "no-shadow": 0,
     "no-underscore-dangle": 0,
     "no-console": 0,
+    "global-require": 0,
   }
 }
