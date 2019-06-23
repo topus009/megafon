@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import omit from 'lodash/omit';
 import axios from 'axios';
 import { dbPrefix } from '../../config.local';
 import { isError } from '../helpers/userErrorValidation';
@@ -68,7 +68,7 @@ function saveUser(user) {
     if (id) {
       return axios
         .put(`${dbPrefix}/contacts/${id}`, {
-          body: _.omit(user, ['_id', '__v']),
+          body: omit(user, ['_id', '__v']),
         })
         .then(users => {
           // if (users.status === 200) {

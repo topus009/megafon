@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import config from '../../config.local';
@@ -7,7 +6,7 @@ import Button from '../common/Button';
 import { deleteUser } from '../actions/AppActions';
 
 const UserListItem = ({ userId, users, deleteUser, history }) => {
-  const user = _.find(users, { _id: userId });
+  const user = users.find(user => user._id === userId);
 
   const handleClick = () => {
     deleteUser(userId);
@@ -15,7 +14,6 @@ const UserListItem = ({ userId, users, deleteUser, history }) => {
   const handleEdit = () => {
     history.push(`${config.basename}/user/${userId}/edit`);
   };
-  // getDeriverStateFromProps
   return (
     <div className="userlist_block">
       <NavLink to={`${config.basename}/user/${userId}`}>

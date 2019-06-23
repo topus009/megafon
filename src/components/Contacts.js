@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import _ from 'lodash';
 import {connect} from 'react-redux';
 import Form from '../common/Form';
 import config from '../../config.local';
@@ -32,7 +31,7 @@ class Contacts extends Component {
                 <div className='content'>
                     {
                         !loading &&
-                            _.map(users, (item, key) =>
+                            users.map((item, key) =>
                                 <UserListItem
                                     key={key}
                                     userId={item._id}

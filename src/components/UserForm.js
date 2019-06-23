@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import Form from '../common/Form';
@@ -37,7 +36,7 @@ const UserForm = ({
     });
   };
   const handleSaveUserToStore = () => {
-    const user = _.find(users, { _id: _.get(params, 'userId') });
+    const user = users.find(user => user._id === params.userId);
     saveUserToStore(user);
   };
   const handleSave = () => {

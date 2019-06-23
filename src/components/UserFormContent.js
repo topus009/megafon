@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import map from 'lodash/map';
 import { connect } from 'react-redux';
 import TextInput from '../common/TextInput';
 import InfoField from '../common/InfoField';
@@ -55,7 +55,7 @@ class UserFormContent extends Component {
     return (
       <div className="user_form">
         {isEditable
-          ? _.map(user, (item, key) => {
+          ? map(user, (item, key) => {
               if (contentProps[key]) {
                 return (
                   <InfoField key={`InfoField_${key}`} label={contentProps[key].label} hideWrapper>
@@ -71,7 +71,7 @@ class UserFormContent extends Component {
                 );
               }
             })
-          : _.map(user, (item, key) => {
+          : map(user, (item, key) => {
               if (contentProps[key] && item.length) {
                 return <InfoField key={`InfoField_${key}`} label={contentProps[key].label} value={item} />;
               }
