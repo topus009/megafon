@@ -3,8 +3,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const loaders = require('./webpack.loaders');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 loaders.push({
   test: /\.(sass|scss)$/,
@@ -20,12 +20,12 @@ module.exports = {
   // entry: {
   //   app: './src/index.js',
   // },
-  // mode: 'development',
+  // mode: 'production',
   output: {
     publicPath: './',
     path: path.join(__dirname, 'public'),
     filename: '[chunkhash].js',
-    // filename: 'js/[name].[contenthash].js',
+    // filename: '[name].[contenthash].js',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -54,10 +54,10 @@ module.exports = {
   //       vendor: {
   //         test: /[\\/]node_modules[\\/]/,
   //         name: 'vendors',
-  //         chunks: 'all'
-  //       }
-  //     }
-  //   }
+  //         chunks: 'all',
+  //       },
+  //     },
+  //   },
   // },
   plugins: [
     new WebpackCleanupPlugin(),
@@ -88,7 +88,12 @@ module.exports = {
       files: {
         css: ['style.css'],
         js: ['bundle.js'],
+        // js: ['[name].[contenthash].js'],
       },
     }),
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode: 'static',
+    //   generateStatsFile: true,
+    // }),
   ],
 };
