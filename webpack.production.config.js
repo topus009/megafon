@@ -3,7 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const loaders = require('./webpack.loaders');
 
 loaders.push({
@@ -16,23 +16,19 @@ loaders.push({
 });
 
 module.exports = {
-  entry: ['./src/index.js'],
-  // entry: {
-  //   app: './src/index.js',
-  // },
-  // mode: 'production',
+  entry: {
+    app: './src/index.js',
+  },
   output: {
     publicPath: './',
     path: path.join(__dirname, 'public'),
-    filename: '[chunkhash].js',
-    // filename: '[name].[contenthash].js',
+    filename: '[name].[chunkhash].js',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
       styles: path.resolve(__dirname, 'src/styles/'),
     },
-    // symlinks: false,
   },
   module: {
     loaders,
@@ -44,22 +40,15 @@ module.exports = {
     // hash: false,
     excludeAssets: [/fonts/, /images/],
     children: false,
-    assets: false,
+    // assets: false,
     performance: false,
     // excludeModules: source => source && !source.indexOf('webpack-dev-server/client/index.js') >= 0,
   },
-  // optimization: {
-  //   splitChunks: {
-  //     cacheGroups: {
-  //       vendor: {
-  //         test: /[\\/]node_modules[\\/]/,
-  //         name: 'vendors',
-  //         chunks: 'all',
-  //       },
-  //     },
-  //   },
-  // },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: m => /node_modules/.test(m.context),
+    }),
     new WebpackCleanupPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
@@ -87,13 +76,12 @@ module.exports = {
       template: './src/template.html',
       files: {
         css: ['style.css'],
-        js: ['bundle.js'],
-        // js: ['[name].[contenthash].js'],
+        js: ['[name].[chunkhash].js'],
       },
     }),
-    // new BundleAnalyzerPlugin({
-    //   analyzerMode: 'static',
-    //   generateStatsFile: true,
-    // }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      generateStatsFile: true,
+    }),
   ],
 };
