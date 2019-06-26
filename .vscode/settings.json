@@ -19,7 +19,7 @@
   "editor.rulers": [120],
   "editor.trimAutoWhitespace": false,
 
-  // "files.autoSave": "onFocusChange",
+  "files.autoSave": "off",
   "files.insertFinalNewline": false,
   "files.trimFinalNewlines": false,
   "files.trimTrailingWhitespace": false,
@@ -30,8 +30,8 @@
   "stylelint.enable": false,
   "html.format.endWithNewline": false,
 
-  // "javascript.format.enable": false,
-  // "javascript.validate.enable": false,
+  "javascript.format.enable": false,
+  "javascript.validate.enable": false,
 
   // "prettier.disableLanguages": ["javascript"],
   "prettier.eslintIntegration": true,
