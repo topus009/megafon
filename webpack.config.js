@@ -12,10 +12,7 @@ const PORT = process.env.PORT || config.port;
 // const PROXY = `http://${HOST}:${PORT}`;
 
 module.exports = {
-  entry: [
-    // 'babel-polyfill',
-    './src/index.js',
-  ],
+  entry: ['./src/index.js'],
   // entry: {
   //     app: './src/index.js',
   // },
@@ -38,6 +35,7 @@ module.exports = {
     ],
     alias: {
       styles: path.resolve(__dirname, 'src/styles/'),
+      'react-dom': '@hot-loader/react-dom',
     },
   },
   devServer: {

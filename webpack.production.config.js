@@ -28,6 +28,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     alias: {
       styles: path.resolve(__dirname, 'src/styles/'),
+      'react-dom': '@hot-loader/react-dom',
     },
   },
   module: {
