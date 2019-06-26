@@ -1,6 +1,5 @@
 import reject from 'lodash/reject';
 import clone from 'lodash/clone';
-import each from 'lodash/each';
 import merge from 'lodash/merge';
 import constants from '../constants/App';
 import { newFieldErrors, hasErrors } from '../helpers/reducersHelper';
@@ -100,7 +99,7 @@ export default function app(state = initialState, action) {
       };
     case CLEARFIELDS:
       let setRequiredFieldsError = clone(defaultFieldErrors);
-      each(requiredFields, key => {
+      requiredFields.forEach(key => {
         setRequiredFieldsError = merge(setRequiredFieldsError, newFieldErrors(state, { key, error: true }));
       });
       const setClearFieldsState = {

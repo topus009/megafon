@@ -1,4 +1,3 @@
-import omit from 'lodash/omit';
 import axios from 'axios';
 import { dbPrefix } from '../../config.local';
 import { isError } from '../helpers/userErrorValidation';
@@ -66,9 +65,10 @@ function saveUser(user) {
     dispatch({ type: PENDING });
     const { _id: id } = user;
     if (id) {
+      const { _id, __v, ...userFields } = user;
       return axios
         .put(`${dbPrefix}/contacts/${id}`, {
-          body: omit(user, ['_id', '__v']),
+          body: userFields,
         })
         .then(users => {
           // if (users.status === 200) {

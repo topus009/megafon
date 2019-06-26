@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import map from 'lodash/map';
 import { connect } from 'react-redux';
 import TextInput from '../common/TextInput';
 import InfoField from '../common/InfoField';
@@ -33,7 +32,7 @@ const contentProps = {
   },
 };
 
-const UserFormContent = ({ clearFields, saveUserToStore, isNew, isEditable, user, fieldErrors, editUser }) => {
+const UserFormContent = ({ clearFields, saveUserToStore, isNew, isEditable, user = [], fieldErrors, editUser }) => {
   useEffect(() => {
     if (!isNew) {
       saveUserToStore();
@@ -44,14 +43,14 @@ const UserFormContent = ({ clearFields, saveUserToStore, isNew, isEditable, user
   return (
     <div className="user_form">
       {isEditable
-        ? map(user, (item, key) => {
+        ? Object.keys(user).map(key => {
             if (contentProps[key]) {
               return (
                 <InfoField key={`InfoField_${key}`} label={contentProps[key].label} hideWrapper>
                   <TextInput
                     key={`TextInput_${key}`}
                     fieldName={key}
-                    value={item}
+                    value={user[key]}
                     placeholder={contentProps[key].placeholder || ''}
                     onChange={editUser}
                     hasError={fieldErrors[key]}
@@ -61,9 +60,9 @@ const UserFormContent = ({ clearFields, saveUserToStore, isNew, isEditable, user
             }
             return null;
           })
-        : map(user, (item, key) => {
-            if (contentProps[key] && item.length) {
-              return <InfoField key={`InfoField_${key}`} label={contentProps[key].label} value={item} />;
+        : Object.keys(user).map(key => {
+            if (contentProps[key] && user[key].length) {
+              return <InfoField key={`InfoField_${key}`} label={contentProps[key].label} value={user[key]} />;
             }
             return null;
           })}
