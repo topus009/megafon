@@ -59,22 +59,22 @@ const UserForm = ({
   );
 };
 
-function mapStateToProps({ app }) {
+const mapStateToProps = ({ app }) => {
   const { errors, users, user } = app;
   return {
     errors,
     users,
     user,
   };
-}
+};
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return {
     saveUser: user => dispatch(saveUser(user)),
     clearFields: () => dispatch(clearFields()),
     saveUserToStore: user => dispatch(saveUserToStore(user)),
   };
-}
+};
 
 export default connect(
   mapStateToProps,
