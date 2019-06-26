@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const loaders = require('./webpack.loaders');
 
 loaders.push({
@@ -49,6 +50,11 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: m => /node_modules/.test(m.context),
+    }),
+    new LodashModuleReplacementPlugin({
+      cloning: true,
+      collections: true,
+      metadata: true,
     }),
     new WebpackCleanupPlugin(),
     new webpack.DefinePlugin({
