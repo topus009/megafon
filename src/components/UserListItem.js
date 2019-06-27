@@ -26,16 +26,16 @@ const UserListItem = ({ userId, users, deleteUser, history }) => {
   );
 };
 
-function mapStateToProps({ app }) {
+const mapStateToProps = ({ app }) => {
   const { users } = app;
   return { users };
-}
+};
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return {
     deleteUser: id => dispatch(deleteUser(id)),
   };
-}
+};
 
 export default connect(
   mapStateToProps,
