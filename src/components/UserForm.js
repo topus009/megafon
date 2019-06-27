@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Form from '../common/Form';
-import config from '../../config.local';
 import { saveUser, clearFields, saveUserToStore } from '../actions/AppActions';
 import UserFormContent from './UserFormContent';
 
@@ -30,7 +29,7 @@ const UserForm = ({
   const handleClose = () => {
     clearFields();
     history.push({
-      pathname: `${config.basename}/contacts`,
+      pathname: '/contacts',
       query: {},
       state: null,
     });

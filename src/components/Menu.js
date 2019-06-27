@@ -1,10 +1,9 @@
 import React from 'react';
 import NavLink from '../common/NavLink';
-import config from '../../config.local';
 
 const navLinks = {
-  contacts: `${config.basename}/contacts`,
-  adduser: `${config.basename}/adduser`,
+  contacts: '/contacts',
+  adduser: '/adduser',
 };
 
 const Menu = () => (

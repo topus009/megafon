@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import config from '../../config.local';
 import Button from '../common/Button';
 import { deleteUser } from '../actions/AppActions';
 
@@ -12,11 +11,11 @@ const UserListItem = ({ userId, users, deleteUser, history }) => {
     deleteUser(userId);
   };
   const handleEdit = () => {
-    history.push(`${config.basename}/user/${userId}/edit`);
+    history.push(`/user/${userId}/edit`);
   };
   return (
     <div className="userlist_block">
-      <NavLink to={`${config.basename}/user/${userId}`}>
+      <NavLink to={`/user/${userId}`}>
         <div className="userlist_item">{user.fio}</div>
       </NavLink>
       <div className="user_control_buttons">
