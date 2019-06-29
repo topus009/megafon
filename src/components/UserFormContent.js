@@ -39,7 +39,7 @@ const UserFormContent = ({ clearFields, saveUserToStore, isNew, isEditable, user
     } else {
       clearFields();
     }
-  }, []);
+  }, [isNew]);
   return (
     <div className="user_form">
       {isEditable

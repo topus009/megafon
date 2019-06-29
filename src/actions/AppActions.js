@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axio from 'axios';
 import { dbPrefix } from '../../config.local';
 import { isError } from '../helpers/userErrorValidation';
 import constants from '../constants/App';
@@ -16,11 +16,15 @@ const {
   CLEARFIELDS,
 } = constants;
 
+const axios = axio.create({
+  baseURL: dbPrefix,
+});
+
 function getUsers() {
   return dispatch => {
     dispatch({ type: PENDING });
     return axios
-      .get(`${dbPrefix}/contacts`)
+      .get('/contacts')
       .then(users => {
         dispatch({
           type: GETUSERS,
@@ -37,7 +41,7 @@ function deleteUser(id) {
   return dispatch => {
     dispatch({ type: PENDING });
     return axios
-      .delete(`${dbPrefix}/contacts/${id}`)
+      .delete(`/contacts/${id}`)
       .then(res => {
         dispatch({
           type: DELETEUSER,
@@ -63,7 +67,7 @@ function saveUser(user) {
     if (id) {
       const { _id, __v, ...userFields } = user;
       return axios
-        .put(`${dbPrefix}/contacts/${id}`, {
+        .put(`/contacts/${id}`, {
           body: userFields,
         })
         .then(users => {
@@ -75,7 +79,7 @@ function saveUser(user) {
         .catch(err => console.log(err));
     }
     return axios
-      .post(`${dbPrefix}/contacts`, { body: user })
+      .post(`/contacts`, { body: user })
       .then(users => {
         dispatch({
           type: SAVEUSER,
