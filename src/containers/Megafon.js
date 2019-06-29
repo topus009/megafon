@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
@@ -15,10 +15,8 @@ const Megafon = () => {
   return (
     <Provider store={Store}>
       <Router history={history}>
-        <Fragment>
-          <Menu />
-          <AppRouter />
-        </Fragment>
+        <Menu />
+        <AppRouter />
       </Router>
     </Provider>
   );

@@ -22,12 +22,10 @@ function getUsers() {
     return axios
       .get(`${dbPrefix}/contacts`)
       .then(users => {
-        // if (users.status === 200) {
         dispatch({
           type: GETUSERS,
           payload: users.data,
         });
-        // }
       })
       .catch(err => {
         console.error({ err });
@@ -41,12 +39,10 @@ function deleteUser(id) {
     return axios
       .delete(`${dbPrefix}/contacts/${id}`)
       .then(res => {
-        // if (res.status === 200) {
         dispatch({
           type: DELETEUSER,
           payload: res.data._id,
         });
-        // }
       })
       .catch(err => {
         console.error({ err });
@@ -71,24 +67,20 @@ function saveUser(user) {
           body: userFields,
         })
         .then(users => {
-          // if (users.status === 200) {
           dispatch({
             type: SAVEUSER,
             payload: users.data,
           });
-          // }
         })
         .catch(err => console.log(err));
     }
     return axios
       .post(`${dbPrefix}/contacts`, { body: user })
       .then(users => {
-        // if (users.status === 200) {
         dispatch({
           type: SAVEUSER,
           payload: users.data,
         });
-        // }
       })
       .catch(err => console.log(err));
   };
