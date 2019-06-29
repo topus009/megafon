@@ -30,6 +30,7 @@ module.exports = {
     'no-underscore-dangle': 0,
     'no-console': 0,
     'global-require': 0,
+    'import/prefer-default-export': 0,
 
     //FIXME: ЧТОБЫ НЕ РУГАЛОСЬ НА OPTIONAL-CHAINING,
     camelcase: 0,

@@ -1,4 +1,3 @@
-import { requiredFields } from '../reducers/app';
 import { hasOnlyDigits, yearIsLessThanCurrent, isEmpty } from './common';
 
 const userErrorValidators = {
@@ -18,4 +17,4 @@ const isError = ({ key, value }) => {
   };
 };
 
-export { isError, requiredFields };
+export { isError };
