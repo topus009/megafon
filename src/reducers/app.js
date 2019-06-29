@@ -112,6 +112,6 @@ export default function app(state = initialState, action) {
         ...setClearFieldsState,
       };
     default:
-      return { ...state };
+      return state;
   }
 }
