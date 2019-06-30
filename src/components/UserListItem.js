@@ -6,13 +6,8 @@ import { deleteUser } from '../actions/AppActions';
 
 const UserListItem = ({ userId, users, deleteUser, history }) => {
   const user = users.find(user => user._id === userId);
-
-  const handleClick = () => {
-    deleteUser(userId);
-  };
-  const handleEdit = () => {
-    history.push(`/user/${userId}/edit`);
-  };
+  const handleClick = () => deleteUser(userId);
+  const handleEdit = () => history.push(`/user/${userId}/edit`);
   return (
     <div className="userlist_block">
       <NavLink to={`/user/${userId}`}>

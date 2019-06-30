@@ -1,9 +1,7 @@
 import React from 'react';
 
 const TextInput = ({ fieldName, onChange, label, value, placeholder, hasError }) => {
-  const handleChange = e => {
-    onChange({ key: fieldName, value: e.target.value });
-  };
+  const handleChange = e => onChange({ key: fieldName, value: e.target.value });
   return (
     <div className="text_input">
       <div className="label">{label}</div>

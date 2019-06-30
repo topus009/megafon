@@ -34,11 +34,7 @@ const contentProps = {
 
 const UserFormContent = ({ clearFields, saveUserToStore, isNew, isEditable, user = [], fieldErrors, editUser }) => {
   useEffect(() => {
-    if (!isNew) {
-      saveUserToStore();
-    } else {
-      clearFields();
-    }
+    !isNew ? saveUserToStore() : clearFields();
   }, [isNew]);
   return (
     <div className="user_form">

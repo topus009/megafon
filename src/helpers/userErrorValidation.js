@@ -2,7 +2,7 @@ import { hasOnlyDigits, yearIsLessThanCurrent, isEmpty } from './common';
 
 const userErrorValidators = {
   fio: value => isEmpty(value),
-  mainPhone: value => !hasOnlyDigits(value),
+  mainPhone: value => isEmpty(value) || !hasOnlyDigits(value),
   workPhone: value => !hasOnlyDigits(value),
   dateOfBirth: value => !yearIsLessThanCurrent(value),
 };
