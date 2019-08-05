@@ -1,4 +1,5 @@
 const path = require('path');
+// const fs = require('fs');
 
 const sassIncludePaths = [path.resolve(__dirname, 'src/styles')];
 
@@ -15,6 +16,9 @@ module.exports = [
     loader: 'babel-loader?compact=false',
     exclude: /node_modules/,
     options: {
+      // babelrcRoots: ['.', path.resolve(__dirname, '.config')],
+      configFile: path.resolve(__dirname, '.config/babel.config.js'),
+      // babelrc: fs.readFileSync(path.resolve(__dirname, '.config/babel.config.js')),
       cacheDirectory: true,
       plugins: ['react-hot-loader/babel'],
     },
@@ -117,6 +121,9 @@ module.exports = [
         loader: 'postcss-loader',
         options: {
           sourceMap: 'inline',
+          config: {
+            path: '.config/',
+          },
         },
       },
       {

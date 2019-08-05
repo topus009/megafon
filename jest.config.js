@@ -1,5 +1,5 @@
 module.exports = {
-  setupTestFrameworkScriptFile: './setupTests.js',
+  setupTestFrameworkScriptFile: './tests/setupTests.js',
   bail: true,
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.js'],
@@ -11,7 +11,14 @@ module.exports = {
       statements: -10,
     },
   },
-  testPathIgnorePatterns: ['/node_modules/', '/public/', '/ets/', '/src/', '/tests/testHelpers.js'],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/public/',
+    '/ets/',
+    '/src/',
+    '/tests/testHelpers.js',
+    '/tests/setupTests.js',
+  ],
   globals: {
     dev: true,
   },
