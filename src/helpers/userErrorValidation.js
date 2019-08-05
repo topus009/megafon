@@ -7,14 +7,9 @@ const userErrorValidators = {
   dateOfBirth: value => !yearIsLessThanCurrent(value),
 };
 
-const isError = ({ key, value }) => {
-  if (!userErrorValidators[key]) {
-    return { key, error: false };
-  }
-  return {
-    key,
-    error: userErrorValidators[key](value),
-  };
-};
+const isError = ({ key, value }) => ({
+  key,
+  error: !userErrorValidators[key] ? false : userErrorValidators[key](value),
+});
 
 export { isError };

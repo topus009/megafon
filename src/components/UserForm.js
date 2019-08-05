@@ -28,11 +28,7 @@ const UserForm = ({
   };
   const handleClose = () => {
     clearFields();
-    history.push({
-      pathname: '/contacts',
-      query: {},
-      state: null,
-    });
+    history.push('/contacts');
   };
   const handleSaveUserToStore = () => {
     const user = users.find(user => user._id === params.userId);
@@ -51,9 +47,7 @@ const UserForm = ({
       title={renderFormTitle()}
       disabled={errors}
     >
-      <div className="content">
-        <UserFormContent isEditable={isEditable()} saveUserToStore={handleSaveUserToStore} isNew={isNew()} />
-      </div>
+      <UserFormContent isEditable={isEditable()} saveUserToStore={handleSaveUserToStore} isNew={isNew()} />
     </Form>
   );
 };

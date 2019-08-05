@@ -36,32 +36,26 @@ const UserFormContent = ({ clearFields, saveUserToStore, isNew, isEditable, user
   useEffect(() => {
     !isNew ? saveUserToStore() : clearFields();
   }, [isNew]);
+  const renderEditableField = key =>
+    contentProps[key] && (
+      <InfoField key={`InfoField_${key}`} label={contentProps[key].label} hideWrapper>
+        <TextInput
+          key={`TextInput_${key}`}
+          fieldName={key}
+          value={user[key]}
+          placeholder={contentProps[key].placeholder || ''}
+          onChange={editUser}
+          hasError={fieldErrors[key]}
+        />
+      </InfoField>
+    );
+  const renderField = key =>
+    contentProps[key] && user[key].length ? (
+      <InfoField key={`InfoField_${key}`} label={contentProps[key].label} value={user[key]} />
+    ) : null;
   return (
     <div className="user_form">
-      {isEditable
-        ? Object.keys(user).map(key => {
-            if (contentProps[key]) {
-              return (
-                <InfoField key={`InfoField_${key}`} label={contentProps[key].label} hideWrapper>
-                  <TextInput
-                    key={`TextInput_${key}`}
-                    fieldName={key}
-                    value={user[key]}
-                    placeholder={contentProps[key].placeholder || ''}
-                    onChange={editUser}
-                    hasError={fieldErrors[key]}
-                  />
-                </InfoField>
-              );
-            }
-            return null;
-          })
-        : Object.keys(user).map(key => {
-            if (contentProps[key] && user[key].length) {
-              return <InfoField key={`InfoField_${key}`} label={contentProps[key].label} value={user[key]} />;
-            }
-            return null;
-          })}
+      {Object.keys(user).map(key => (isEditable ? renderEditableField(key) : renderField(key)))}
     </div>
   );
 };

@@ -5,21 +5,15 @@ import { getUsers } from '../actions/AppActions';
 import UserListItem from './UserListItem';
 
 const Contacts = ({ getUsers, users, loading, history }) => {
-  const handleClose = () => {
-    history.push({
-      pathname: '/',
-      query: {},
-      state: null,
-    });
-  };
+  const handleClose = () => history.push('/');
   useEffect(() => {
     getUsers();
   }, []);
+  const renderUserListItems = () =>
+    !loading && users.map(item => <UserListItem key={item._id} userId={item._id} history={history} />);
   return (
     <Form onClose={handleClose} title="Контакты">
-      <div className="content">
-        {!loading && users.map(item => <UserListItem key={item._id} userId={item._id} history={history} />)}
-      </div>
+      <div className="content">{renderUserListItems()}</div>
     </Form>
   );
 };

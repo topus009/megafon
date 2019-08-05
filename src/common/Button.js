@@ -1,11 +1,7 @@
 import React from 'react';
 
 const Button = ({ disabled, onClick, classNames, icon, fontIcon, title }) => {
-  const handleClick = () => {
-    if (!disabled) {
-      onClick();
-    }
-  };
+  const handleClick = () => !disabled && onClick();
   const renderBtnContent = () => {
     if (icon) {
       return <img className="button_content" src={`../assets/images/${icon}`} alt={title} />;

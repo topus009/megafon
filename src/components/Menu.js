@@ -1,23 +1,32 @@
 import React from 'react';
 import NavLink from '../common/NavLink';
 
-const navLinks = {
-  contacts: '/contacts',
-  adduser: '/adduser',
-};
+const navItems = [
+  {
+    path: '/contacts',
+    btnClassName: 'book',
+    title: 'Контакты',
+  },
+  {
+    path: '/adduser',
+    btnClassName: 'adduser',
+    title: 'Добавить в контакты',
+  },
+];
 
-const Menu = () => (
-  <div className="menu">
-    <div className="logo">Мегафон</div>
-    <div className="buttons">
-      <NavLink to={navLinks.contacts}>
-        <div className="book" title="Контакты" />
+const Menu = () => {
+  const renderNavLinks = () =>
+    navItems.map(({ path, btnClassName, title }, index) => (
+      <NavLink key={index} to={path}>
+        <div className={btnClassName} title={title} />
       </NavLink>
-      <NavLink to={navLinks.adduser}>
-        <div className="adduser" title="Добавить в контакты" />
-      </NavLink>
+    ));
+  return (
+    <div className="menu">
+      <div className="logo">Мегафон</div>
+      <div className="buttons">{renderNavLinks()}</div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Menu;
