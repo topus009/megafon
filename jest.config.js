@@ -18,10 +18,11 @@ module.exports = {
     '/src/',
     '/tests/testHelpers.js',
     '/tests/setupTests.js',
+    '/tests/tests-cache/',
   ],
   globals: {
     dev: true,
   },
-  cacheDirectory: 'tests-cache',
+  cacheDirectory: 'tests/tests-cache',
   testMatch: ['**/tests/**/*.js?(x)'],
 };
