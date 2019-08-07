@@ -1,13 +1,11 @@
-$path: '../../assets/fonts/';
-
 =font-face($name,$src)
   @font-face
     font-family: $name
     font-style: normal
-    src: url($path + $src + '.eot') format('eot'),
-    url($path + $src + '.woff') format('woff'),
-    url($path + $src + '.woff2') format('woff2'),
-    url($path + $src + '.ttf') format('truetype'),
-    url($path + $src + '.otf') format('opentype')
+    src: url('#{$font-path}#{$src}.eot') format('eot'),
+    url('#{$font-path}#{$src}.woff') format('woff'),
+    url('#{$font-path}#{$src}.woff2') format('woff2'),
+    url('#{$font-path}#{$src}.ttf') format('truetype'),
+    url('#{$font-path}#{$src}.otf') format('opentype')
 
 +font-face('PFDinDP-Reg','PFDinDisplayPro-Reg')

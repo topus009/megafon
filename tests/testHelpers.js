@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { dbPrefix } from '../config.local';
+import { dbPrefix } from '../src/config/constants';
 
 export const checkApiRunning = async () => {
   try {

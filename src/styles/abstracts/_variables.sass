@@ -1,0 +1,10 @@
+$static-path: null
+$font-path: null
+$images_path: '#{$static-path}/images/';
+
+@if $env == dev
+  $static-path: ''
+  $font-path: '/fonts/'
+@else
+  $static-path: '/public'
+  $font-path: '/public/fonts/'

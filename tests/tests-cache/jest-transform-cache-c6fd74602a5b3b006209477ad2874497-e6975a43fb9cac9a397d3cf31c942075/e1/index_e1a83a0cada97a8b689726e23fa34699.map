@@ -1,1 +1,0 @@
-{"version":3,"sources":["index.js"],"names":["combineReducers","app"],"mappings":"AAAA,SAASA,eAAT,QAAgC,OAAhC;AACA,OAAOC,GAAP,MAAgB,OAAhB;;AAEA,eAAeD,gBAAgB;AAC7BC;AAD6B,CAAhB,CAAf","file":"index.js","sourcesContent":["import { combineReducers } from 'redux';\nimport app from './app';\n\nexport default combineReducers({\n  app,\n});\n"]}

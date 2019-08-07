@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import MockAdapter from 'axios-mock-adapter';
 import constants from '../../src/constants/App';
 import * as actions from '../../src/actions/AppActions';
-import { dbPrefix } from '../../config.local';
+import { dbPrefix } from '../../src/config/constants';
 import reducer, { initialState } from '../../src/reducers/app';
 import { checkApiRunning, flushAllPromises } from '../testHelpers';
 

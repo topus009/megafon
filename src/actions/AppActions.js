@@ -1,5 +1,5 @@
 import axio from 'axios';
-import { dbPrefix } from '../../config.local';
+import { dbPrefix } from '../config/constants';
 import { isError } from '../helpers/userErrorValidation';
 import constants from '../constants/App';
 

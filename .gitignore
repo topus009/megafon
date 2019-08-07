@@ -34,4 +34,4 @@ Dockerfile
 docker-compose.yml
 public
 coverage/*
-tests-cache/*
+tests/tests-cache/*
