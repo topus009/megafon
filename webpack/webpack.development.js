@@ -3,6 +3,7 @@ const webpack = require('webpack');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 const common = require('./webpack.common');
 const config = require('../config.local');
@@ -38,21 +39,6 @@ module.exports = () => {
       historyApiFallback: true,
       // headers: { 'Access-Control-Allow-Origin': '*' },
       // overlay: true,
-      // stats: {
-      //   assets: true,
-      //   children: false,
-      //   chunks: false,
-      //   hash: false,
-      //   modules: false,
-      //   publicPath: false,
-      //   timings: true,
-      //   version: false,
-      //   warnings: true,
-      //   optimizationBailout: true,
-      //   colors: {
-      //     green: '\u001b[32m',
-      //   },
-      // },
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -66,6 +52,11 @@ module.exports = () => {
         filename: 'css/styles.css',
       }),
       new webpack.HotModuleReplacementPlugin(),
+      // new BrowserSyncPlugin({
+      //   host: HOST,
+      //   port: PORT,
+      //   proxy: PROXY,
+      // }),
     ],
   };
 };

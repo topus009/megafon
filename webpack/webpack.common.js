@@ -1,32 +1,34 @@
-const path = require('path');
+const { resolve } = require('path');
 
 const loaders = require('./webpack.loaders');
 
-const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+console.warn(process.env.NODE_ENV);
 
 module.exports = {
   entry: {
-    app: ['@babel/polyfill', './src/index.js'],
+    app: ['./src/index.js'],
   },
   module: {
     rules: loaders,
   },
-  // resolve: {
-  //   extensions: ['.js', '.jsx'],
-  //   // modules: [
-  //   //   // path.resolve(__dirname, './node_modules'),
-  //   //   // 'node_modules',
-  //   //   path.join(__dirname, 'src'),
-  //   //   path.join(__dirname, 'node_modules'),
-  //   // ],
-  //   alias: {
-  //     'react-dom': '@hot-loader/react-dom',
-  //   },
-  // },
   resolve: {
     extensions: ['.js', '.jsx'],
+    modules: [resolve(__dirname, 'src'), 'node_modules'],
     alias: {
       'react-dom': '@hot-loader/react-dom',
     },
+  },
+  stats: {
+    builtAt: false,
+    version: false,
+    warnings: false,
+    children: false,
+    // excludeModules: [
+    //   /sources/,
+    //   /node_modules/,
+    //   /(webpack)/,
+    // ]
+    // assets: false,
+    modules: false,
   },
 };

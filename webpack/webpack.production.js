@@ -1,12 +1,13 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 
+const WebpackBar = require('webpackbar');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const { CleanWebpackPlugin  } = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const common = require('./webpack.common');
 
@@ -26,38 +27,42 @@ module.exports = () => {
       path: STATIC,
     },
     performance: { hints: false },
-    devtool: false,
-    // optimization: {
-    //   // minimizer: [
-    //   //   new TerserPlugin({
-    //   //     cache: true,
-    //   //     parallel: true,
-    //   //     sourceMap: false,
-    //   //     terserOptions: {
-    //   //       output: { comments: false },
-    //   //       compress: { drop_console: true },
-    //   //     },
-    //   //   }),
-    //   // ],
-    //   splitChunks: {
-    //     // chunks: 'async',
-    //     automaticNameDelimiter: '.',
-    //     cacheGroups: {
-    //       vendor: {
-    //         name: 'vendors',
-    //         filename: 'vendors.[hash].js',
-    //         chunks: chunk => chunk.name === 'main',
-    //         test: module => /[\\/]node_modules[\\/]/.test(module.context),
-    //         // chunks: 'all',
-    //         // reuseExistingChunk: true,
-    //         // priority: 1,
-    //         // minChunks: 1,
-    //         // minSize: 0,
-    //       },
-    //     },
-    //   },
-    //   occurrenceOrder: true,
-    // },
+    // devtool: 'source-map',
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: false,
+          terserOptions: {
+            output: {
+              comments: false,
+            },
+            compress: {
+              drop_console: true,
+              booleans_as_integers: true,
+              warnings: true,
+            },
+            mangle: {
+              keep_classnames: true,
+            },
+          },
+        }),
+      ],
+      splitChunks: {
+        chunks: 'async',
+        automaticNameDelimiter: '.',
+        cacheGroups: {
+          vendor: {
+            name: 'app.vendors',
+            filename: 'js/app.vendors.[hash].js',
+            test: module => /[\\/]node_modules[\\/]/.test(module.context),
+            chunks: 'all',
+            enforce: true,
+          },
+        },
+      },
+    },
     plugins: [
       new HtmlWebpackPlugin({
         filename: '../public/index.html',
@@ -70,33 +75,20 @@ module.exports = () => {
       // new BundleAnalyzerPlugin({
       //   analyzerMode: 'static',
       //   generateStatsFile: true,
-      //   // reportFilename: `${DEST}/${PRJ_NAME}-bundle-report.html`,
-      //   // mode: "standalone",
-      //   // port: 4040,
-      //   // open: true,
-      //   // watchModeOnly: false,
+      //   statsFilename: '../bundle-report/stats.json',
+      //   reportFilename: '../bundle-report/report.html',
+      //   openAnalyzer: false,
       // }),
       new LodashModuleReplacementPlugin({
         cloning: true,
         collections: true,
         metadata: true,
       }),
-      // new BabelMinifyPlugin({
-      //   // minify options are passed on to babel-preset-minify
-      //   removeConsole: true,
-      // }, {
-      //   // Default: /^\**!|@preserve|@license|@cc_on/
-      //   // falsy value to remove all comments.
-      //   comments: false,
-      //   sourceMap: true,
-      // }),
       new webpack.DefinePlugin({ PRODUCTION: true }),
       new CleanWebpackPlugin({
-        root: STATIC,
-        verbose: true,
-        dry: false,
         cleanOnceBeforeBuildPatterns: ['js/*.*', 'css/*.*'],
       }),
+      new WebpackBar(),
     ],
   };
 };

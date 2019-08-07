@@ -2,44 +2,36 @@ const { resolve } = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
-// const POSTCSS_CONFIG_PATH = resolve(__dirname, '.config/postcss.config.js');
 const POSTCSS_CONFIG_PATH = resolve(__dirname, '../.config/');
 const COMMON_SASS_PATH = resolve(__dirname, '../src/styles/base');
 const COMMON_SASS_RESOURSE_PATH = resolve(__dirname, '../src/styles');
-// const CACHE_DIR_PATH = resolve(__dirname, '.', 'node_modules', '.cache');
+const CACHE_DIR_PATH = resolve(__dirname, '.', 'node_modules', '.cache');
 
-// const withCacheLoader = name => ({
-//   loader: 'cache-loader',
-//   options: { cacheDirectory: resolve(CACHE_DIR_PATH, name) },
-// });
+const withCacheLoader = name => ({
+  loader: 'cache-loader',
+  options: { cacheDirectory: resolve(CACHE_DIR_PATH, name) },
+});
 
-// const withThreadLoader = name => ({
-//   loader: 'thread-loader',
-//   options: { name, poolRespawn: false },
-// });
+const withThreadLoader = name => ({
+  loader: 'thread-loader',
+  options: { name, poolRespawn: false },
+});
+
 module.exports = [
   {
     test: /\.(js|jsx)$/,
     exclude: /node_modules/,
     include: resolve(__dirname, '..', 'src'),
-    loader: `babel-loader${IS_PRODUCTION ? '' : '?compact=false'}`,
-    // use: [
-    //   // {
-    //   //   ...withCacheLoader('js'),
-    //   // },
-    //   // {
-    //   //   ...withThreadLoader('js'),
-    //   // },
-    //   {
-    //     // loader: `babel-loader${IS_PRODUCTION ? '' : '?compact=false'}`,
-    //     loader: `babel-loader`,
-    //     // options: {
-    //     //   // cacheDirectory: resolve(CACHE_DIR_PATH, 'babel'),
-    //     //   // configFile: resolve(__dirname, '../.config/babel.config.js'),
-    //     //   // configFile: resolve(__dirname, 'babel.config.js'),
-    //     // },
-    //   },
-    // ],
+    use: [
+      withCacheLoader('js'),
+      withThreadLoader('js'),
+      {
+        loader: `babel-loader${IS_PRODUCTION ? '' : '?compact=false'}`,
+        options: {
+          cacheDirectory: resolve(CACHE_DIR_PATH, 'babel'),
+        },
+      },
+    ],
   },
   {
     test: /\.(css|scss|sass)$/,
