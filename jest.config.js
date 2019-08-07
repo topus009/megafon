@@ -14,7 +14,7 @@ module.exports = {
   testPathIgnorePatterns: [
     '/node_modules/',
     '/public/',
-    '/ets/',
+    '/bundle-report/',
     '/src/',
     '/tests/testHelpers.js',
     '/tests/setupTests.js',

@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { mount, render } from 'enzyme';
-import InfoField from '../../src/common/InfoField';
+import InfoField from '../../src/js/common/InfoField';
 
 const testProps = {
   child: [undefined, <div className="child">child</div>],

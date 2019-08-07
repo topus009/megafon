@@ -3,7 +3,7 @@ import {
     hasOnlyDigits,
     yearIsLessThanCurrent,
     isEmpty
-} from '../../src/helpers/common';
+} from '../../src/js/helpers/common';
 
 test('hasOnlyDigits', () => {
     expect(hasOnlyDigits('ascascac')).toBe(false);

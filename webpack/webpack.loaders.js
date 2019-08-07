@@ -21,7 +21,7 @@ module.exports = [
   {
     test: /\.(js|jsx)$/,
     exclude: /node_modules/,
-    include: resolve(__dirname, '..', 'src'),
+    include: resolve(__dirname, '..', 'src', 'js'),
     use: [
       withCacheLoader('js'),
       withThreadLoader('js'),

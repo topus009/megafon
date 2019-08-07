@@ -6,14 +6,14 @@ console.warn(process.env.NODE_ENV);
 
 module.exports = {
   entry: {
-    app: ['./src/index.js'],
+    app: ['./src/js/index.js'],
   },
   module: {
     rules: loaders,
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-    modules: [resolve(__dirname, 'src'), 'node_modules'],
+    modules: [resolve(__dirname, 'src/js'), 'node_modules'],
     alias: {
       'react-dom': '@hot-loader/react-dom',
     },
@@ -23,11 +23,6 @@ module.exports = {
     version: false,
     warnings: false,
     children: false,
-    // excludeModules: [
-    //   /sources/,
-    //   /node_modules/,
-    //   /(webpack)/,
-    // ]
     // assets: false,
     modules: false,
   },

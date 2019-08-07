@@ -37,7 +37,6 @@ module.exports = () => {
       // hot: true,
       // inline: true,
       historyApiFallback: true,
-      // headers: { 'Access-Control-Allow-Origin': '*' },
       // overlay: true,
     },
     plugins: [

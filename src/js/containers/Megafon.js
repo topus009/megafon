@@ -6,7 +6,7 @@ import AppRouter from '../routes';
 import configureStore from '../store';
 import Menu from '../components/Menu';
 
-import '../styles/base/_main.sass';
+import '../../styles/base/_main.sass';
 
 const history = createBrowserHistory();
 const Store = configureStore();

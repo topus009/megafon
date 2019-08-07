@@ -2,10 +2,10 @@ import _ from 'lodash';
 import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import MockAdapter from 'axios-mock-adapter';
-import constants from '../../src/constants/App';
-import * as actions from '../../src/actions/AppActions';
-import { dbPrefix } from '../../src/config/constants';
-import reducer, { initialState } from '../../src/reducers/app';
+import constants from '../../src/js/constants/App';
+import * as actions from '../../src/js/actions/AppActions';
+import { dbPrefix } from '../../src/js/config/constants';
+import reducer, { initialState } from '../../js/src/reducers/app';
 import { checkApiRunning, flushAllPromises } from '../testHelpers';
 
 const {

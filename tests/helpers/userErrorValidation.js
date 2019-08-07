@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { isError } from '../../src/helpers/userErrorValidation';
+import { isError } from '../../src/js/helpers/userErrorValidation';
 
 const fieldWithValues = {
   fio: 'ascascasca',
