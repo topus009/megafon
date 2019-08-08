@@ -20,7 +20,7 @@ const axios = axio.create({
   baseURL: dbPrefix,
 });
 
-function getUsers() {
+export function getUsers() {
   return dispatch => {
     dispatch({ type: PENDING });
     return axios
@@ -37,7 +37,7 @@ function getUsers() {
       });
   };
 }
-function deleteUser(id) {
+export function deleteUser(id) {
   return dispatch => {
     dispatch({ type: PENDING });
     return axios
@@ -54,13 +54,13 @@ function deleteUser(id) {
       });
   };
 }
-function saveUserToStore(user) {
+export function saveUserToStore(user) {
   return {
     type: SAVEUSERTOSTORE,
     payload: user,
   };
 }
-function saveUser(user) {
+export function saveUser(user) {
   return dispatch => {
     dispatch({ type: PENDING });
     const { _id: id } = user;
@@ -89,7 +89,7 @@ function saveUser(user) {
       .catch(err => console.log(err));
   };
 }
-function editUser(data) {
+export function editUser(data) {
   return {
     type: EDITUSER,
     payload: {
@@ -98,16 +98,14 @@ function editUser(data) {
     },
   };
 }
-function setError(data) {
+export function setError(data) {
   return {
     type: SETERROR,
     payload: isError(data),
   };
 }
-function clearFields() {
+export function clearFields() {
   return {
     type: CLEARFIELDS,
   };
 }
-
-export { getUsers, deleteUser, saveUserToStore, saveUser, editUser, clearFields, setError };

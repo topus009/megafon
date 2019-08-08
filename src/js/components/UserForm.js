@@ -39,15 +39,11 @@ const UserForm = ({
     clearFields();
     handleClose();
   };
+  const editable = isEditable();
+  const isNewUser = isNew();
   return (
-    <Form
-      onClose={handleClose}
-      onSave={handleSave}
-      isEditable={isEditable()}
-      title={renderFormTitle()}
-      disabled={errors}
-    >
-      <UserFormContent isEditable={isEditable()} saveUserToStore={handleSaveUserToStore} isNew={isNew()} />
+    <Form onClose={handleClose} onSave={handleSave} isEditable={editable} title={renderFormTitle()} disabled={errors}>
+      <UserFormContent isEditable={editable} saveUserToStore={handleSaveUserToStore} isNew={isNewUser} />
     </Form>
   );
 };

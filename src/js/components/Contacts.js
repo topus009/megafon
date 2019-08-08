@@ -5,10 +5,10 @@ import { getUsers } from '../actions/AppActions';
 import UserListItem from './UserListItem';
 
 const Contacts = ({ getUsers, users, loading, history }) => {
-  const handleClose = () => history.push('/');
   useEffect(() => {
     getUsers();
   }, []);
+  const handleClose = () => history.push('/');
   const renderUserListItems = () =>
     !loading && users.map(item => <UserListItem key={item._id} userId={item._id} history={history} />);
   return (

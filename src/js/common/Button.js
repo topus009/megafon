@@ -3,7 +3,7 @@ import { injectIntl } from 'react-intl';
 import { STATIC_PATH } from '../config/constants';
 import { iFMessage, FMessage } from '../hoc/IntlComponents';
 
-const Button = ({ disabled, onClick, classNames, icon, fontIcon, title, intl }) => {
+const Button = ({ disabled, onClick, classNames, icon, fontIcon, title, intl, role = 'button' }) => {
   const handleClick = () => !disabled && onClick();
   const renderBtnContent = () => {
     if (icon) {
@@ -30,7 +30,7 @@ const Button = ({ disabled, onClick, classNames, icon, fontIcon, title, intl }) 
   };
   const disableClass = disabled ? ' disabled' : '';
   return (
-    <div className={`button ${classNames}${disableClass}`} onClick={handleClick} role="button">
+    <div className={`button ${classNames}${disableClass}`} onClick={handleClick} role={role}>
       {renderBtnContent()}
     </div>
   );

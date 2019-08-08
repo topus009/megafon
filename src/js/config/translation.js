@@ -8,4 +8,6 @@ export const messages = {
 
 export const defaultLocale = 'en';
 
-export const defaultLanguages = [{ key: 'en', title: 'English' }, { key: 'ru', title: 'Русский' }];
+export const defaultLanguages = [{ value: 'en', label: 'English' }, { value: 'ru', label: 'Русский' }];
+
+export const megafon_cookie_name_lang = 'megafon_lang';
