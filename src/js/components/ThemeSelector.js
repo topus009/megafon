@@ -5,7 +5,7 @@ import { defaultThemes } from '../config/theme';
 import { setTheme } from '../actions/ThemeActions';
 import { FMessage } from '../hoc/IntlComponents';
 
-const LanguageSelector = ({ currentTheme, setTheme }) => {
+const LanguageSelector = ({ currentTheme, setTheme, locale }) => {
   const itemIndex = defaultThemes.findIndex(({ value }) => value === currentTheme);
   const renderItems = () =>
     defaultThemes.map(({ value, label }) => ({
@@ -19,13 +19,23 @@ const LanguageSelector = ({ currentTheme, setTheme }) => {
       ),
       value,
     }));
-  return <Dropdown dropdownItems={renderItems()} selectedItem={itemIndex} classNames="themeSelector" cb={setTheme} />;
+  return (
+    <Dropdown
+      key={locale}
+      dropdownItems={renderItems()}
+      selectedItem={itemIndex}
+      classNames="themeSelector"
+      cb={setTheme}
+    />
+  );
 };
 
-const mapStateToProps = ({ theme }) => {
+const mapStateToProps = ({ theme, intl }) => {
   const { currentTheme } = theme;
+  const { locale } = intl;
   return {
     currentTheme,
+    locale,
   };
 };
 
