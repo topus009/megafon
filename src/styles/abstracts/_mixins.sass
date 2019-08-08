@@ -26,3 +26,12 @@
     @media screen and (-webkit-min-resolution: 2dppx)
         font-size: 24px
         line-height: 30px
+
+=themePreview($color_one,$color_two)
+    background: -moz-linear-gradient(135deg, $color_one 50%, $color_two 50%)
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(50%, $color_two) color-stop(50%, $color_one))
+    background: -webkit-linear-gradient(135deg, $color_one 50%, $color_two 50%)
+    background: -o-linear-gradient(135deg, $color_one 50%, $color_two 50%)
+    background: -ms-linear-gradient(135deg, $color_one 50%, $color_two 50%)
+    background: linear-gradient(315deg, $color_one 50%, $color_two 50%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color_two}', endColorstr='#{$color_one}',GradientType=1)

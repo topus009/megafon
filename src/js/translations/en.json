@@ -24,5 +24,7 @@
   "infoField.dateOfBirth": "Date of birth",
   "infoField.address": "Address",
   "infoField.vk": "VKontakte",
-  "infoField.comments": "Comments"
+  "infoField.comments": "Comments",
+  "themeDefault": "Main",
+  "themeDark": "Dark"
 }

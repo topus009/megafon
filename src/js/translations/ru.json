@@ -24,5 +24,7 @@
   "infoField.dateOfBirth": "Дата рождения",
   "infoField.address": "Адрес",
   "infoField.vk": "Вконтакте",
-  "infoField.comments": "Комментарии"
+  "infoField.comments": "Комментарии",
+  "themeDefault": "Основная",
+  "themeDark": "Темная"
 }

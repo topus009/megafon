@@ -3,6 +3,7 @@ import { injectIntl } from 'react-intl';
 import NavLink from '../common/NavLink';
 import { iFMessage, FMessage } from '../hoc/IntlComponents';
 import LanguageSelector from './LanguageSelector';
+import ThemeSelector from './ThemeSelector';
 
 const navItems = [
   {
@@ -27,6 +28,7 @@ const Menu = ({ intl }) => {
   return (
     <div className="menu">
       <LanguageSelector />
+      <ThemeSelector />
       <div className="logo">
         <FMessage id="menu.brand" />
       </div>

@@ -10,15 +10,35 @@
         +wh(100%,80px)
     @media screen and (min-width: 1920px)
         +wh(100%,100px)
-    .languageSelector
+    .languageSelector,
+    .themeSelector
+        margin: 0 20px
+        position: absolute
         .dropdown_title,
         .dropdown_menu
             .dropdown_label
                 display: flex
                 align-items: center
-                img
+                img,
+                .preview
                     height: 1.5rem
                     margin-left: .5rem
+    .languageSelector
+        left: 0
+    .themeSelector
+        left: 100px
+        .dropdown_title,
+        .dropdown_menu
+            .dropdown_label
+                .preview
+                    width: 1.5rem
+                    border-radius: 50%
+                    border: 1px solid white
+                    box-sizing: border-box
+                    &.themeDefault
+                        +themePreview(#00be73, #5f19aa)
+                    &.themeDark
+                        +themePreview(#212121, #5f19aa)
     .logo
         color: color(text, menu)
         font-size: 2rem
