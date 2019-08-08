@@ -5,7 +5,7 @@ import locale_ru from 'react-intl/locale-data/ru';
 
 addLocaleData([...locale_en, ...locale_ru]);
 
-const mapStateToProps = ({ intl: { key, defaultLocale, messages, locale, textComponent } }) => ({
+const mapStateToProps = ({ intl: { defaultLocale, messages, locale }, textComponent, key }) => ({
   defaultLocale,
   messages: messages[locale],
   locale,

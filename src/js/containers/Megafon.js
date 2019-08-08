@@ -13,13 +13,12 @@ import '../../styles/base/_main.sass';
 const history = createBrowserHistory();
 const Store = configureStore();
 
-const inltReducer = Store.getState().inlt;
-const { locale } = inltReducer;
+const locale = Store.getState()?.inlt?.locale || defaultLocale;
 
 const Megafon = () => {
   return (
     <Provider store={Store}>
-      <IntlProvider key={locale} locale={locale} defaultLocale={defaultLocale} textComponent={Fragment}>
+      <IntlProvider key={locale} locale={locale} textComponent={Fragment}>
         <Router history={history}>
           <Menu />
           <AppRouter />
