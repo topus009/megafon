@@ -19,12 +19,12 @@ const UserForm = ({
   const isEditable = () => isNew() || isEdit();
   const renderFormTitle = () => {
     if (isNew()) {
-      return 'Новый пользователь';
+      return 'userForm.title.new';
     }
     if (isEdit()) {
-      return 'Редактирование пользователя';
+      return 'userForm.title.edit';
     }
-    return 'Профиль пользователя';
+    return 'userForm.title.profile';
   };
   const handleClose = () => {
     clearFields();

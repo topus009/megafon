@@ -1,6 +1,7 @@
 import constants from '../constants/App';
 import { defaultFieldErrors } from '../config/fieldErrors';
 import { preparedErrorData, preparedRequiredFieldsData } from '../helpers/reducersPrepareDataHelpers';
+import { defaultLocale } from '../config/translation';
 
 const { GETUSERS, DELETEUSER, PENDING, SAVEUSERTOSTORE, SAVEUSER, EDITUSER, SETERROR, CLEARFIELDS } = constants;
 
@@ -21,6 +22,7 @@ export const initialState = {
   loading: false,
   errors: false,
   fieldErrors: defaultFieldErrors,
+  language: defaultLocale,
 };
 
 export default function app(state = initialState, action) {

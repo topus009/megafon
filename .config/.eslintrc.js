@@ -12,6 +12,7 @@ module.exports = {
     'jsx-a11y/href-no-hash': ['off'],
     'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx'] }],
     'react/no-array-index-key': 0,
+    'react/prop-types': 0,
     'max-len': [
       'warn',
       {
@@ -33,8 +34,11 @@ module.exports = {
     'global-require': 0,
     'import/prefer-default-export': 0,
 
-    //FIXME: ЧТОБЫ НЕ РУГАЛОСЬ НА OPTIONAL-CHAINING,
+    // FIXME: ЧТОБЫ НЕ РУГАЛОСЬ НА OPTIONAL-CHAINING,
     camelcase: 0,
     'no-unused-expressions': 0,
+  },
+  globals: {
+    PRODUCTION: 'readonly',
   },
 };

@@ -14,8 +14,8 @@ const UserListItem = ({ userId, users, deleteUser, history }) => {
         <div className="userlist_item">{user.fio}</div>
       </NavLink>
       <div className="user_control_buttons">
-        <Button fontIcon="&#9998;" title="Редактировать" onClick={handleEdit} classNames="edit" />
-        <Button fontIcon="&#10005;" title="Удалить" onClick={handleClick} classNames="delete" />
+        <Button fontIcon="&#9998;" title="main.edit" onClick={handleEdit} classNames="edit" />
+        <Button fontIcon="&#10005;" title="main.delete" onClick={handleClick} classNames="delete" />
       </div>
     </div>
   );

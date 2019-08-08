@@ -12,7 +12,7 @@ const Contacts = ({ getUsers, users, loading, history }) => {
   const renderUserListItems = () =>
     !loading && users.map(item => <UserListItem key={item._id} userId={item._id} history={history} />);
   return (
-    <Form onClose={handleClose} title="Контакты">
+    <Form onClose={handleClose} title="contacts.form.title">
       <div className="content">{renderUserListItems()}</div>
     </Form>
   );

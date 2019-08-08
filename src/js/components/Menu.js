@@ -1,32 +1,36 @@
 import React from 'react';
+import { injectIntl } from 'react-intl';
 import NavLink from '../common/NavLink';
+import { iFMessage, FMessage } from '../hoc/IntlComponents';
 
 const navItems = [
   {
     path: '/contacts',
     btnClassName: 'book',
-    title: 'Контакты',
+    title: 'menu.nav.contacts',
   },
   {
     path: '/adduser',
     btnClassName: 'adduser',
-    title: 'Добавить в контакты',
+    title: 'menu.nav.add',
   },
 ];
 
-const Menu = () => {
+const Menu = ({ intl }) => {
   const renderNavLinks = () =>
     navItems.map(({ path, btnClassName, title }, index) => (
       <NavLink key={index} to={path}>
-        <div className={btnClassName} title={title} />
+        <div className={btnClassName} title={iFMessage({ intl, id: title })} />
       </NavLink>
     ));
   return (
     <div className="menu">
-      <div className="logo">Мегафон</div>
+      <div className="logo">
+        <FMessage id="menu.brand" />
+      </div>
       <div className="buttons">{renderNavLinks()}</div>
     </div>
   );
 };
 
-export default Menu;
+export default injectIntl(Menu);

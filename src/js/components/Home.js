@@ -1,19 +1,29 @@
 import React from 'react';
 import Form from '../common/Form';
+import { FMessage } from '../hoc/IntlComponents';
 
 const Home = () => (
-  <Form title="Описание">
+  <Form title="home.form.title">
     <div className="description">
       <p>
-        Этот пример сделан для того, чтобы показать некоторые вещи, которые я умею делать. Также я собираюсь дополнять
-        его новыми фишками.
+        <FMessage id="home.part.1" />
       </p>
-      <p>Основные особенности:</p>
+      <p>
+        <FMessage id="home.part.2" />
+      </p>
       <ol>
-        <li>Загрузка по API из базы данных MondoDB юзеров</li>
-        <li>Методы POST, PUT, DELETE также реализованы</li>
-        <li>Есть валидация четырех полей (фио, основной и рабочий номера, дата рождения)</li>
-        <li>Поле ФИО обязательно для заполнения</li>
+        <li>
+          <FMessage id="home.part.3" />
+        </li>
+        <li>
+          <FMessage id="home.part.4" />
+        </li>
+        <li>
+          <FMessage id="home.part.5" />
+        </li>
+        <li>
+          <FMessage id="home.part.6" />
+        </li>
       </ol>
     </div>
   </Form>

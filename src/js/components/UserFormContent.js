@@ -5,31 +5,16 @@ import InfoField from '../common/InfoField';
 import { editUser, clearFields } from '../actions/AppActions';
 
 const contentProps = {
-  fio: {
-    label: 'ФИО',
-  },
-  mainPhone: {
-    label: 'Основной номер',
-  },
-  workPhone: {
-    label: 'Рабочий номер',
-  },
-  email: {
-    label: 'Email',
-  },
+  fio: {},
+  mainPhone: {},
+  workPhone: {},
+  email: {},
   dateOfBirth: {
-    label: 'Дата рождения',
     placeholder: '2000.01.01',
   },
-  address: {
-    label: 'Адрес',
-  },
-  vk: {
-    label: 'Вконтакте',
-  },
-  comments: {
-    label: 'Комментарии',
-  },
+  address: {},
+  vk: {},
+  comments: {},
 };
 
 const UserFormContent = ({ clearFields, saveUserToStore, isNew, isEditable, user = [], fieldErrors, editUser }) => {
@@ -38,7 +23,7 @@ const UserFormContent = ({ clearFields, saveUserToStore, isNew, isEditable, user
   }, [isNew]);
   const renderEditableField = key =>
     contentProps[key] && (
-      <InfoField key={`InfoField_${key}`} label={contentProps[key].label} hideWrapper>
+      <InfoField key={`InfoField_${key}`} label={key} hideWrapper>
         <TextInput
           key={`TextInput_${key}`}
           fieldName={key}
@@ -50,9 +35,7 @@ const UserFormContent = ({ clearFields, saveUserToStore, isNew, isEditable, user
       </InfoField>
     );
   const renderField = key =>
-    contentProps[key] && user[key].length ? (
-      <InfoField key={`InfoField_${key}`} label={contentProps[key].label} value={user[key]} />
-    ) : null;
+    contentProps[key] && user[key].length ? <InfoField key={`InfoField_${key}`} label={key} value={user[key]} /> : null;
   return (
     <div className="user_form">
       {Object.keys(user).map(key => (isEditable ? renderEditableField(key) : renderField(key)))}

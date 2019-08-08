@@ -51,6 +51,7 @@ module.exports = () => {
         filename: 'css/styles.css',
       }),
       new webpack.HotModuleReplacementPlugin(),
+      new webpack.DefinePlugin({ PRODUCTION: false }),
       // new BrowserSyncPlugin({
       //   host: HOST,
       //   port: PORT,

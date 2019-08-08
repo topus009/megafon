@@ -1,20 +1,32 @@
 import React from 'react';
+import { injectIntl } from 'react-intl';
 import { STATIC_PATH } from '../config/constants';
+import { iFMessage, FMessage } from '../hoc/IntlComponents';
 
-const Button = ({ disabled, onClick, classNames, icon, fontIcon, title }) => {
+const Button = ({ disabled, onClick, classNames, icon, fontIcon, title, intl }) => {
   const handleClick = () => !disabled && onClick();
   const renderBtnContent = () => {
     if (icon) {
-      return <img className="button_content" src={`../../${STATIC_PATH}/images/${icon}`} alt={title} />;
+      return (
+        <img
+          className="button_content"
+          src={`../../${STATIC_PATH}/images/${icon}`}
+          alt={iFMessage({ intl, id: title })}
+        />
+      );
     }
     if (fontIcon) {
       return (
-        <div title={title} className="button_content">
+        <div title={iFMessage({ intl, id: title })} className="button_content">
           {fontIcon}
         </div>
       );
     }
-    return <div className="button_content">{title}</div>;
+    return (
+      <div className="button_content">
+        <FMessage id={title} />
+      </div>
+    );
   };
   const disableClass = disabled ? ' disabled' : '';
   return (
@@ -24,4 +36,4 @@ const Button = ({ disabled, onClick, classNames, icon, fontIcon, title }) => {
   );
 };
 
-export default Button;
+export default injectIntl(Button);
