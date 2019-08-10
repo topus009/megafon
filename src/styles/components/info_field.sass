@@ -1,16 +1,18 @@
 .info_field
-    margin-bottom: 1em
-    padding: 0.5em 1em
-    border: 2px solid color(border,info_field)
-    @media screen and (min-width: 360px) and (min-resolution: 2dppx)
-        margin-bottom: 0.1em
-    @media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx)
+    +themify($themes)
         margin-bottom: 1em
-    .label
-        font-size: 0.7em
-        color: color(text,info_field_label)
-    .value
-        font-size: 1.2em
-    &.hide_wrapper
-        border: none
-        padding: 0.4em 1em
+        padding: 0.5em 1em
+        border: 2px solid themed('border_info_field')
+        @media screen and (min-width: 360px) and (min-resolution: 2dppx)
+            margin-bottom: 0.1em
+        @media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx)
+            margin-bottom: 1em
+        .label
+            font-size: 0.7em
+            color: themed('text_info_field_label')
+        .value
+            font-size: 1.2em
+            color: themed('text_info_field_value')
+        &.hide_wrapper
+            border: none
+            padding: 0.4em 1em

@@ -25,6 +25,6 @@
   "infoField.address": "Address",
   "infoField.vk": "VKontakte",
   "infoField.comments": "Comments",
-  "themeDefault": "Main",
-  "themeDark": "Dark"
+  "theme1": "Main",
+  "theme2": "Dark"
 }

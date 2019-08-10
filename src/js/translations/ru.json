@@ -25,6 +25,6 @@
   "infoField.address": "Адрес",
   "infoField.vk": "Вконтакте",
   "infoField.comments": "Комментарии",
-  "themeDefault": "Основная",
-  "themeDark": "Темная"
+  "theme1": "Основная",
+  "theme2": "Темная"
 }

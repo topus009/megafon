@@ -7,8 +7,9 @@
 @import './menu'
 
 body
-    margin: 0
-    font-family: 'PFDinDP-Reg'
-    background-color: color(bg, app)
+    +themify($themes)
+        margin: 0
+        font-family: 'PFDinDP-Reg'
+        background-color: themed('bg_app')
 #root
     position: relative

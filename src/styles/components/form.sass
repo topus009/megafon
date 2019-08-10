@@ -1,147 +1,148 @@
 .form
-    background-color: color(bg, form)
-    width: calc(100% - 20px)
-    height: calc(100vh - 90px)
-    margin: 10px auto
-    padding-bottom: 10px
-    @media screen and (min-width: 720px) and (max-width: #{1920 - 1}px)
-        width: calc(100% - 40px)
-        margin: 20px auto
-        padding-bottom: 20px
-    @media screen and (min-width: 720px) and (max-width: #{1366 - 1}px)
-        height: calc(100vh - 120px)
-    @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
-        height: calc(100vh - 140px)
-    @media screen and (min-width: 1920px)
-        width: calc(100% - 80px)
-        height: calc(100vh - 220px)
-        margin: 40px auto
-        padding-bottom: 40px
-    @media screen and (min-width: 360px) and (min-resolution: 2dppx)
-        height: calc(100vh - 146px)
-    @media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx)
+    +themify($themes)
+        background-color: themed('bg_form')
+        width: calc(100% - 20px)
         height: calc(100vh - 90px)
-    .title
-        background-color: color(bg, form_title)
-        color: color(text, form_title)
-        position: relative
-        height: 50px
-        padding-left: 20px
-        font-size: 1.3rem
-        line-height: 50px
-        @media screen and (min-width: 720px)
-            padding-left: 0
-            text-align: center
-        @media screen and (min-width: 720px) and (max-width: #{1366 - 1}px)
-            font-size: 1.5rem
-        @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
-            height: 60px
-            font-size: 1.8rem
-            line-height: 60px
-        @media screen and (min-width: 1920px)
-            height: 60px
-            font-size: 1.8rem
-            line-height: 60px
-        @media screen and (min-width: 1920px)
-            height: 80px
-            font-size: 2rem
-            line-height: 80px
-        @media screen and (min-width: 360px) and (min-resolution: 2dppx)
-            font-size: 1.5rem
-            line-height: 50px
-        @media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx)
-            font-size: 1.8rem
-            line-height: 70px
-            font-weight: bold
-        .close
-            position: absolute
-            text-align: center
-            border: 2px solid color(button, close_border)
-            border-radius: 50%
-            padding: 4px
-            top: 10px
-            right: 10px
-            width: 20px
-            height: 20px
-            @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
-                width: 30px
-                height: 30px
-            @media screen and (min-width: 1920px)
-                width: 40px
-                height: 40px
-                top: 15px
-                right: 15px
-            &:hover
-                border-color: color(button, close_hover_border)
-            &:hover .button_content
-                color: color(button, close_hover_color)
-            .button_content
-                font-family: 'Times New Roman'
-                font-size: 1.1rem
-                line-height: 1.15
-                @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
-                    font-size: 1.4rem
-                    line-height: 1.4
-                @media screen and (min-width: 1920px)
-                    font-size: 1.8rem
-                    line-height: 1.5
-                @media screen and (min-width: 360px) and (min-resolution: 2dppx)
-                    font-size: 2rem
-                    line-height: 0.65
-                @media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx)
-                    font-size: 2.8rem
-                    line-height: 0.65
-                    font-weight: normal
-    .content
-        overflow-y: auto
-        background-color: color(bg, content)
-        padding: 10px
-        margin: 10px
-        height: calc(100% - 140px)
+        margin: 10px auto
+        padding-bottom: 10px
         @media screen and (min-width: 720px) and (max-width: #{1920 - 1}px)
-            padding: 20px
-            margin: 20px
+            width: calc(100% - 40px)
+            margin: 20px auto
+            padding-bottom: 20px
         @media screen and (min-width: 720px) and (max-width: #{1366 - 1}px)
-            height: calc(100% - 180px)
+            height: calc(100vh - 120px)
         @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
-            height: calc(100% - 200px)
+            height: calc(100vh - 140px)
         @media screen and (min-width: 1920px)
-            padding: 40px
-            margin: 40px
-            height: calc(100% - 320px)
+            width: calc(100% - 80px)
+            height: calc(100vh - 220px)
+            margin: 40px auto
+            padding-bottom: 40px
         @media screen and (min-width: 360px) and (min-resolution: 2dppx)
-            height: calc(100% - 140px)
+            height: calc(100vh - 146px)
         @media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx)
-            height: calc(100% - 146px)
-    .footer
-        width: 100%
-        .save
-            background-color: color(button, form_footer)
-            color: color(button, form_footer_color)
-            text-align: center
-            +wh(70%, 50px)
-            margin: 10px auto
+            height: calc(100vh - 90px)
+        .title
+            background-color: themed('bg_form_title')
+            color: themed('text_form_title')
+            position: relative
+            height: 50px
+            padding-left: 20px
+            font-size: 1.3rem
             line-height: 50px
-            font-size: 20px
-            display: table
             @media screen and (min-width: 720px)
-                float: right
+                padding-left: 0
+                text-align: center
             @media screen and (min-width: 720px) and (max-width: #{1366 - 1}px)
-                +wh(40%, 50px)
-                margin: 0 20px
+                font-size: 1.5rem
             @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
-                +wh(30%, 60px)
+                height: 60px
+                font-size: 1.8rem
                 line-height: 60px
-                font-size: 25px
-                margin: 0 20px
             @media screen and (min-width: 1920px)
-                +wh(20%, 80px)
+                height: 60px
+                font-size: 1.8rem
+                line-height: 60px
+            @media screen and (min-width: 1920px)
+                height: 80px
+                font-size: 2rem
                 line-height: 80px
-                font-size: 29px
-                margin: 0 40px
+            @media screen and (min-width: 360px) and (min-resolution: 2dppx)
+                font-size: 1.5rem
+                line-height: 50px
             @media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx)
-                line-height: 80px
-                font-size: 29px
+                font-size: 1.8rem
+                line-height: 70px
                 font-weight: bold
-            &:hover
-                background-color: color(button, form_footer_hover)
+            .close
+                position: absolute
+                text-align: center
+                border: 2px solid themed('button_close_border')
+                border-radius: 50%
+                padding: 4px
+                top: 10px
+                right: 10px
+                width: 20px
+                height: 20px
+                @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+                    width: 30px
+                    height: 30px
+                @media screen and (min-width: 1920px)
+                    width: 40px
+                    height: 40px
+                    top: 15px
+                    right: 15px
+                &:hover
+                    border-color: themed('button_close_hover_border')
+                &:hover .button_content
+                    color: themed('button_close_hover_color')
+                .button_content
+                    font-family: 'Times New Roman'
+                    font-size: 1.1rem
+                    line-height: 1.15
+                    @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+                        font-size: 1.4rem
+                        line-height: 1.4
+                    @media screen and (min-width: 1920px)
+                        font-size: 1.8rem
+                        line-height: 1.5
+                    @media screen and (min-width: 360px) and (min-resolution: 2dppx)
+                        font-size: 2rem
+                        line-height: 0.65
+                    @media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx)
+                        font-size: 2.8rem
+                        line-height: 0.65
+                        font-weight: normal
+        .content
+            overflow-y: auto
+            background-color: themed('bg_content')
+            padding: 10px
+            margin: 10px
+            height: calc(100% - 140px)
+            @media screen and (min-width: 720px) and (max-width: #{1920 - 1}px)
+                padding: 20px
+                margin: 20px
+            @media screen and (min-width: 720px) and (max-width: #{1366 - 1}px)
+                height: calc(100% - 180px)
+            @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+                height: calc(100% - 200px)
+            @media screen and (min-width: 1920px)
+                padding: 40px
+                margin: 40px
+                height: calc(100% - 320px)
+            @media screen and (min-width: 360px) and (min-resolution: 2dppx)
+                height: calc(100% - 140px)
+            @media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx)
+                height: calc(100% - 146px)
+        .footer
+            width: 100%
+            .save
+                background-color: themed('button_form_footer')
+                color: themed('button_form_footer_color')
+                text-align: center
+                +wh(70%, 50px)
+                margin: 10px auto
+                line-height: 50px
+                font-size: 20px
+                display: table
+                @media screen and (min-width: 720px)
+                    float: right
+                @media screen and (min-width: 720px) and (max-width: #{1366 - 1}px)
+                    +wh(40%, 50px)
+                    margin: 0 20px
+                @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+                    +wh(30%, 60px)
+                    line-height: 60px
+                    font-size: 25px
+                    margin: 0 20px
+                @media screen and (min-width: 1920px)
+                    +wh(20%, 80px)
+                    line-height: 80px
+                    font-size: 29px
+                    margin: 0 40px
+                @media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx)
+                    line-height: 80px
+                    font-size: 29px
+                    font-weight: bold
+                &:hover
+                    background-color: themed('button_form_footer_hover')

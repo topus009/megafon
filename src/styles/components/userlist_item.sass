@@ -1,37 +1,38 @@
 .userlist_block
-    margin-bottom: 1em
-    width: 100%
-    a
-        width: 50%
-        display: inline-block
-        text-decoration: none
-        color: black
-        @media screen and (max-width: #{720 - 1}px)
-            width: 80%
-        &:hover
-            background-color: color(bg,form)
-        .userlist_item
-            border: 2px solid color(border,userlist_item)
-            padding: 0.5em 1em
-            &:hover
-                border-color: color(border,userlist_item_hover)
-    .user_control_buttons
-        display: inline-block
-        @media screen and (min-width: 360px) and (min-resolution: 2dppx)
-            vertical-align: middle
-        .button
+    +themify($themes)
+        margin-bottom: 1em
+        width: 100%
+        a
+            width: 50%
             display: inline-block
-            font-size: 20px
-            color:  color(button,user_control_color)
-            @media screen and (min-width: 360px) and (min-resolution: 2dppx)
-                font-size: 25px
-            @media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx)
-                font-size: 35px
+            text-decoration: none
+            color: themed('text_user_list_block')
+            @media screen and (max-width: #{720 - 1}px)
+                width: 80%
             &:hover
-                color: color(button,user_control_color_hover)
-            &.edit
-                margin-right: 20px
-                margin-left: 50px
-                @media screen and (max-width: #{720 - 1}px)
-                    margin-right: 5px
-                    margin-left: 5px
+                background-color: themed('text_user_list_block_hover')
+            .userlist_item
+                border: 2px solid themed('border_userlist_item')
+                padding: 0.5em 1em
+                &:hover
+                    border-color: themed('border_userlist_item_hover')
+        .user_control_buttons
+            display: inline-block
+            @media screen and (min-width: 360px) and (min-resolution: 2dppx)
+                vertical-align: middle
+            .button
+                display: inline-block
+                font-size: 20px
+                color:  themed('button_user_control_color')
+                @media screen and (min-width: 360px) and (min-resolution: 2dppx)
+                    font-size: 25px
+                @media screen and (min-width: 360px) and (-webkit-min-resolution: 2dppx)
+                    font-size: 35px
+                &:hover
+                    color: themed('button_user_control_color_hover')
+                &.edit
+                    margin-right: 20px
+                    margin-left: 50px
+                    @media screen and (max-width: #{720 - 1}px)
+                        margin-right: 5px
+                        margin-left: 5px

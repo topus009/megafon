@@ -1,5 +1,6 @@
 .button
-    cursor: pointer
-    &.disabled
-        cursor: not-allowed
-        background-color: color(button, form_footer_disabled) !important
+    +themify($themes)
+        cursor: pointer
+        &.disabled
+            cursor: not-allowed
+            background-color: themed('button_form_footer_disabled') !important

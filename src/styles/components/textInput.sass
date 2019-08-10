@@ -1,18 +1,20 @@
 .text_input
-    .input_block
-        .input
-            border: 1px solid #939597
-            @media screen and (min-width: 360px) and (min-resolution: 2dppx)
-                max-width: 80%
-        .validate_icon
-            position: relative
-            &.good
-                &:after
-                    +validate_mark
-                    content: '\2713'
-                    color: color(validate_icon, good)
-            &.bad
-                &:after
-                    +validate_mark
-                    content: '\2717'
-                    color: color(validate_icon, bad)
+    +themify($themes)
+        .input_block
+            .input
+                border: 1px solid themed('border_text_input')
+                background-color: themed('bg_text_input')
+                @media screen and (min-width: 360px) and (min-resolution: 2dppx)
+                    max-width: 80%
+            .validate_icon
+                position: relative
+                &.good
+                    &:after
+                        +validate_mark
+                        content: '\2713'
+                        color: themed('validate_icon_good')
+                &.bad
+                    &:after
+                        +validate_mark
+                        content: '\2717'
+                        color: themed('validate_icon_bad')
