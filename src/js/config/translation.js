@@ -6,7 +6,7 @@ export const messages = {
   ru: messages_ru,
 };
 
-export const defaultLocale = 'en';
+export const defaultLocale = 'ru';
 
 export const defaultLanguages = [{ value: 'en', label: 'English' }, { value: 'ru', label: 'Русский' }];
 

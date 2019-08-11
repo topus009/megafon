@@ -7,7 +7,7 @@ import { defaultLocale } from '../config/translation';
 
 import '../../styles/base/_main.sass';
 
-const Store = configureStore();
+export const Store = configureStore();
 const locale = Store.getState()?.inlt?.locale || defaultLocale;
 
 const Megafon = () => {

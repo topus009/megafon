@@ -5,10 +5,13 @@ import { defaultTheme, defaultThemes, megafon_cookie_name_theme } from '../confi
 const { SETTHEME } = constants;
 
 const isThemeInList = theme => {
-  for (let i = 0; i < defaultThemes.length; i++) {
-    if (defaultThemes[i].value === theme) return theme;
-  }
-  return null;
+  let currentTheme = null;
+  defaultThemes.forEach(({ value }) => {
+    if (value === +theme) {
+      currentTheme = +theme;
+    }
+  });
+  return currentTheme;
 };
 
 const getTheme = () => {
