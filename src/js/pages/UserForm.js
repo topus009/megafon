@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Form from '../common/Form';
 import { saveUser, clearFields, saveUserToStore } from '../actions/AppActions';
-import UserFormContent from './UserFormContent';
+import UserFormContent from '../components/UserFormContent';
 
 const UserForm = ({
   history,
