@@ -3,7 +3,7 @@ import Form from '../common/Form';
 import { FMessage } from '../hoc/IntlComponents';
 
 const Home = () => (
-  <Form title="home.form.title">
+  <Form title="home.form.title" classNames="home">
     <div className="description">
       <p>
         <FMessage id="home.part.1" />
