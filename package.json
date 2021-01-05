@@ -32,7 +32,7 @@
   "homepage": "https://topus009.github.io/megafon",
   "dependencies": {
     "@hot-loader/react-dom": "^16.8.6",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "history": "^4.9.0",
     "js-cookie": "^2.2.1",
